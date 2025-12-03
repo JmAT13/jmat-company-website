@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>建築事業 | JmAT Japan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    /* emergency / cosmetics と同じCSS構成 */
+    :root {
+      --mint: #7FE8C8;
+      --mint-dark: #0f766e;
+      --bg: #f9fffd;
+      --text: #111827;
+      --text-sub: #4b5563;
+      --border: #e5e7eb;
+      --radius: 20px;
+      --max-width: 1040px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:-apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a { color:inherit; text-decoration:none; }
+    header {
+      position:fixed; top:0; left:0; right:0;
+      padding:16px 24px;
+      background:rgba(255,255,255,0.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(148,163,184,.3);
+      z-index:50;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .brand { font-weight:700; letter-spacing:.14em; font-size:13px; }
+    nav { display:flex; gap:18px; font-size:13px; }
+    nav a { color:var(--text-sub); }
+    nav a:hover { color:var(--mint-dark); }
+    .btn-outline {
+      border-radius:999px;
+      border:1px solid var(--mint);
+      padding:6px 14px;
+      font-size:12px;
+    }
+    main { padding-top:80px; }
+    .section { max-width:var(--max-width); margin:0 auto; padding:40px 20px; }
+    .hero {
+      display:grid; grid-template-columns:1.1fr 1fr;
+      gap:32px; align-items:center;
+      padding-top:40px; padding-bottom:20px;
+    }
+    .eyebrow {
+      font-size:11px; letter-spacing:.2em;
+      color:var(--mint-dark); text-transform:uppercase;
+      margin-bottom:8px;
+    }
+    .hero-title { font-size:30px; font-weight:800; margin-bottom:8px; }
+    .hero-sub { font-size:15px; color:var(--text-sub); margin-bottom:16px; }
+    .hero-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+    .tag {
+      font-size:11px; padding:4px 10px; border-radius:999px;
+      border:1px solid #a5f3fc; background:#ecfeff; color:#0e7490;
+    }
+    .hero-cta { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .btn-primary {
+      background:var(--mint); color:#065f46; border:none;
+      border-radius:999px; padding:8px 18px; font-size:12px;
+      font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      cursor:pointer;
+    }
+    .hero-visual { text-align:center; }
+    .hero-visual img {
+      max-width:380px; width:100%;
+      filter:drop-shadow(0 10px 26px rgba(15,23,42,.18));
+    }
+    .block {
+      background:#ffffff; border-radius:var(--radius);
+      border:1px solid var(--border);
+      padding:22px 24px; margin-bottom:18px;
+    }
+    .block h2 { font-size:18px; margin-bottom:6px; }
+    .block p { font-size:14px; color:var(--text-sub); }
+    .twocol { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    ul { padding-left:18px; font-size:14px; color:var(--text-sub); }
+    .cta-bottom { text-align:center; margin-top:24px; }
+    .cta-bottom p { font-size:14px; color:var(--text-sub); margin-bottom:12px; }
+    footer {
+      margin-top:40px; border-top:1px solid var(--border);
+      padding:18px 20px 24px; font-size:12px;
+      text-align:center; color:var(--text-sub);
+    }
+    .fade { opacity:0; transform:translateY(24px); transition:all .7s ease-out; }
+    .fade.show { opacity:1; transform:translateY(0); }
+    .parallax { will-change:transform; transition:transform .15s linear; }
+    @media(max-width:840px){
+      .hero { grid-template-columns:1fr; }
+      .twocol { grid-template-columns:1fr; }
+      nav { display:none; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="brand">JmAT JAPAN / ARCHITECTURE</div>
+  <nav>
+    <a href="/index.html">TOP</a>
+    <a href="/index.html#services">SERVICES</a>
+    <a href="/index.html#support">DONATION</a>
+  </nav>
+  <a href="mailto:info@jmat.jp" class="btn-outline">お問い合わせ</a>
+</header>
+
+<main>
+  <section class="section hero fade">
+    <div>
+      <div class="eyebrow">ARCHITECTURE & CARE VILLAGE</div>
+      <h1 class="hero-title">建築事業</h1>
+      <p class="hero-sub">
+        図面の上だけではなく、現場の“温度”まで設計する。<br>
+        病院・介護施設・介護村など、「ケアの拠点」をかたちにしていきます。
+      </p>
+      <div class="hero-tags">
+        <span class="tag">病院・クリニック</span>
+        <span class="tag">介護施設・介護村</span>
+        <span class="tag">医療動線設計</span>
+        <span class="tag">まちづくり</span>
+      </div>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="location.href='#contact'">計画・基本構想の相談</button>
+        <span style="font-size:12px; color:var(--text-sub);">
+          企画段階からのご相談も歓迎です。まだ土地が決まっていなくても構いません。
+        </span>
+      </div>
+    </div>
+    <div class="hero-visual parallax" data-speed="0.15">
+      <img src="service-construction.png" alt="建築事業イメージ">
+    </div>
+  </section>
+
+  <section class="section fade">
+    <div class="block">
+      <h2>事業コンセプト</h2>
+      <p>
+        「医療・介護の現場が、ちゃんと使いやすい建物になっているか？」  
+        現場のスタッフ・利用者・家族が日々感じる“ちょっとしたストレス”を減らすことが、
+        JmAT Japan の建築事業の出発点です。図面とオペレーションをセットで考えます。
+      </p>
+    </div>
+
+    <div class="twocol">
+      <div class="block">
+        <h2>主な対象</h2>
+        <ul>
+          <li>病院・クリニックの新築・改修計画</li>
+          <li>介護付き有料老人ホーム・サービス付き高齢者向け住宅</li>
+          <li>「介護村」や医療・介護・住宅が一体となった拠点づくり</li>
+          <li>訪問看護・訪問介護ステーションの拠点設計</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h2>提供できること</h2>
+        <ul>
+          <li>基本構想・ゾーニング・ボリューム検討</li>
+          <li>医療動線・介護動線・物流動線の設計</li>
+          <li>入居者・患者・家族目線の動線・居場所づくり</li>
+          <li>建築費・運営コストを踏まえた計画立案サポート</li>
+          <li>コンセプト共有用のパース・イメージボード作成</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>JmAT Japan の強み</h2>
+      <p>
+        図面を描くだけでなく、実際の医療・介護の運営スキームまで踏み込んで検討できる点が強みです。
+        「この設計だと、スタッフが1日何歩歩くのか」「どの時間帯にどこが混雑するのか」といった、
+        現場オペレーションを具体的にイメージしながら計画を進めていきます。
+      </p>
+    </div>
+
+    <div id="contact" class="cta-bottom">
+      <p>医療・介護に関わる建築計画・介護村構想などのご相談をお待ちしています。</p>
+      <button class="btn-primary" onclick="location.href='mailto:info@jmat.jp'">info@jmat.jp にメールする</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © JmAT Japan Architecture / NPO GOTO
+</footer>
+
+<script>
+  const fadeEls = document.querySelectorAll('.fade');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold: 0.2 });
+  fadeEls.forEach(el => io.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.parallax').forEach(el => {
+      const speed = parseFloat(el.dataset.speed || 0.15);
+      const y = window.scrollY * speed;
+      el.style.transform = `translateY(${y}px)`;
+    });
+  });
+</script>
+</body>
+</html>

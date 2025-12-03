@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INFINITE — Official Website</title>
+
+<style>
+/* ------------------------------
+   基本設定
+------------------------------ */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    background: #f9fffd;
+    color: #222;
+    overflow-x: hidden;
+}
+
+:root {
+    --mint: #7FE8C8;
+    --mint-dark: #5cc8aa;
+    --text-main: #222;
+}
+
+/* ------------------------------
+   HEADER
+------------------------------ */
+header {
+    width: 100%;
+    padding: 25px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+}
+
+header nav a {
+    margin-left: 35px;
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+header nav a:hover {
+    color: var(--mint);
+}
+
+/* ------------------------------
+   HERO：∞ロゴ ＆ メインコピー
+------------------------------ */
+.hero {
+    padding-top: 180px;
+    padding-bottom: 140px;
+    text-align: center;
+}
+
+.hero img.infinity {
+    width: 45%;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.15));
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+    100% { transform: translateY(0); }
+}
+
+.hero h1 {
+    font-size: 56px;
+    margin-top: 40px;
+    font-weight: 800;
+    color: #222;
+}
+
+.hero p {
+    margin-top: 20px;
+    font-size: 22px;
+    color: #555;
+}
+
+/* ------------------------------
+   フェードインアニメーション
+------------------------------ */
+.fadein {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s ease-out;
+}
+.fadein.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ------------------------------
+   SERVICE SECTION
+------------------------------ */
+.services {
+    width: 88%;
+    margin: 0 auto;
+    padding: 120px 0;
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 60px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 60px;
+}
+
+.service-card {
+    text-align: center;
+}
+
+.service-card img {
+    width: 55%;
+}
+
+.service-card h3 {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* ------------------------------
+   CLIENT LOGO MARQUEE
+------------------------------ */
+.client-section {
+    background: #ffffff;
+    padding: 100px 0;
+    margin-top: 80px;
+}
+
+.client-section h2 {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 40px;
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-track {
+    display: flex;
+    width: calc(300px * 30 * 2);
+    animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee img {
+    width: 300px;   /* ← 3倍の大きさ */
+    margin: 0 40px;
+}
+
+/* ------------------------------
+   FOOTER
+------------------------------ */
+footer {
+    background: #eafff6;
+    margin-top: 100px;
+    padding: 60px 4%;
+    text-align: center;
+    color: #444;
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- ------------------------------------
+     HEADER
+------------------------------------- -->
+<header>
+    <div class="logo">INFINITE</div>
+    <nav>
+        <a href="#services">サービス</a>
+        <a href="#clients">クライアント</a>
+        <a href="#contact">お問い合わせ</a>
+    </nav>
+</header>
+
+<!-- ------------------------------------
+     HERO：∞ロゴ
+------------------------------------- -->
+<section class="hero fadein">
+    <img src="infinity-logo.png" class="infinity" alt="Infinity Logo">
+    <h1>すべての事業をつなぐ、INFINITEブランド</h1>
+    <p>医療・建築・コスメ・エンタメ。世界をつなぐ総合クリエイティブ。</p>
+</section>
+
+<!-- ------------------------------------
+     SERVICES
+------------------------------------- -->
+<section id="services" class="services fadein">
+    <h2>事業一覧</h2>
+    <div class="service-grid">
+
+       <div class="service-card">
+  <img src="service-emergency.png">
+  <h3>救急医療事業</h3>
+  <a class="btn" href="service-emergency.html">詳しく見る</a>
+</div>
+
+<div class="service-card">
+  <img src="service-visitnurse.png">
+  <h3>訪問看護事業</h3>
+  <a class="btn" href="service-visitnurse.html">詳しく見る</a>
+</div>
+
+<div class="service-card">
+  <img src="service-cosmetics.png">
+  <h3>コスメ事業</h3>
+  <a class="btn" href="service-cosmetics.html">詳しく見る</a>
+</div>
+
+<div class="service-card">
+  <img src="service-construction.png">
+  <h3>建築事業</h3>
+  <a class="btn" href="service-construction.html">詳しく見る</a>
+</div>
+
+<div class="service-card">
+  <img src="service-figurine.png">
+  <h3>エンタメ（フィギュア）事業</h3>
+  <a class="btn" href="service-figurine.html">詳しく見る</a>
+</div>
+
+<div class="service-card">
+  <img src="service-faq.png">
+  <h3>FAQ</h3>
+  <a class="btn" href="service-faq.html">詳しく見る</a>
+</div>
+
+
+</section>
+
+<!-- ------------------------------------
+     CLIENT LOGO MARQUEE
+------------------------------------- -->
+<section id="clients" class="client-section fadein">
+    <h2>クライアント企業</h2>
+
+    <div class="marquee">
+        <div class="marquee-track">
+
+            <!-- ここにキャラクターを 30個 ×2 行 = 60個 -->
+            <!-- 今回は 30個分の例（コピーして60にしてOK） -->
+
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+
+            <!-- 2周目（無限ループ用） -->
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+            <img src="client-char1.png">
+            <img src="client-char2.png">
+        </div>
+    </div>
+
+</section>
+
+<!-- ------------------------------------
+     FOOTER
+------------------------------------- -->
+<footer id="contact">
+    © INFINITE — All Rights Reserved.
+</footer>
+
+
+<!-- ------------------------------------
+     JS：フェードイン
+------------------------------------- -->
+<script>
+const targets = document.querySelectorAll('.fadein');
+
+function activateOnScroll() {
+    const trigger = window.innerHeight * 0.82;
+    targets.forEach(el => {
+        const rect = el.getBoundingClientRect().top;
+        if (rect < trigger) el.classList.add('active');
+    });
+}
+
+window.addEventListener('scroll', activateOnScroll);
+activateOnScroll();
+</script>
+
+</body>
+</html>
