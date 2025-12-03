@@ -380,6 +380,69 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        /* マスコットアニメーション */
+        .mascot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .mascot-container:hover {
+            transform: scale(1.1);
+        }
+
+        .mascot {
+            width: 120px;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(3deg);
+            }
+        }
+
+        .mascot-bubble {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            color: #4a3c2a;
+            font-weight: 500;
+        }
+
+        .mascot-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 30px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+
+        .mascot-container:hover .mascot-bubble {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* レスポンシブ */
         @media (max-width: 1024px) {
             .services-grid {
@@ -574,5 +637,36 @@
     <footer>
         <p>© 2024 JmAT. All Rights Reserved.</p>
     </footer>
+
+    <!-- マスコットキャラクター -->
+    <div class="mascot-container" id="mascot">
+        <div class="mascot-bubble">こんにちは！ 👋</div>
+        <img src="mascot.png" alt="Mascot" class="mascot" id="mascotImg">
+    </div>
+
+    <script>
+        const mascot = document.getElementById('mascot');
+        const mascotImg = document.getElementById('mascotImg');
+
+        // スクロール時のアニメーション
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            if (scrollTop > lastScrollTop) {
+                mascotImg.style.animation = 'float 3s ease-in-out infinite, bounce 0.5s ease';
+            }
+            setTimeout(() => {
+                mascotImg.style.animation = 'float 3s ease-in-out infinite';
+            }, 500);
+            lastScrollTop = scrollTop;
+        });
+
+        // マウス追従
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 10;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            mascot.style.transform = `translate(${-x}px, ${-y}px)`;
+        });
+    </script>
 </body>
 </html>
