@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JmAT株式会社 | Connecting lives to ∞ "POSSIBLE"</title>
+    <title>建築・まちづくり | JmAT株式会社</title>
     <style>
         * {
             margin: 0;
@@ -15,6 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
 
         /* ヘッダー */
@@ -57,15 +58,12 @@
             font-size: 1rem;
             font-weight: 500;
             transition: opacity 0.3s;
-            display: block;
-            padding: 0.5rem 0;
         }
 
         .nav-link:hover {
             opacity: 0.7;
         }
 
-        /* ドロップダウンメニュー */
         .dropdown {
             display: none;
             position: absolute;
@@ -99,34 +97,279 @@
         .hero {
             background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%);
             color: white;
-            text-align: center;
             padding: 12rem 2rem 8rem;
             margin-top: 75px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(125, 211, 192, 0.2);
+            color: #7dd3c0;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .hero h1 .infinity {
-            color: white;
-        }
-
-        .hero .possible {
-            display: block;
-            font-size: 4.5rem;
-            color: #7dd3c0;
+            font-size: 4rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .hero h1 .highlight {
+            color: #7dd3c0;
         }
 
         .hero .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* イントロセクション */
+        .intro-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .intro-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #4a3c2a;
+        }
+
+        .intro-section p {
             font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            font-weight: 400;
+            line-height: 2;
+            color: #555;
+        }
+
+        /* クライアントテスティモニアル帯 */
+        .testimonials-band {
+            background: #f8f8f8;
+            padding: 3rem 0;
+            overflow: hidden;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            gap: 4rem;
+            animation: scrollTestimonials 30s linear infinite;
+        }
+
+        .testimonial-item {
+            white-space: nowrap;
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        @keyframes scrollTestimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* サービス詳細セクション */
+        .services-detail {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .services-detail h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: #4a3c2a;
+        }
+
+        .services-detail h2 .highlight {
+            color: #7dd3c0;
+        }
+
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            align-items: center;
+        }
+
+        .service-row.reverse {
+            direction: rtl;
+        }
+
+        .service-row.reverse > * {
+            direction: ltr;
+        }
+
+        .service-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .service-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #4a3c2a;
+        }
+
+        .service-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-tag {
+            display: inline-block;
+            background: #7dd3c0;
+            color: #4a3c2a;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* デリバラブルセクション */
+        .deliverables {
+            background: #4a3c2a;
+            color: white;
+            padding: 6rem 2rem;
+        }
+
+        .deliverables h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .deliverable-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .deliverable-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .deliverable-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .deliverable-card h3 {
+            font-size: 1.1rem;
+            color: #7dd3c0;
+            margin-bottom: 0.5rem;
+        }
+
+        .deliverable-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* FAQセクション */
+        .faq-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4a3c2a;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 1.5rem 0;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #4a3c2a;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #7dd3c0;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* CTAセクション */
+        .cta-section {
+            background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
             opacity: 0.9;
         }
 
@@ -147,237 +390,47 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* クライアント帯 */
-        .clients-section {
-            background: #f5f5f5;
-            padding: 4rem 0;
-            overflow: hidden;
-        }
-
-        .clients-section h3 {
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #999;
-            margin-bottom: 3rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-
-        .clients-slider {
-            display: flex;
-            gap: 5rem;
-            animation: scroll 30s linear infinite;
-            align-items: center;
-        }
-
-        .client-logo {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.4;
-            transition: all 0.4s;
-        }
-
-        .client-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* About セクション */
-        .about-section {
-            background: white;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .about-section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .about-section h2 .highlight {
-            color: #7dd3c0;
-        }
-
-        .about-section .tagline {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #4a3c2a;
-        }
-
-        .about-section p {
-            font-size: 1.1rem;
-            line-height: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            color: #555;
-        }
-
-        /* Values セクション */
-        .values-section {
-            background: #f5f5f5;
-            padding: 6rem 2rem;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .value-card {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .value-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .value-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .value-card h3 {
-            font-size: 1.8rem;
-            color: #7dd3c0;
-            margin-bottom: 1rem;
-        }
-
-        .value-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* Services セクション */
-        .services-section {
-            background: #4a3c2a;
-            color: white;
-            padding: 6rem 2rem;
-        }
-
-        .services-section h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .services-section h2 .highlight {
-            color: #7dd3c0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-bottom: 3rem;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2.5rem;
-            border-radius: 12px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: #7dd3c0;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
-        /* Contact セクション */
-        .contact-section {
-            background: white;
-            padding: 6rem 2rem;
-        }
-
-        .contact-section h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .contact-section h2 .highlight {
-            color: #7dd3c0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-card {
-            background: #f8f8f8;
-            padding: 3rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .contact-card h3 {
-            font-size: 1.8rem;
-            color: #7dd3c0;
-            margin-bottom: 2rem;
-        }
-
-        .contact-card p {
-            color: #555;
-            margin-bottom: 0.8rem;
-            font-size: 1.05rem;
-        }
-
-        .contact-card a {
-            color: #7dd3c0;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .contact-card a:hover {
-            opacity: 0.7;
-        }
-
         /* Footer */
         footer {
             background: #4a3c2a;
             color: white;
-            padding: 2rem;
-            text-align: center;
+            padding: 4rem 2rem 2rem;
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.7);
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #7dd3c0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
         }
 
         /* マスコットアニメーション */
@@ -395,7 +448,7 @@
         }
 
         .mascot {
-            width: 300px;
+            width: 120px;
             height: auto;
             animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
@@ -443,18 +496,38 @@
             transform: translateY(0);
         }
 
+        .mascot-wave {
+            animation: float 3s ease-in-out infinite, wave 0.5s ease-in-out;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(-3deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+
+        /* スクロールで動くマスコット */
+        .mascot-scrolling {
+            animation: float 3s ease-in-out infinite, bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
         /* レスポンシブ */
         @media (max-width: 1024px) {
-            .services-grid {
+            .service-row {
                 grid-template-columns: 1fr;
             }
 
-            .values-grid {
-                grid-template-columns: 1fr;
+            .service-row.reverse {
+                direction: ltr;
             }
 
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .deliverables-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -475,12 +548,12 @@
                 padding: 8rem 2rem 5rem;
             }
 
-            .about-section h2 {
-                font-size: 2rem;
+            .deliverables-grid {
+                grid-template-columns: 1fr;
             }
 
-            .services-section h2 {
-                font-size: 2rem;
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -489,21 +562,21 @@
     <!-- ヘッダー -->
     <header>
         <div class="header-container">
-            <a href="#" class="logo">JmAT</a>
+            <a href="index.html" class="logo">JmAT</a>
             <nav>
                 <div class="nav-item">
-                    <a href="#" class="nav-link">HOME</a>
+                    <a href="index.html" class="nav-link">HOME</a>
                 </div>
                 <div class="nav-item">
-                    <a href="#about" class="nav-link">ABOUT</a>
+                    <a href="#" class="nav-link">ABOUT</a>
                     <div class="dropdown">
-                        <a href="#about">会社概要</a>
-                        <a href="#message">代表挨拶</a>
-                        <a href="#philosophy">企業理念</a>
+                        <a href="#">会社概要</a>
+                        <a href="#">代表挨拶</a>
+                        <a href="#">企業理念</a>
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="#services" class="nav-link">SERVICES</a>
+                    <a href="#" class="nav-link">SERVICES</a>
                     <div class="dropdown">
                         <a href="service-emergency.html">救急医療事業</a>
                         <a href="service-visitnurse.html">訪看事業</a>
@@ -522,146 +595,269 @@
 
     <!-- ヒーローセクション -->
     <section class="hero">
-        <h1>Connecting lives to <span class="infinity">∞</span></h1>
-        <p class="possible">"POSSIBLE"</p>
-        <p class="subtitle">当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
-        <a href="#about" class="cta-button">GET STARTED</a>
+        <span class="hero-label">ARCHITECTURE & CARE DESIGN</span>
+        <h1>建築・<span class="highlight">まちづくり</span></h1>
+        <p class="subtitle">「命を守るインフラ」であり「暮らしをつくる器」</p>
     </section>
 
-    <!-- クライアント帯 -->
-    <section class="clients-section">
-        <h3>Trusted Partners & Services</h3>
-        <div class="clients-slider">
-            <img src="service-emergency.png" alt="救急医療" class="client-logo">
-            <img src="service-visitnurse.png" alt="訪問看護" class="client-logo">
-            <img src="service-cosmetics.png" alt="コスメティック" class="client-logo">
-            <img src="service-construction.png" alt="建築" class="client-logo">
-            <img src="service-figurine.png" alt="フィギュア" class="client-logo">
-            <img src="infinity-logo.png" alt="JmAT" class="client-logo">
-            <!-- 複製 -->
-            <img src="service-emergency.png" alt="救急医療" class="client-logo">
-            <img src="service-visitnurse.png" alt="訪問看護" class="client-logo">
-            <img src="service-cosmetics.png" alt="コスメティック" class="client-logo">
-            <img src="service-construction.png" alt="建築" class="client-logo">
-            <img src="service-figurine.png" alt="フィギュア" class="client-logo">
-            <img src="infinity-logo.png" alt="JmAT" class="client-logo">
+    <!-- イントロセクション -->
+    <section class="intro-section">
+        <div class="intro-container">
+            <h2>建築で、社会課題を解決する</h2>
+            <p>
+                私たちは建築を単なる「建物」ではなく、「命を守り、暮らしを支える器」と捉えています。
+                医療施設から福祉施設、地域のコミュニティスペースまで、
+                人々の生活に寄り添う空間づくりを通じて、持続可能なまちづくりに貢献します。
+            </p>
         </div>
     </section>
 
-    <!-- About セクション -->
-    <section class="about-section" id="about">
-        <h2>ABOUT <span class="highlight">US</span></h2>
-        <p class="tagline">現場から世界をつなぐ | 医療とものづくり</p>
-        <p>
-            生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。
-            そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。
-            命を守る医療と、日常を少し楽しくするコスメやフィギュア。
-            一見離れているように見える領域を「∞」でつなぎ、"楽しむことがそのまま支援になる" 世界をつくっていきます。
-        </p>
+    <!-- テスティモニアル帯 -->
+    <section class="testimonials-band">
+        <div class="testimonials-slider">
+            <span class="testimonial-item">"地域医療を支える建築パートナー"</span>
+            <span class="testimonial-item">"人に優しい設計が素晴らしい"</span>
+            <span class="testimonial-item">"持続可能な未来を見据えた提案"</span>
+            <span class="testimonial-item">"コミュニティの核となる空間づくり"</span>
+            <span class="testimonial-item">"医療と建築の融合"</span>
+            <span class="testimonial-item">"地域医療を支える建築パートナー"</span>
+            <span class="testimonial-item">"人に優しい設計が素晴らしい"</span>
+            <span class="testimonial-item">"持続可能な未来を見据えた提案"</span>
+            <span class="testimonial-item">"コミュニティの核となる空間づくり"</span>
+            <span class="testimonial-item">"医療と建築の融合"</span>
+        </div>
     </section>
 
-    <!-- Values セクション -->
-    <section class="values-section">
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🚀</div>
-                <h3>Bigger</h3>
-                <p>私たちはより大きく考えます。規模だけでなく、大きなアイデア、思考、創造性において。</p>
+    <!-- サービス詳細 -->
+    <section class="services-detail">
+        <h2>提供する<span class="highlight">サービス</span></h2>
+
+        <div class="service-row">
+            <div class="service-image">
+                <img src="Hospital.png" alt="医療施設設計">
             </div>
-            <div class="value-card">
-                <div class="value-icon">💪</div>
-                <h3>Bolder</h3>
-                <p>大胆であることは私たちのDNAです。他の人がしないことを敢えて行い、インパクトのある仕事を創造します。</p>
+            <div class="service-text">
+                <h3>医療・福祉施設設計</h3>
+                <p>
+                    救急医療の現場で培った知見を活かし、患者とスタッフ双方にとって
+                    最適な動線と空間を設計します。感染対策、プライバシー確保、
+                    緊急時対応を考慮した、命を守るための建築を提案します。
+                </p>
+                <span class="service-tag">病院設計</span>
+                <span class="service-tag">クリニック</span>
+                <span class="service-tag">福祉施設</span>
             </div>
-            <div class="value-card">
-                <div class="value-icon">✨</div>
-                <h3>Better</h3>
-                <p>結局のところ、成果を提供するだけでなく、一緒に働くことを楽しめるエージェンシーを持つことが最善です。</p>
+        </div>
+
+        <div class="service-row reverse">
+            <div class="service-image">
+                <img src="kaigomura.png" alt="地域コミュニティ設計">
+            </div>
+            <div class="service-text">
+                <h3>地域コミュニティ設計</h3>
+                <p>
+                    高齢化が進む地域において、世代を超えた交流が生まれる
+                    コミュニティスペースを設計。地域の特性を活かしながら、
+                    住民が集い、つながる場所をつくります。
+                </p>
+                <span class="service-tag">コミュニティセンター</span>
+                <span class="service-tag">多世代交流施設</span>
+                <span class="service-tag">公共空間</span>
+            </div>
+        </div>
+
+        <div class="service-row">
+            <div class="service-image">
+                <img src="Sustainable.png" alt="サステナブル建築">
+            </div>
+            <div class="service-text">
+                <h3>サステナブル建築</h3>
+                <p>
+                    環境負荷を最小限に抑えながら、快適で健康的な空間を実現。
+                    自然エネルギーの活用、地域材の使用、長寿命設計など、
+                    次世代に引き継げる建築を目指します。
+                </p>
+                <span class="service-tag">ZEB設計</span>
+                <span class="service-tag">木造建築</span>
+                <span class="service-tag">省エネ設計</span>
             </div>
         </div>
     </section>
 
-    <!-- Services セクション -->
-    <section class="services-section" id="services">
-        <h2>OUR <span class="highlight">SERVICES</span></h2>
-        <div class="services-grid">
-            <div class="service-card" onclick="location.href='service-emergency.html'">
-                <h3>寄付型CF</h3>
-                <p>自社プロジェクト専用のクラウドファンディング</p>
+    <!-- デリバラブル -->
+    <section class="deliverables">
+        <h2>DELIVERABLES</h2>
+        <div class="deliverables-grid">
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🏥</div>
+                <h3>医療施設設計</h3>
+                <p>病院・クリニック・診療所</p>
             </div>
-            <div class="service-card" onclick="location.href='service-emergency.html'">
-                <h3>Emergency Medical</h3>
-                <p>救生きる可能性の最大化</p>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🏠</div>
+                <h3>福祉施設設計</h3>
+                <p>介護施設・グループホーム</p>
             </div>
-            <div class="service-card" onclick="location.href='service-construction.html'">
-                <h3>Architecture & Care Design</h3>
-                <p>「命を守るインフラ」であり「暮らしをつくる器」</p>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🌳</div>
+                <h3>まちづくり</h3>
+                <p>都市計画・地域開発</p>
             </div>
-            <div class="service-card" onclick="location.href='swrvice-figurine.html'">
-                <h3>Entertainment</h3>
-                <p>「楽しさ」が支援につながるエンタメ制作</p>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">♻️</div>
+                <h3>環境設計</h3>
+                <p>サステナブル・ZEB</p>
             </div>
-            <div class="service-card" onclick="location.href='service-cosmetics.html'">
-                <h3>Cosmetics</h3>
-                <p>現場で本当に役立つスカルプケア・スキンケア製品の開発</p>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">📐</div>
+                <h3>設計監理</h3>
+                <p>品質管理・工事監理</p>
             </div>
-            <div class="service-card" onclick="location.href='service-cosmetics.html'">
-                <h3>頭皮・肌ケアプロジェクト</h3>
-                <p>世界共通の悩みに向き合うコスメブランドを展開</p>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">💡</div>
+                <h3>コンサルティング</h3>
+                <p>企画・調査・分析</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🔧</div>
+                <h3>リノベーション</h3>
+                <p>改修・用途変更</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">📋</div>
+                <h3>維持管理</h3>
+                <p>メンテナンス計画</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact セクション -->
-    <section class="contact-section" id="contact">
-        <h2>CONTACT <span class="highlight">US</span></h2>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <h3>JAPAN</h3>
-                <p>JmAT株式会社</p>
-                <p>東京都中央区東日本橋3-3-17</p>
-                <p><a href="tel:03-1234-5678">03-1234-5678</a></p>
-                <p><a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
+    <!-- FAQ -->
+    <section class="faq-section">
+        <h2>よくあるご質問</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">医療施設の設計実績はありますか？</div>
+                <p class="faq-answer">
+                    はい、救急医療事業で培った現場知見を活かし、
+                    病院、クリニック、訪問看護ステーションなど多数の医療施設設計実績があります。
+                </p>
             </div>
-            <div class="contact-card">
-                <h3>FOLLOW US</h3>
-                <p><a href="#">Instagram</a></p>
-                <p><a href="#">Facebook</a></p>
-                <p><a href="#">Twitter</a></p>
-                <p><a href="#">LinkedIn</a></p>
+            <div class="faq-item">
+                <div class="faq-question">プロジェクトの進め方を教えてください</div>
+                <p class="faq-answer">
+                    まずはヒアリングで課題とご要望を把握し、企画提案から設計、施工監理、
+                    完成後のアフターフォローまで一貫してサポートいたします。
+                </p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">対応エリアはどこですか？</div>
+                <p class="faq-answer">
+                    全国対応しております。地域の特性や法規制を考慮した設計を行います。
+                    まずはお気軽にご相談ください。
+                </p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">概算費用はどのくらいですか？</div>
+                <p class="faq-answer">
+                    プロジェクトの規模や仕様により異なります。
+                    まずは無料相談でお話をお聞かせください。概算見積もりをご提示いたします。
+                </p>
             </div>
         </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>プロジェクトのご相談はこちら</h2>
+        <p>建築・まちづくりに関するご相談をお待ちしております</p>
+        <a href="#contact" class="cta-button">無料相談を予約する</a>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2020 JmAT. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>企業情報</h3>
+                <ul>
+                    <li><a href="#">会社概要</a></li>
+                    <li><a href="#">代表挨拶</a></li>
+                    <li><a href="#">企業理念</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>サービス</h3>
+                <ul>
+                    <li><a href="service-emergency.html">救急医療事業</a></li>
+                    <li><a href="service-visitnurse.html">訪問看護事業</a></li>
+                    <li><a href="service-cosmetics.html">コスメティック事業</a></li>
+                    <li><a href="service-construction.html">建築・まちづくり</a></li>
+                    <li><a href="swrvice-figurine.html">エンタメ事業</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>情報</h3>
+                <ul>
+                    <li><a href="#">お知らせ</a></li>
+                    <li><a href="#">採用情報</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">お問い合わせ</a></li>
+                    <li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 JmAT. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <!-- マスコットキャラクター -->
     <div class="mascot-container" id="mascot">
-        <div class="mascot-bubble">★Halo★</div>
-        <img src="mascot.png" alt="Mascot" class="mascot" id="mascotImg">
+        <div class="mascot-bubble">こんにちは！ご質問はありますか？ 👋</div>
+        <img src="https://i.imgur.com/placeholder.png" alt="Mascot" class="mascot" id="mascotImg">
     </div>
 
     <script>
+        // マスコットのインタラクション
         const mascot = document.getElementById('mascot');
         const mascotImg = document.getElementById('mascotImg');
+        
+        // 実際の画像パスに変更してください
+        // mascotImg.src = 'mascot.png';
 
         // スクロール時のアニメーション
         let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
             if (scrollTop > lastScrollTop) {
-                mascotImg.style.animation = 'float 3s ease-in-out infinite, bounce 0.5s ease';
+                // 下スクロール
+                mascotImg.classList.add('mascot-scrolling');
+            } else {
+                // 上スクロール
+                mascotImg.classList.remove('mascot-scrolling');
             }
+            
             setTimeout(() => {
-                mascotImg.style.animation = 'float 3s ease-in-out infinite';
+                mascotImg.classList.remove('mascot-scrolling');
             }, 500);
+            
             lastScrollTop = scrollTop;
         });
 
-        // マウス追従
+        // クリック時のアニメーション
+        mascot.addEventListener('click', () => {
+            mascotImg.classList.add('mascot-wave');
+            setTimeout(() => {
+                mascotImg.classList.remove('mascot-wave');
+            }, 500);
+        });
+
+        // マウス追従（軽い動き）
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 10;
             const y = (e.clientY / window.innerHeight - 0.5) * 10;
@@ -670,5 +866,3 @@
     </script>
 </body>
 </html>
-
-
