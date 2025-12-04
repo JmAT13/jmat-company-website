@@ -18,12 +18,11 @@
         .animate-right.animated { opacity: 1; transform: translateX(0); }
 
         header { background: rgba(74, 60, 42, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
-        header.scrolled { padding: 1rem 4rem; box-shadow: 0 5px 30px rgba(0,0,0,0.2); }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
         .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.5rem 0; }
+        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-link:hover { color: #7dd3c0; }
         .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
@@ -32,11 +31,11 @@
 
         .hero { background: linear-gradient(-45deg, #4a3c2a, #5a4d38, #3d3225, #6b5a45); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: white; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
         .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
-        .hero h1 { font-size: 3.5rem; font-weight: 700; animation: fadeInUp 1s ease; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; }
 
         .message-section { padding: 6rem 2rem; background: white; }
         .message-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 350px 1fr; gap: 4rem; align-items: start; }
-        .ceo-photo-placeholder { width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, #4a3c2a, #7dd3c0); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 6rem; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .ceo-photo { width: 100%; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
         .ceo-info { text-align: center; margin-top: 1.5rem; }
         .ceo-info .position { color: #7dd3c0; font-size: 0.9rem; font-weight: 600; }
         .ceo-info .name { color: #4a3c2a; font-size: 1.5rem; font-weight: 700; margin-top: 0.3rem; }
@@ -60,7 +59,7 @@
         .footer-section a:hover { color: #7dd3c0; }
         .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
-        @media (max-width: 1024px) { .message-container { grid-template-columns: 1fr; } .ceo-photo-placeholder { max-width: 300px; margin: 0 auto; } }
+        @media (max-width: 1024px) { .message-container { grid-template-columns: 1fr; } .ceo-photo { max-width: 300px; margin: 0 auto; } }
         @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .quote-section blockquote { font-size: 1.5rem; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -71,7 +70,7 @@
             <nav>
                 <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
                 <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
-                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="swrvice-figurine.html">エンタメ事業</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="service-figurine.html">エンタメ事業</a></div></div>
                 <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
                 <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
                 <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
@@ -87,7 +86,7 @@
     <section class="message-section">
         <div class="message-container">
             <div class="animate-left">
-                <div class="ceo-photo-placeholder">👨‍💼</div>
+                <img src="ceo-avatar.png" alt="代表取締役" class="ceo-photo">
                 <div class="ceo-info">
                     <p class="position">代表取締役 CEO</p>
                     <p class="name">山田 太郎</p>
@@ -95,7 +94,7 @@
             </div>
             <div class="message-content animate-right">
                 <h2>「届かない」を<br><span class="highlight">「届く」</span>に変える</h2>
-                <p>私がJmATを設立したきっかけは、ある途上国での経験でした。医療が届かないばかりに、助かるはずの命が失われていく現実を目の当たりにしました。</p>
+                <p>私がJmATを設立したきっかけは、ある途上国での経験でした。医療が届かないばかりに、助かるはずの命が失われている現実を目の当たりにしました。</p>
                 <p>「なぜ、生まれた場所によって命の重さが違うのだろう」</p>
                 <p>この問いが、私の中でずっと消えることはありませんでした。</p>
                 <p>JmATは、その答えを見つけるための挑戦です。医療だけでなく、建築、エンタメ、コスメ——一見バラバラに見える事業を「∞（無限大）」で繋ぎ、新しい支援の形を創り出しています。</p>
@@ -116,7 +115,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
-            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
             <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
