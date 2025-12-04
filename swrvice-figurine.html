@@ -1,211 +1,197 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>エンタメ（フィギュア）事業 | JmAT Japan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <style>
-    :root {
-      --mint: #7FE8C8;
-      --mint-dark: #0f766e;
-      --bg: #f9fffd;
-      --text: #111827;
-      --text-sub: #4b5563;
-      --border: #e5e7eb;
-      --radius: 20px;
-      --max-width: 1040px;
-    }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body {
-      font-family:-apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.7;
-    }
-    a { color:inherit; text-decoration:none; }
-    header {
-      position:fixed; top:0; left:0; right:0;
-      padding:16px 24px;
-      background:rgba(255,255,255,0.9);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(148,163,184,.3);
-      z-index:50;
-      display:flex; justify-content:space-between; align-items:center;
-    }
-    .brand { font-weight:700; letter-spacing:.14em; font-size:13px; }
-    nav { display:flex; gap:18px; font-size:13px; }
-    nav a { color:var(--text-sub); }
-    nav a:hover { color:var(--mint-dark); }
-    .btn-outline {
-      border-radius:999px;
-      border:1px solid var(--mint);
-      padding:6px 14px;
-      font-size:12px;
-    }
-    main { padding-top:80px; }
-    .section { max-width:var(--max-width); margin:0 auto; padding:40px 20px; }
-    .hero {
-      display:grid; grid-template-columns:1.1fr 1fr;
-      gap:32px; align-items:center;
-      padding-top:40px; padding-bottom:20px;
-    }
-    .eyebrow {
-      font-size:11px; letter-spacing:.2em;
-      color:var(--mint-dark); text-transform:uppercase;
-      margin-bottom:8px;
-    }
-    .hero-title { font-size:30px; font-weight:800; margin-bottom:8px; }
-    .hero-sub { font-size:15px; color:var(--text-sub); margin-bottom:16px; }
-    .hero-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
-    .tag {
-      font-size:11px; padding:4px 10px; border-radius:999px;
-      border:1px solid #a5f3fc; background:#ecfeff; color:#0e7490;
-    }
-    .hero-cta { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .btn-primary {
-      background:var(--mint); color:#065f46; border:none;
-      border-radius:999px; padding:8px 18px; font-size:12px;
-      font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-      cursor:pointer;
-    }
-    .hero-visual { text-align:center; }
-    .hero-visual img {
-      max-width:380px; width:100%;
-      filter:drop-shadow(0 10px 26px rgba(15,23,42,.18));
-    }
-    .block {
-      background:#ffffff; border-radius:var(--radius);
-      border:1px solid var(--border);
-      padding:22px 24px; margin-bottom:18px;
-    }
-    .block h2 { font-size:18px; margin-bottom:6px; }
-    .block p { font-size:14px; color:var(--text-sub); }
-    .twocol { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-    ul { padding-left:18px; font-size:14px; color:var(--text-sub); }
-    .cta-bottom { text-align:center; margin-top:24px; }
-    .cta-bottom p { font-size:14px; color:var(--text-sub); margin-bottom:12px; }
-    footer {
-      margin-top:40px; border-top:1px solid var(--border);
-      padding:18px 20px 24px; font-size:12px;
-      text-align:center; color:var(--text-sub);
-    }
-    .fade { opacity:0; transform:translateY(24px); transition:all .7s ease-out; }
-    .fade.show { opacity:1; transform:translateY(0); }
-    .parallax { will-change:transform; transition:transform .15s linear; }
-    @media(max-width:840px){
-      .hero { grid-template-columns:1fr; }
-      .twocol { grid-template-columns:1fr; }
-      nav { display:none; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エンターテインメント事業 | JmAT株式会社</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.6; color: #333; }
+        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { opacity: 0.7; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
+        .dropdown a:hover { background: #f0f0f0; }
+        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 12rem 2rem 8rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 2rem; }
+        .hero h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .hero h1 .highlight { color: #7dd3c0; }
+        .hero .subtitle { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .intro-section { padding: 6rem 2rem; background: white; }
+        .intro-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .intro-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #4a3c2a; }
+        .intro-section p { font-size: 1.2rem; line-height: 2; color: #555; }
+        .testimonials-band { background: #f8f8f8; padding: 3rem 0; overflow: hidden; }
+        .testimonials-slider { display: flex; gap: 4rem; animation: scrollTestimonials 30s linear infinite; }
+        .testimonial-item { white-space: nowrap; font-size: 1.1rem; color: #666; font-style: italic; }
+        @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .services-detail { padding: 6rem 2rem; background: white; }
+        .services-detail h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
+        .services-detail h2 .highlight { color: #7dd3c0; }
+        .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto 4rem; align-items: center; }
+        .service-row.reverse { direction: rtl; }
+        .service-row.reverse > * { direction: ltr; }
+        .service-image { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .service-image img { width: 100%; height: auto; object-fit: contain; display: block; }
+        .service-text h3 { font-size: 1.8rem; margin-bottom: 1rem; color: #4a3c2a; }
+        .service-text p { font-size: 1.1rem; line-height: 1.9; color: #555; margin-bottom: 1.5rem; }
+        .service-tag { display: inline-block; background: #7dd3c0; color: #4a3c2a; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+        .deliverables { background: #4a3c2a; color: white; padding: 6rem 2rem; }
+        .deliverables h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; }
+        .deliverables-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .deliverable-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; transition: all 0.3s; }
+        .deliverable-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
+        .deliverable-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .deliverable-card h3 { font-size: 1.1rem; color: #7dd3c0; margin-bottom: 0.5rem; }
+        .deliverable-card p { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+        .cta-section { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 6rem 2rem; text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+        .cta-button { display: inline-block; background: #7dd3c0; color: #333; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #7dd3c0; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        @media (max-width: 1024px) { .service-row { grid-template-columns: 1fr; } .service-row.reverse { direction: ltr; } .deliverables-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .deliverables-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
+    </style>
 </head>
-
 <body>
-<header>
-  <div class="brand">JmAT JAPAN / FIGURINE & ENTERTAINMENT</div>
-  <nav>
-    <a href="/index.html">TOP</a>
-    <a href="/index.html#services">SERVICES</a>
-    <a href="/index.html#support">DONATION</a>
-  </nav>
-  <a href="mailto:info@jmat.jp" class="btn-outline">お問い合わせ</a>
-</header>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">JmAT</a>
+            <nav>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">ABOUT</a>
+                    <div class="dropdown"><a href="#">会社概要</a><a href="#">代表挨拶</a><a href="#">企業理念</a></div>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">SERVICES</a>
+                    <div class="dropdown">
+                        <a href="service-emergency.html">救急医療事業</a>
+                        <a href="service-visitnurse.html">訪看事業</a>
+                        <a href="service-cosmetics.html">コスメティック事業</a>
+                        <a href="service-construction.html">建築・まちづくり</a>
+                        <a href="swrvice-figurine.html">エンタメ事業</a>
+                        <a href="service-faq.html">よくあるご質問</a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></div>
+            </nav>
+        </div>
+    </header>
 
-<main>
-  <section class="section hero fade">
-    <div>
-      <div class="eyebrow">FIGURINE & STORY</div>
-      <h1 class="hero-title">エンタメ（フィギュア）事業</h1>
-      <p class="hero-sub">
-        「かわいい」「おもしろい」が、どこかの現場を支えている。<br>
-        フィギュアやステッカーを通じて、医療・介護の世界を少しだけ身近にします。
-      </p>
-      <div class="hero-tags">
-        <span class="tag">オリジナルキャラクター</span>
-        <span class="tag">フィギュア造形</span>
-        <span class="tag">グッズ・ステッカー</span>
-        <span class="tag">寄付連動プロダクト</span>
-      </div>
-      <div class="hero-cta">
-        <button class="btn-primary" onclick="location.href='#contact'">コラボ・制作相談</button>
-        <span style="font-size:12px; color:var(--text-sub);">
-          企業コラボ／IP展開／チャリティーグッズ企画など幅広く対応可能です。
-        </span>
-      </div>
-    </div>
-    <div class="hero-visual parallax" data-speed="0.22">
-      <img src="service-figurine.png" alt="フィギュア事業イメージ">
-    </div>
-  </section>
+    <section class="hero">
+        <span class="hero-label">ENTERTAINMENT & FIGURINE</span>
+        <h1>エンターテインメント<span class="highlight">事業</span></h1>
+        <p class="subtitle">「楽しさ」が支援につながるエンタメ制作</p>
+    </section>
 
-  <section class="section fade">
-    <div class="block">
-      <h2>事業コンセプト</h2>
-      <p>
-        ハードな現場の話を、そのままの形では伝えづらい。  
-        だからこそ、キャラクターやフィギュアの力を借ります。
-        「医療者の日常」「在宅で暮らす人の姿」「介護現場のリアル」を、
-        ユーモアと温かさのある形で表現し、支援の輪を広げていきます。
-      </p>
-    </div>
+    <section class="intro-section">
+        <div class="intro-container">
+            <h2>楽しむことが、誰かを救う</h2>
+            <p>フィギュア、グッズ、イベント─エンターテインメントの力で社会課題に取り組みます。売上の一部が医療支援に還元される仕組みで、「楽しむこと」がそのまま「支援」になる。新しい社会貢献の形を創造します。</p>
+        </div>
+    </section>
 
-    <div class="twocol">
-      <div class="block">
-        <h2>できること</h2>
-        <ul>
-          <li>オリジナルキャラクターの企画・設定づくり</li>
-          <li>3Dフィギュア・ソフビ・ぷくぷくシールなどのグッズ制作</li>
-          <li>病院・施設・企業向けマスコットキャラクター開発</li>
-          <li>チャリティーグッズとしての販売スキーム設計</li>
-          <li>オンラインストア・イベント出展の企画サポート</li>
-        </ul>
-      </div>
-      <div class="block">
-        <h2>こんなコラボが可能です</h2>
-        <ul>
-          <li>医療機関・介護施設のオリジナルフィギュア制作</li>
-          <li>コスメブランドとのフィギュア・ステッカーコラボ</li>
-          <li>建築プロジェクトのコンセプトをキャラクター化</li>
-          <li>寄付付きフィギュア販売による現場支援</li>
-        </ul>
-      </div>
-    </div>
+    <section class="testimonials-band">
+        <div class="testimonials-slider">
+            <span class="testimonial-item">"買い物が支援になる新しい形"</span>
+            <span class="testimonial-item">"クオリティの高いフィギュア"</span>
+            <span class="testimonial-item">"楽しみながら社会貢献"</span>
+            <span class="testimonial-item">"アーティストとのコラボが魅力"</span>
+            <span class="testimonial-item">"買い物が支援になる新しい形"</span>
+            <span class="testimonial-item">"クオリティの高いフィギュア"</span>
+            <span class="testimonial-item">"楽しみながら社会貢献"</span>
+            <span class="testimonial-item">"アーティストとのコラボが魅力"</span>
+        </div>
+    </section>
 
-    <div class="block">
-      <h2>JmAT Japan のエンタメの位置づけ</h2>
-      <p>
-        フィギュアやグッズは「おまけ」ではなく、現場と社会をつなぐ立派なインフラだと考えています。
-        楽しさやかわいさを入り口に、医療や介護の世界に興味を持つ人が一人でも増えれば、
-        それもまた確かな支援の一つだと信じています。
-      </p>
-    </div>
+    <section class="services-detail">
+        <h2>展開する<span class="highlight">コンテンツ</span></h2>
+        <div class="service-row">
+            <div class="service-image"><img src="service-figurine.png" alt="フィギュア"></div>
+            <div class="service-text">
+                <h3>オリジナルフィギュア制作</h3>
+                <p>国内外のアーティストとコラボレーションし、オリジナルデザインのフィギュアを企画・制作。コレクターズアイテムとして楽しめるハイクオリティな造形をお届けします。</p>
+                <span class="service-tag">アートトイ</span>
+                <span class="service-tag">コラボレーション</span>
+                <span class="service-tag">限定品</span>
+            </div>
+        </div>
+        <div class="service-row reverse">
+            <div class="service-image"><img src="service-figurine.png" alt="グッズ"></div>
+            <div class="service-text">
+                <h3>チャリティーグッズ</h3>
+                <p>Tシャツ、トートバッグ、アクセサリーなど、日常で使えるチャリティーグッズを展開。売上の一部が医療支援プロジェクトに還元されます。</p>
+                <span class="service-tag">アパレル</span>
+                <span class="service-tag">雑貨</span>
+                <span class="service-tag">寄付還元</span>
+            </div>
+        </div>
+        <div class="service-row">
+            <div class="service-image"><img src="service-figurine.png" alt="イベント"></div>
+            <div class="service-text">
+                <h3>イベント・展示会</h3>
+                <p>アート展、ポップアップショップ、チャリティーイベントなどを企画・運営。エンタメを通じて医療や社会課題への関心を広げます。</p>
+                <span class="service-tag">展示会</span>
+                <span class="service-tag">ポップアップ</span>
+                <span class="service-tag">コミュニティ</span>
+            </div>
+        </div>
+    </section>
 
-    <div id="contact" class="cta-bottom">
-      <p>オリジナルフィギュア・グッズ制作やコラボレーションのご相談をお待ちしています。</p>
-      <button class="btn-primary" onclick="location.href='mailto:info@jmat.jp'">info@jmat.jp にメールする</button>
-    </div>
-  </section>
-</main>
+    <section class="deliverables">
+        <h2>DELIVERABLES</h2>
+        <div class="deliverables-grid">
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🎨</div>
+                <h3>フィギュア</h3>
+                <p>オリジナル制作</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">👕</div>
+                <h3>グッズ</h3>
+                <p>チャリティー商品</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🎪</div>
+                <h3>イベント</h3>
+                <p>展示・販売会</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🤝</div>
+                <h3>コラボ</h3>
+                <p>アーティスト協業</p>
+            </div>
+        </div>
+    </section>
 
-<footer>
-  © JmAT Japan Figurine & Entertainment / NPO GOTO
-</footer>
+    <section class="cta-section">
+        <h2>コラボレーション・お問い合わせ</h2>
+        <p>アーティスト様、企業様からのご相談をお待ちしております</p>
+        <a href="#contact" class="cta-button">お問い合わせ</a>
+    </section>
 
-<script>
-  const fadeEls = document.querySelectorAll('.fade');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-  }, { threshold: 0.2 });
-  fadeEls.forEach(el => io.observe(el));
-
-  window.addEventListener('scroll', () => {
-    document.querySelectorAll('.parallax').forEach(el => {
-      const speed = parseFloat(el.dataset.speed || 0.22);
-      const y = window.scrollY * speed;
-      el.style.transform = `translateY(${y}px)`;
-    });
-  });
-</script>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="#">会社概要</a></li><li><a href="#">代表挨拶</a></li><li><a href="#">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">救急医療事業</a></li><li><a href="service-visitnurse.html">訪問看護事業</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="#">お知らせ</a></li><li><a href="#">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="#">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 JmAT. All Rights Reserved.</p></div>
+    </footer>
 </body>
 </html>
