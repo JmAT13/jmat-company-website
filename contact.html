@@ -3,78 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お問い合わせ | JmAT株式会社</title>
+    <title>お問い合わせ | JmAT Japan合同会社</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
-        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
-        .nav-link:hover { color: #7dd3c0; }
-        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
         .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
         .dropdown a:hover { background: #f0f0f0; }
 
-        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 10rem 2rem 6rem; margin-top: 75px; text-align: center; }
-        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
         .hero h1 { font-size: 3.5rem; font-weight: 700; }
-        .hero p { margin-top: 1rem; opacity: 0.9; }
 
         .contact-section { padding: 6rem 2rem; background: white; }
-        .contact-container { max-width: 800px; margin: 0 auto; }
-        .contact-intro { text-align: center; margin-bottom: 3rem; }
-        .contact-intro h2 { font-size: 1.8rem; color: #4a3c2a; margin-bottom: 1rem; }
-        .contact-intro p { color: #666; }
+        .contact-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
 
-        .contact-form { background: #fafafa; padding: 3rem; border-radius: 16px; }
+        .contact-form h2 { font-size: 2rem; color: #7dd3c0; margin-bottom: 2rem; }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; font-weight: 600; color: #4a3c2a; margin-bottom: 0.5rem; }
-        .form-group label .required { color: #e74c3c; font-size: 0.85rem; margin-left: 0.3rem; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; font-family: inherit; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #7dd3c0; }
-        .form-group textarea { min-height: 200px; resize: vertical; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 1rem; border: 2px solid #eee; border-radius: 10px; font-size: 1rem; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #7dd3c0; }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .submit-btn { background: #4a3c2a; color: white; padding: 1rem 3rem; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(74, 60, 42, 0.3); }
 
-        .privacy-check { display: flex; align-items: flex-start; gap: 0.8rem; margin: 2rem 0; }
-        .privacy-check input { width: auto; margin-top: 0.3rem; }
-        .privacy-check label { font-weight: normal; color: #555; font-size: 0.95rem; }
-        .privacy-check a { color: #7dd3c0; }
+        .contact-info h2 { font-size: 2rem; color: #7dd3c0; margin-bottom: 2rem; }
+        .info-card { background: #f8fdfb; padding: 2rem; border-radius: 20px; margin-bottom: 1.5rem; border-left: 4px solid #7dd3c0; }
+        .info-card h3 { color: #4a3c2a; font-size: 1.2rem; margin-bottom: 1rem; }
+        .info-card p { color: #666; margin-bottom: 0.5rem; }
+        .info-card a { color: #7dd3c0; text-decoration: none; font-weight: 600; }
+        .info-card a:hover { color: #4a3c2a; }
 
-        .submit-btn { width: 100%; padding: 1.2rem; background: #7dd3c0; color: #4a3c2a; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-        .submit-btn:hover { background: #5bc4ad; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(125,211,192,0.4); }
-
-        .contact-info { padding: 4rem 2rem; background: #f8f8f8; }
-        .info-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .info-card { background: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .info-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .info-card h3 { color: #4a3c2a; margin-bottom: 0.5rem; }
-        .info-card p { color: #666; font-size: 0.95rem; }
-        .info-card a { color: #7dd3c0; text-decoration: none; }
-
-        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; }
         .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #7dd3c0; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
         .footer-section ul { list-style: none; }
-        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
-        .footer-section a:hover { color: #7dd3c0; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
 
-        @media (max-width: 768px) {
-            header { padding: 1rem 2rem; }
-            nav { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .form-row { grid-template-columns: 1fr; }
-            .info-container { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1024px) { .contact-container { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="header-container">
             <a href="index.html" class="logo">JmAT</a>
             <nav>
@@ -91,83 +79,46 @@
     <section class="hero">
         <span class="hero-label">CONTACT</span>
         <h1>お問い合わせ</h1>
-        <p>ご質問・ご相談など、お気軽にお問い合わせください</p>
     </section>
 
     <section class="contact-section">
         <div class="contact-container">
-            <div class="contact-intro">
+            <div class="contact-form animate-on-scroll">
                 <h2>お問い合わせフォーム</h2>
-                <p>以下のフォームに必要事項をご入力の上、送信してください。<br>担当者より2〜3営業日以内にご連絡いたします。</p>
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group"><label>お名前 *</label><input type="text" name="name" required></div>
+                    <div class="form-group"><label>会社名</label><input type="text" name="company"></div>
+                    <div class="form-group"><label>メールアドレス *</label><input type="email" name="email" required></div>
+                    <div class="form-group"><label>電話番号</label><input type="tel" name="phone"></div>
+                    <div class="form-group"><label>お問い合わせ種別</label>
+                        <select name="type">
+                            <option value="general">一般的なお問い合わせ</option>
+                            <option value="service">サービスについて</option>
+                            <option value="partnership">パートナーシップ</option>
+                            <option value="recruit">採用について</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>お問い合わせ内容 *</label><textarea name="message" required></textarea></div>
+                    <button type="submit" class="submit-btn">送信する</button>
+                </form>
             </div>
-
-            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>お名前<span class="required">*必須</span></label>
-                        <input type="text" name="name" required placeholder="山田 太郎">
-                    </div>
-                    <div class="form-group">
-                        <label>会社名・団体名</label>
-                        <input type="text" name="company" placeholder="株式会社〇〇">
-                    </div>
+            <div class="contact-info animate-on-scroll delay-1">
+                <h2>連絡先</h2>
+                <div class="info-card">
+                    <h3>📍 所在地</h3>
+                    <p>〒103-0004</p>
+                    <p>東京都中央区東日本橋3-3-17</p>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>メールアドレス<span class="required">*必須</span></label>
-                        <input type="email" name="email" required placeholder="example@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label>電話番号</label>
-                        <input type="tel" name="phone" placeholder="03-1234-5678">
-                    </div>
+                <div class="info-card">
+                    <h3>📞 電話</h3>
+                    <p><a href="tel:03-1234-5678">03-1234-5678</a></p>
+                    <p>平日 9:00〜18:00</p>
                 </div>
-
-                <div class="form-group">
-                    <label>お問い合わせ種別<span class="required">*必須</span></label>
-                    <select name="category" required>
-                        <option value="">選択してください</option>
-                        <option value="事業に関するお問い合わせ">事業に関するお問い合わせ</option>
-                        <option value="採用に関するお問い合わせ">採用に関するお問い合わせ</option>
-                        <option value="取材・メディア関連">取材・メディア関連</option>
-                        <option value="寄付・支援について">寄付・支援について</option>
-                        <option value="パートナーシップ・協業">パートナーシップ・協業</option>
-                        <option value="その他">その他</option>
-                    </select>
+                <div class="info-card">
+                    <h3>✉️ メール</h3>
+                    <p><a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
                 </div>
-
-                <div class="form-group">
-                    <label>お問い合わせ内容<span class="required">*必須</span></label>
-                    <textarea name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
-                </div>
-
-                <div class="privacy-check">
-                    <input type="checkbox" id="privacy" required>
-                    <label for="privacy"><a href="#">プライバシーポリシー</a>に同意の上、送信してください。</label>
-                </div>
-
-                <button type="submit" class="submit-btn">送信する</button>
-            </form>
-        </div>
-    </section>
-
-    <section class="contact-info">
-        <div class="info-container">
-            <div class="info-card">
-                <div class="icon">📍</div>
-                <h3>所在地</h3>
-                <p>〒103-0004<br>東京都中央区東日本橋3-3-17</p>
-            </div>
-            <div class="info-card">
-                <div class="icon">📞</div>
-                <h3>電話番号</h3>
-                <p><a href="tel:03-1234-5678">03-1234-5678</a></p>
-            </div>
-            <div class="info-card">
-                <div class="icon">✉️</div>
-                <h3>メール</h3>
-                <p><a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
             </div>
         </div>
     </section>
@@ -179,7 +130,12 @@
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
             <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2024 JmAT株式会社 All Rights Reserved.</p></div>
+        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
