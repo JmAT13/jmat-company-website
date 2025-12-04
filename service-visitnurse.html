@@ -7,35 +7,30 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.6; color: #333; }
-        
         header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
         .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; transition: opacity 0.3s; }
+        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-link:hover { opacity: 0.7; }
         .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
-        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; transition: background 0.3s; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
         .dropdown a:hover { background: #f0f0f0; }
-
         .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 12rem 2rem 8rem; margin-top: 75px; text-align: center; }
         .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 2rem; }
         .hero h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1.5rem; }
         .hero h1 .highlight { color: #7dd3c0; }
         .hero .subtitle { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
-
         .intro-section { padding: 6rem 2rem; background: white; }
         .intro-container { max-width: 1000px; margin: 0 auto; text-align: center; }
         .intro-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #4a3c2a; }
         .intro-section p { font-size: 1.2rem; line-height: 2; color: #555; }
-
         .testimonials-band { background: #f8f8f8; padding: 3rem 0; overflow: hidden; }
         .testimonials-slider { display: flex; gap: 4rem; animation: scrollTestimonials 30s linear infinite; }
         .testimonial-item { white-space: nowrap; font-size: 1.1rem; color: #666; font-style: italic; }
         @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
         .services-detail { padding: 6rem 2rem; background: white; }
         .services-detail h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
         .services-detail h2 .highlight { color: #7dd3c0; }
@@ -44,4 +39,159 @@
         .service-row.reverse > * { direction: ltr; }
         .service-image { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .service-image img { width: 100%; height: auto; object-fit: contain; display: block; }
-        .service-text h3 { font-size:
+        .service-text h3 { font-size: 1.8rem; margin-bottom: 1rem; color: #4a3c2a; }
+        .service-text p { font-size: 1.1rem; line-height: 1.9; color: #555; margin-bottom: 1.5rem; }
+        .service-tag { display: inline-block; background: #7dd3c0; color: #4a3c2a; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+        .deliverables { background: #4a3c2a; color: white; padding: 6rem 2rem; }
+        .deliverables h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; }
+        .deliverables-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .deliverable-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; transition: all 0.3s; }
+        .deliverable-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
+        .deliverable-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .deliverable-card h3 { font-size: 1.1rem; color: #7dd3c0; margin-bottom: 0.5rem; }
+        .deliverable-card p { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+        .cta-section { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 6rem 2rem; text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+        .cta-button { display: inline-block; background: #7dd3c0; color: #333; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #7dd3c0; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        @media (max-width: 1024px) { .service-row { grid-template-columns: 1fr; } .service-row.reverse { direction: ltr; } .deliverables-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .deliverables-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">JmAT</a>
+            <nav>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">ABOUT</a>
+                    <div class="dropdown"><a href="#">会社概要</a><a href="#">代表挨拶</a><a href="#">企業理念</a></div>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">SERVICES</a>
+                    <div class="dropdown">
+                        <a href="service-emergency.html">救急医療事業</a>
+                        <a href="service-visitnurse.html">訪看事業</a>
+                        <a href="service-cosmetics.html">コスメティック事業</a>
+                        <a href="service-construction.html">建築・まちづくり</a>
+                        <a href="swrvice-figurine.html">エンタメ事業</a>
+                        <a href="service-faq.html">よくあるご質問</a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="hero-label">VISITING NURSE SERVICE</span>
+        <h1>訪問看護<span class="highlight">事業</span></h1>
+        <p class="subtitle">住み慣れた家で、安心して暮らし続けるために</p>
+    </section>
+
+    <section class="intro-section">
+        <div class="intro-container">
+            <h2>在宅医療を支える、プロフェッショナル</h2>
+            <p>病院から在宅へ─医療の現場が変わる中で、私たちは住み慣れた場所で安心して療養できる環境づくりを支援します。看護師、理学療法士、作業療法士など多職種が連携し、一人ひとりに寄り添ったケアを提供します。</p>
+        </div>
+    </section>
+
+    <section class="testimonials-band">
+        <div class="testimonials-slider">
+            <span class="testimonial-item">"自宅で安心して過ごせるようになった"</span>
+            <span class="testimonial-item">"家族の負担が軽減された"</span>
+            <span class="testimonial-item">"丁寧で温かいケア"</span>
+            <span class="testimonial-item">"24時間対応で安心"</span>
+            <span class="testimonial-item">"自宅で安心して過ごせるようになった"</span>
+            <span class="testimonial-item">"家族の負担が軽減された"</span>
+            <span class="testimonial-item">"丁寧で温かいケア"</span>
+            <span class="testimonial-item">"24時間対応で安心"</span>
+        </div>
+    </section>
+
+    <section class="services-detail">
+        <h2>提供する<span class="highlight">サービス</span></h2>
+        <div class="service-row">
+            <div class="service-image"><img src="service-visitnurse.png" alt="訪問看護"></div>
+            <div class="service-text">
+                <h3>訪問看護サービス</h3>
+                <p>医師の指示のもと、看護師がご自宅を訪問。バイタルチェック、服薬管理、医療処置、療養上のお世話まで、幅広くサポートします。</p>
+                <span class="service-tag">健康管理</span>
+                <span class="service-tag">医療処置</span>
+                <span class="service-tag">服薬管理</span>
+            </div>
+        </div>
+        <div class="service-row reverse">
+            <div class="service-image"><img src="service-visitnurse.png" alt="リハビリ"></div>
+            <div class="service-text">
+                <h3>訪問リハビリテーション</h3>
+                <p>理学療法士・作業療法士がご自宅でリハビリを実施。日常生活動作の維持・向上を目指し、その人らしい生活を支援します。</p>
+                <span class="service-tag">機能訓練</span>
+                <span class="service-tag">生活リハビリ</span>
+                <span class="service-tag">福祉用具相談</span>
+            </div>
+        </div>
+        <div class="service-row">
+            <div class="service-image"><img src="service-visitnurse.png" alt="ターミナルケア"></div>
+            <div class="service-text">
+                <h3>ターミナルケア・看取り</h3>
+                <p>人生の最期を住み慣れた場所で迎えたい─そんな想いに寄り添い、ご本人とご家族を医療・精神面からサポートします。</p>
+                <span class="service-tag">緩和ケア</span>
+                <span class="service-tag">看取り支援</span>
+                <span class="service-tag">グリーフケア</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="deliverables">
+        <h2>DELIVERABLES</h2>
+        <div class="deliverables-grid">
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🏠</div>
+                <h3>訪問看護</h3>
+                <p>在宅医療支援</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">💪</div>
+                <h3>リハビリ</h3>
+                <p>機能回復支援</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">🌙</div>
+                <h3>24時間対応</h3>
+                <p>緊急時サポート</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="deliverable-icon">💝</div>
+                <h3>ターミナルケア</h3>
+                <p>看取り支援</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>ご利用・ご相談はこちら</h2>
+        <p>ご本人様、ご家族様、ケアマネージャー様からのご相談を承ります</p>
+        <a href="#contact" class="cta-button">お問い合わせ</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="#">会社概要</a></li><li><a href="#">代表挨拶</a></li><li><a href="#">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">救急医療事業</a></li><li><a href="service-visitnurse.html">訪問看護事業</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="#">お知らせ</a></li><li><a href="#">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="#">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 JmAT. All Rights Reserved.</p></div>
+    </footer>
+</body>
+</html>
