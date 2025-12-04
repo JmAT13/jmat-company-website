@@ -374,12 +374,46 @@
         footer {
             background: #4a3c2a;
             color: white;
-            padding: 2rem;
-            text-align: center;
+            padding: 4rem 2rem 2rem;
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.7);
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #7dd3c0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.5);
         }
 
         /* マスコットアニメーション */
@@ -458,6 +492,10 @@
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -483,6 +521,10 @@
 
             .services-section h2 {
                 font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -516,7 +558,13 @@
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="#contact" class="nav-link">CONTACT</a>
+                    <a href="news.html" class="nav-link">NEWS</a>
+                </div>
+                <div class="nav-item">
+                    <a href="recruit.html" class="nav-link">RECRUIT</a>
+                </div>
+                <div class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
                 </div>
             </nav>
         </div>
@@ -623,7 +671,7 @@
                 <p>JmAT株式会社</p>
                 <p>東京都中央区東日本橋3-3-17</p>
                 <p><a href="tel:03-1234-5678">03-1234-5678</a></p>
-                <p><a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
+                <p><a href="/cdn-cgi/l/email-protection#375e595158775d5a5643195d47"><span class="__cf_email__" data-cfemail="9ef7f0f8f1def4f3ffeab0f4ee">[email&#160;protected]</span></a></p>
             </div>
             <div class="contact-card">
                 <h3>FOLLOW US</h3>
@@ -637,7 +685,44 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2024 JmAT. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>企業情報</h3>
+                <ul>
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#message">代表挨拶</a></li>
+                    <li><a href="#philosophy">企業理念</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>サービス</h3>
+                <ul>
+                    <li><a href="service-emergency.html">救急医療事業</a></li>
+                    <li><a href="service-visitnurse.html">訪看事業</a></li>
+                    <li><a href="service-cosmetics.html">コスメティック事業</a></li>
+                    <li><a href="service-construction.html">建築・まちづくり</a></li>
+                    <li><a href="swrvice-figurine.html">エンタメ事業</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>情報</h3>
+                <ul>
+                    <li><a href="news.html">お知らせ</a></li>
+                    <li><a href="recruit.html">採用情報</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                    <li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 JmAT株式会社 All Rights Reserved.</p>
+        </div>
     </footer>
 
     <!-- マスコットキャラクター -->
@@ -646,7 +731,7 @@
         <img src="mascot.png" alt="Mascot" class="mascot" id="mascotImg">
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const mascot = document.getElementById('mascot');
         const mascotImg = document.getElementById('mascotImg');
 
@@ -665,10 +750,4 @@
 
         // マウス追従
         document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 10;
-            const y = (e.clientY / window.innerHeight - 0.5) * 10;
-            mascot.style.transform = `translate(${-x}px, ${-y}px)`;
-        });
-    </script>
-</body>
-</html>
+            const x =
