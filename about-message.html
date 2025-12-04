@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>代表挨拶 | JmAT株式会社</title>
+    <title>代表挨拶 | JmAT Japan合同会社</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
@@ -35,14 +35,15 @@
 
         .message-section { padding: 6rem 2rem; background: white; }
         .message-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 350px 1fr; gap: 4rem; align-items: start; }
-        .ceo-photo { width: 100%; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .ceo-photo { width: 100%; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); background: white; }
         .ceo-info { text-align: center; margin-top: 1.5rem; }
         .ceo-info .position { color: #7dd3c0; font-size: 0.9rem; font-weight: 600; }
         .ceo-info .name { color: #4a3c2a; font-size: 1.5rem; font-weight: 700; margin-top: 0.3rem; }
 
-        .message-content h2 { font-size: 2.5rem; color: #4a3c2a; margin-bottom: 2rem; line-height: 1.4; }
+        .message-content h2 { font-size: 2.2rem; color: #4a3c2a; margin-bottom: 2rem; line-height: 1.4; }
         .message-content h2 .highlight { color: #7dd3c0; }
-        .message-content p { font-size: 1.1rem; color: #555; line-height: 2.2; margin-bottom: 1.5rem; }
+        .message-content p { font-size: 1.05rem; color: #555; line-height: 2.2; margin-bottom: 1.5rem; }
+        .message-content .emphasis { font-size: 1.15rem; color: #4a3c2a; font-weight: 500; background: linear-gradient(transparent 60%, rgba(125, 211, 192, 0.3) 60%); display: inline; }
         .message-content .signature { margin-top: 3rem; text-align: right; }
         .message-content .signature .position { color: #999; font-size: 0.95rem; }
         .message-content .signature .name { color: #4a3c2a; font-size: 1.3rem; font-weight: 600; margin-top: 0.3rem; }
@@ -60,7 +61,7 @@
         .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
         @media (max-width: 1024px) { .message-container { grid-template-columns: 1fr; } .ceo-photo { max-width: 300px; margin: 0 auto; } }
-        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .quote-section blockquote { font-size: 1.5rem; } .footer-content { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .message-content h2 { font-size: 1.8rem; } .quote-section blockquote { font-size: 1.5rem; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -86,30 +87,43 @@
     <section class="message-section">
         <div class="message-container">
             <div class="animate-left">
-                <img src="ceo-avatar.png" alt="代表取締役" class="ceo-photo">
+                <img src="ceo-avatar.png" alt="代表 大下 甚" class="ceo-photo">
                 <div class="ceo-info">
-                    <p class="position">代表取締役 CEO</p>
-                    <p class="name">山田 太郎</p>
+                    <p class="position">代表</p>
+                    <p class="name">大下 甚</p>
                 </div>
             </div>
             <div class="message-content animate-right">
-                <h2>「届かない」を<br><span class="highlight">「届く」</span>に変える</h2>
-                <p>私がJmATを設立したきっかけは、ある途上国での経験でした。医療が届かないばかりに、助かるはずの命が失われている現実を目の当たりにしました。</p>
-                <p>「なぜ、生まれた場所によって命の重さが違うのだろう」</p>
-                <p>この問いが、私の中でずっと消えることはありませんでした。</p>
-                <p>JmATは、その答えを見つけるための挑戦です。医療だけでなく、建築、エンタメ、コスメ——一見バラバラに見える事業を「∞（無限大）」で繋ぎ、新しい支援の形を創り出しています。</p>
-                <p>フィギュアを買うことが、誰かの命を救うことにつながる。そんな世界を、私たちは本気で目指しています。</p>
-                <p>一人でも多くの方に、この想いに共感いただき、一緒に世界を変えていけることを願っています。</p>
+                <h2>必要な場所に、必要な医療と支援を、<br><span class="highlight">最短で届ける</span></h2>
+                
+                <p>私たちの社会には、医療が届かず命がこぼれ落ちてしまう場所、助けを求めても声が届かない人々が、まだ数えきれないほど存在しています。</p>
+                
+                <p>私はその現実を前に、<span class="emphasis">「必要な場所に、必要な医療と支援を、最短で届ける仕組みをつくりたい」</span>その一心で、このNPOを立ち上げました。</p>
+                
+                <p>私たちが目指すのは、病院という"箱"に人を待たせる医療ではなく、人のもとへ自ら赴き、現場で命をつなぐ<span class="emphasis">"動く医療・動く支援"</span>の実現です。</p>
+                
+                <p>日本での在宅医療・訪問看護、アメリカ・インドでの外傷医療・救急支援、韓国での医療福祉連携、そして高齢者が安心して暮らせる「介護村」や、地域がつながり合うコミュニティづくりまで——私たちの活動は国境も領域も越えて広がっています。</p>
+                
+                <p>それは単なる医療活動ではありません。弱い立場にある人々を一人でも支え、<span class="emphasis">"生きる機会そのもの"</span>を増やす社会づくりです。</p>
+                
+                <p>そしてその一歩は、私たちだけでは決して踏み出せません。ともに未来を作る仲間として、皆さまのお力をぜひお貸しください。</p>
+                
+                <p>私たちは、いただいた寄付や応援を責任を持って透明に管理し、全てを現場の支援と、未来に残る仕組みづくりへ還元していきます。</p>
+                
+                <p>この活動を通じて、私自身の子どもたち、そして日本や世界の子どもたちに、「誰かのために動くことが世界を本当に変える」という姿を残したい。その想いを胸に、これからも愚直に行動し続けてまいります。</p>
+                
+                <p>どうか、温かいご支援とご指導を賜りますよう、心よりお願い申し上げます。</p>
+                
                 <div class="signature">
-                    <p class="position">JmAT株式会社 代表取締役</p>
-                    <p class="name">山田 太郎</p>
+                    <p class="position">JmAT Japan合同会社 代表</p>
+                    <p class="name">大下 甚</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="quote-section">
-        <blockquote class="animate-on-scroll">"Connecting lives to <span>∞</span> POSSIBLE"</blockquote>
+        <blockquote class="animate-on-scroll">"すべての人に、<span>"生きる機会"</span> を届ける。"</blockquote>
     </section>
 
     <footer>
@@ -119,7 +133,7 @@
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
             <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2024 JmAT株式会社 All Rights Reserved.</p></div>
+        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
 
     <script>
