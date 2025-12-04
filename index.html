@@ -1038,6 +1038,13 @@
         <div class="loader-text">LOADING</div>
         <div class="loader-bar"></div>
     </div>
+    <script>
+        // 1.5秒後にローダーを非表示（インライン実行で確実に動作）
+        setTimeout(function() {
+            document.getElementById('loader').style.display = 'none';
+            document.body.classList.remove('loading');
+        }, 1500);
+    </script>
 
     <header id="header">
         <div class="header-container">
@@ -1290,30 +1297,6 @@
     </div>
 
     <script>
-        // ローディングアニメーション終了（確実に動作させる）
-        (function() {
-            function hideLoader() {
-                var loader = document.getElementById('loader');
-                if (loader) {
-                    loader.classList.add('hidden');
-                    loader.style.display = 'none';
-                }
-                document.body.classList.remove('loading');
-            }
-            
-            // ページ読み込み完了後1.5秒で非表示
-            if (document.readyState === 'complete') {
-                setTimeout(hideLoader, 1500);
-            } else {
-                window.addEventListener('load', function() {
-                    setTimeout(hideLoader, 1500);
-                });
-            }
-            
-            // フォールバック: 3秒後に強制非表示
-            setTimeout(hideLoader, 3000);
-        })();
-
         // ヘッダースクロール効果
         var header = document.getElementById('header');
         window.addEventListener('scroll', () => {
