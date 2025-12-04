@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JmAT株式会社 | Connecting lives to ∞ POSSIBLE</title>
+    <title>JmAT Japan合同会社 | Connecting lives to ∞ POSSIBLE</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -36,9 +36,9 @@
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
 
-        /* ========== ヘッダー ========== */
+        /* ========== ヘッダー（ミント色ベース） ========== */
         header {
-            background: rgba(74, 60, 42, 0.95);
+            background: rgba(125, 211, 192, 0.95);
             backdrop-filter: blur(10px);
             padding: 1.5rem 4rem;
             position: fixed;
@@ -49,7 +49,7 @@
         }
         header.scrolled {
             padding: 1rem 4rem;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
         }
         .header-container {
             display: flex;
@@ -59,7 +59,7 @@
             margin: 0 auto;
         }
         .logo {
-            color: white;
+            color: #4a3c2a;
             font-size: 1.8rem;
             font-weight: bold;
             text-decoration: none;
@@ -67,14 +67,14 @@
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
         .nav-link {
-            color: white;
+            color: #4a3c2a;
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
             padding: 0.5rem 0;
             transition: color 0.3s;
         }
-        .nav-link:hover { color: #7dd3c0; }
+        .nav-link:hover { color: #3d3225; }
         .dropdown {
             display: none;
             position: absolute;
@@ -101,17 +101,17 @@
             display: block;
             width: 25px;
             height: 2px;
-            background: white;
+            background: #4a3c2a;
             margin: 6px 0;
             transition: 0.3s;
         }
 
-        /* ========== ヒーローセクション ========== */
+        /* ========== ヒーローセクション（ミント色グラデーション） ========== */
         .hero {
-            background: linear-gradient(-45deg, #4a3c2a, #5a4d38, #3d3225, #6b5a45);
+            background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
-            color: white;
+            color: #4a3c2a;
             text-align: center;
             padding: 14rem 2rem 10rem;
             margin-top: 75px;
@@ -123,8 +123,8 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(125, 211, 192, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(125, 211, 192, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(74, 60, 42, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 60, 42, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
         .hero-content { position: relative; z-index: 2; }
@@ -137,17 +137,17 @@
         }
         .hero h1 .infinity {
             display: inline-block;
-            color: #7dd3c0;
+            color: #4a3c2a;
         }
         .hero .possible {
             display: block;
             font-size: 5rem;
-            color: #7dd3c0;
+            color: #4a3c2a;
             font-weight: 700;
             margin-bottom: 1.5rem;
             animation: fadeInUp 1s ease 0.3s forwards;
             opacity: 0;
-            text-shadow: 0 0 40px rgba(125, 211, 192, 0.5);
+            text-shadow: 0 0 40px rgba(74, 60, 42, 0.3);
         }
         .hero .subtitle {
             font-size: 1.3rem;
@@ -155,11 +155,12 @@
             font-weight: 400;
             opacity: 0;
             animation: fadeInUp 1s ease 0.6s forwards;
+            color: #3d3225;
         }
         .cta-button {
             display: inline-block;
-            background: #7dd3c0;
-            color: #333;
+            background: #4a3c2a;
+            color: white;
             padding: 1.2rem 3rem;
             border-radius: 50px;
             text-decoration: none;
@@ -171,7 +172,7 @@
         }
         .cta-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(125, 211, 192, 0.4);
+            box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
         }
 
         /* ========== パートナーセクション ========== */
@@ -214,7 +215,7 @@
         .values-section h2 {
             text-align: center;
             font-size: 3rem;
-            color: #4a3c2a;
+            color: #7dd3c0;
             margin-bottom: 4rem;
         }
         .values-grid {
@@ -240,7 +241,7 @@
         }
         .value-card h3 {
             font-size: 2rem;
-            color: #4a3c2a;
+            color: #7dd3c0;
             margin-bottom: 1rem;
         }
         .value-card p {
@@ -249,30 +250,31 @@
             line-height: 1.8;
         }
 
-        /* ========== ABOUT セクション ========== */
+        /* ========== ABOUT セクション（ミント色） ========== */
         .about-section {
             padding: 8rem 2rem;
-            background: #4a3c2a;
-            color: white;
+            background: #7dd3c0;
+            color: #4a3c2a;
             text-align: center;
         }
         .about-section h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        .about-section h2 .highlight { color: #7dd3c0; }
+        .about-section h2 .highlight { color: #3d3225; }
         .about-section .tagline {
-            color: #7dd3c0;
+            color: #3d3225;
             font-size: 1.1rem;
             margin-bottom: 2rem;
             letter-spacing: 0.1em;
+            font-weight: 600;
         }
         .about-section p {
             max-width: 800px;
             margin: 0 auto;
             font-size: 1.1rem;
             line-height: 2;
-            opacity: 0.9;
+            color: #4a3c2a;
         }
 
         /* ========== SERVICES セクション ========== */
@@ -283,10 +285,10 @@
         .services-section h2 {
             text-align: center;
             font-size: 3rem;
-            color: #4a3c2a;
+            color: #7dd3c0;
             margin-bottom: 4rem;
         }
-        .services-section h2 .highlight { color: #7dd3c0; }
+        .services-section h2 .highlight { color: #4a3c2a; }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -311,7 +313,7 @@
             top: 0; left: 0;
             width: 100%;
             height: 4px;
-            background: #7dd3c0;
+            background: #4a3c2a;
             transform: scaleX(0);
             transition: transform 0.3s;
         }
@@ -322,7 +324,7 @@
         }
         .service-card h3 {
             font-size: 1.3rem;
-            color: #4a3c2a;
+            color: #7dd3c0;
             margin-bottom: 1rem;
         }
         .service-card p {
@@ -335,7 +337,7 @@
             bottom: 1.5rem;
             right: 1.5rem;
             font-size: 1.5rem;
-            color: #7dd3c0;
+            color: #4a3c2a;
             opacity: 0;
             transform: translateX(-10px);
             transition: all 0.3s;
@@ -353,7 +355,7 @@
         .projects-section h2 {
             text-align: center;
             font-size: 2.5rem;
-            color: #4a3c2a;
+            color: #7dd3c0;
             margin-bottom: 0.5rem;
         }
         .section-subtitle {
@@ -391,36 +393,36 @@
             left: 0;
             right: 0;
             padding: 2rem;
-            background: linear-gradient(transparent, rgba(74, 60, 42, 0.95));
-            color: white;
+            background: linear-gradient(transparent, rgba(125, 211, 192, 0.95));
+            color: #4a3c2a;
             transform: translateY(100%);
             transition: transform 0.3s;
         }
         .project-card:hover .project-overlay { transform: translateY(0); }
-        .project-overlay h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .project-overlay h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 700; }
         .project-overlay p { font-size: 0.9rem; opacity: 0.8; }
 
-        /* ========== CONTACT セクション ========== */
+        /* ========== CONTACT セクション（ミント色） ========== */
         .contact-section {
             padding: 8rem 2rem;
-            background: #4a3c2a;
-            color: white;
+            background: #7dd3c0;
+            color: #4a3c2a;
             text-align: center;
         }
         .contact-section h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
         }
-        .contact-section h2 .highlight { color: #7dd3c0; }
+        .contact-section h2 .highlight { color: #3d3225; }
         .contact-section p {
             max-width: 600px;
             margin: 0 auto 3rem;
-            opacity: 0.9;
+            color: #3d3225;
         }
         .contact-btn {
             display: inline-block;
-            background: #7dd3c0;
-            color: #333;
+            background: #4a3c2a;
+            color: white;
             padding: 1.2rem 3rem;
             border-radius: 50px;
             text-decoration: none;
@@ -429,7 +431,7 @@
         }
         .contact-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(125, 211, 192, 0.4);
+            box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
         }
         .contact-info-grid {
             display: grid;
@@ -440,24 +442,26 @@
             text-align: left;
         }
         .contact-location h3 {
-            color: #7dd3c0;
+            color: #3d3225;
             font-size: 1.1rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
         .contact-location p {
             margin: 0;
-            opacity: 0.8;
+            color: #4a3c2a;
             font-size: 0.95rem;
             line-height: 1.8;
         }
         .contact-location a {
-            color: #7dd3c0;
+            color: #3d3225;
             text-decoration: none;
+            font-weight: 600;
         }
 
-        /* ========== フッター ========== */
+        /* ========== フッター（暗めのミント色） ========== */
         footer {
-            background: #3d3225;
+            background: #5ab8a5;
             color: white;
             padding: 4rem 2rem 2rem;
         }
@@ -471,22 +475,22 @@
         .footer-section h3 {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
-            color: #7dd3c0;
+            color: #4a3c2a;
         }
         .footer-section ul { list-style: none; }
         .footer-section a {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.85);
             text-decoration: none;
             display: block;
             padding: 0.4rem 0;
             transition: color 0.3s;
         }
-        .footer-section a:hover { color: #7dd3c0; }
+        .footer-section a:hover { color: #4a3c2a; }
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
         }
 
         /* ========== マスコット ========== */
@@ -715,7 +719,7 @@
         <div class="contact-info-grid animate-on-scroll delay-3">
             <div class="contact-location">
                 <h3>JAPAN</h3>
-                <p>JmAT株式会社<br>
+                <p>JmAT Japan合同会社<br>
                 〒103-0004<br>
                 東京都中央区東日本橋3-3-17<br>
                 <a href="tel:03-1234-5678">03-1234-5678</a><br>
@@ -768,7 +772,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 JmAT株式会社 All Rights Reserved.</p>
+            <p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -793,9 +797,9 @@
 
         document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right, .animate-scale').forEach(el => observer.observe(el));
 
-        // マスコット
+        // マスコットメッセージ
+        const messages = ['何かお困りですか？🩺', '一緒に世界を変えよう！✨', 'ご質問があればどうぞ！💬'];
         const bubble = document.querySelector('.mascot-bubble');
-        const messages = ['何かお困りですか？🩺', '一緒に世界を変えよう！✨', 'Connecting lives to ∞'];
         let msgIndex = 0;
         setInterval(() => {
             msgIndex = (msgIndex + 1) % messages.length;
