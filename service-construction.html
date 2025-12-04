@@ -3,860 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>建築・まちづくり | JmAT株式会社</title>
+    <title>建築・まちづくり | JmAT Japan合同会社</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* ヘッダー */
-        header {
-            background: #4a3c2a;
-            padding: 1.5rem 4rem;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            color: white;
-            font-size: 1.8rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        nav {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .nav-link:hover {
-            opacity: 0.7;
-        }
-
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-            border-radius: 4px;
-            margin-top: 0.5rem;
-            padding: 0.5rem 0;
-        }
-
-        .nav-item:hover .dropdown {
-            display: block;
-        }
-
-        .dropdown a {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: #333;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .dropdown a:hover {
-            background: #f0f0f0;
-        }
-
-        /* ヒーローセクション */
-        .hero {
-            background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%);
-            color: white;
-            padding: 12rem 2rem 8rem;
-            margin-top: 75px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-label {
-            display: inline-block;
-            background: rgba(125, 211, 192, 0.2);
-            color: #7dd3c0;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            position: relative;
-        }
-
-        .hero h1 .highlight {
-            color: #7dd3c0;
-        }
-
-        .hero .subtitle {
-            font-size: 1.4rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* イントロセクション */
-        .intro-section {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .intro-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .intro-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #4a3c2a;
-        }
-
-        .intro-section p {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #555;
-        }
-
-        /* クライアントテスティモニアル帯 */
-        .testimonials-band {
-            background: #f8f8f8;
-            padding: 3rem 0;
-            overflow: hidden;
-        }
-
-        .testimonials-slider {
-            display: flex;
-            gap: 4rem;
-            animation: scrollTestimonials 30s linear infinite;
-        }
-
-        .testimonial-item {
-            white-space: nowrap;
-            font-size: 1.1rem;
-            color: #666;
-            font-style: italic;
-        }
-
-        @keyframes scrollTestimonials {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* サービス詳細セクション */
-        .services-detail {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .services-detail h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-            color: #4a3c2a;
-        }
-
-        .services-detail h2 .highlight {
-            color: #7dd3c0;
-        }
-
-        .service-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto 4rem;
-            align-items: center;
-        }
-
-        .service-row.reverse {
-            direction: rtl;
-        }
-
-        .service-row.reverse > * {
-            direction: ltr;
-        }
-
-        .service-image {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .service-image img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .service-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #4a3c2a;
-        }
-
-        .service-text p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-tag {
-            display: inline-block;
-            background: #7dd3c0;
-            color: #4a3c2a;
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* デリバラブルセクション */
-        .deliverables {
-            background: #4a3c2a;
-            color: white;
-            padding: 6rem 2rem;
-        }
-
-        .deliverables h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .deliverables-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .deliverable-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .deliverable-card:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-5px);
-        }
-
-        .deliverable-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .deliverable-card h3 {
-            font-size: 1.1rem;
-            color: #7dd3c0;
-            margin-bottom: 0.5rem;
-        }
-
-        .deliverable-card p {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        /* FAQセクション */
-        .faq-section {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .faq-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #4a3c2a;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid #eee;
-            padding: 1.5rem 0;
-        }
-
-        .faq-question {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #4a3c2a;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: #7dd3c0;
-        }
-
-        .faq-answer {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* CTAセクション */
-        .cta-section {
-            background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #7dd3c0;
-            color: #333;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: #4a3c2a;
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            display: block;
-            padding: 0.4rem 0;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #7dd3c0;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* マスコットアニメーション */
-        .mascot-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .mascot-container:hover {
-            transform: scale(1.1);
-        }
-
-        .mascot {
-            width: 120px;
-            height: auto;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(-3deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(3deg);
-            }
-        }
-
-        .mascot-bubble {
-            position: absolute;
-            bottom: 100%;
-            right: 0;
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            margin-bottom: 15px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            font-size: 0.9rem;
-            color: #4a3c2a;
-            font-weight: 500;
-        }
-
-        .mascot-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 30px;
-            border-width: 10px 10px 0;
-            border-style: solid;
-            border-color: white transparent transparent;
-        }
-
-        .mascot-container:hover .mascot-bubble {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mascot-wave {
-            animation: float 3s ease-in-out infinite, wave 0.5s ease-in-out;
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: rotate(-3deg); }
-            25% { transform: rotate(15deg); }
-            75% { transform: rotate(-15deg); }
-        }
-
-        /* スクロールで動くマスコット */
-        .mascot-scrolling {
-            animation: float 3s ease-in-out infinite, bounce 0.5s ease;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        /* レスポンシブ */
-        @media (max-width: 1024px) {
-            .service-row {
-                grid-template-columns: 1fr;
-            }
-
-            .service-row.reverse {
-                direction: ltr;
-            }
-
-            .deliverables-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem 2rem;
-            }
-
-            nav {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero {
-                padding: 8rem 2rem 5rem;
-            }
-
-            .deliverables-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
+        .dropdown a:hover { background: #f0f0f0; }
+
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; color: #3d3225; }
+
+        .intro-section { padding: 6rem 2rem; background: white; }
+        .intro-container { max-width: 900px; margin: 0 auto; text-align: center; }
+        .intro-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 2rem; }
+        .intro-section p { font-size: 1.1rem; color: #555; line-height: 2; }
+
+        .services-section { padding: 6rem 2rem; background: #f8f8f8; }
+        .services-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .service-card { background: white; padding: 2.5rem; border-radius: 20px; border-left: 4px solid #7dd3c0; transition: all 0.3s; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .service-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; }
+        .service-card p { color: #666; font-size: 0.95rem; }
+
+        .projects-section { padding: 6rem 2rem; background: white; }
+        .projects-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .project-card { border-radius: 20px; overflow: hidden; position: relative; aspect-ratio: 4/3; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .project-card:hover img { transform: scale(1.1); }
+        .project-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, rgba(125, 211, 192, 0.95)); color: #4a3c2a; }
+        .project-overlay h3 { font-size: 1.2rem; margin-bottom: 0.3rem; font-weight: 700; }
+        .project-overlay p { font-size: 0.9rem; }
+
+        .concept-section { padding: 6rem 2rem; background: #7dd3c0; color: #4a3c2a; }
+        .concept-container { max-width: 900px; margin: 0 auto; text-align: center; }
+        .concept-section h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+        .concept-section p { font-size: 1.1rem; line-height: 2; color: #3d3225; }
+
+        .cta-section { padding: 6rem 2rem; background: white; text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 1rem; }
+        .cta-section p { color: #666; margin-bottom: 2rem; }
+        .cta-btn { display: inline-block; background: #4a3c2a; color: white; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; }
+        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(74, 60, 42, 0.3); }
+
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+
+        @media (max-width: 1024px) { .services-grid, .projects-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header>
+    <header id="header">
         <div class="header-container">
             <a href="index.html" class="logo">JmAT</a>
             <nav>
-                <div class="nav-item">
-                    <a href="index.html" class="nav-link">HOME</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">ABOUT</a>
-                    <div class="dropdown">
-                        <a href="#">会社概要</a>
-                        <a href="#">代表挨拶</a>
-                        <a href="#">企業理念</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">SERVICES</a>
-                    <div class="dropdown">
-                        <a href="service-emergency.html">救急医療事業</a>
-                        <a href="service-visitnurse.html">訪看事業</a>
-                        <a href="service-cosmetics.html">コスメティック事業</a>
-                        <a href="service-construction.html">建築・まちづくり</a>
-                        <a href="swrvice-figurine.html">エンタメ（フィギュア）事業</a>
-                        <a href="service-faq.html">よくあるご質問</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#contact" class="nav-link">CONTACT</a>
-                </div>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="service-figurine.html">エンタメ事業</a></div></div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
             </nav>
         </div>
     </header>
 
-    <!-- ヒーローセクション -->
     <section class="hero">
-        <span class="hero-label">ARCHITECTURE & CARE DESIGN</span>
-        <h1>建築・<span class="highlight">まちづくり</span></h1>
-        <p class="subtitle">「命を守るインフラ」であり「暮らしをつくる器」</p>
+        <span class="hero-label">SERVICE</span>
+        <h1>建築・まちづくり</h1>
+        <p>命を守るインフラ、暮らしをつくる器</p>
     </section>
 
-    <!-- イントロセクション -->
     <section class="intro-section">
-        <div class="intro-container">
-            <h2>建築で、社会課題を解決する</h2>
-            <p>
-                私たちは建築を単なる「建物」ではなく、「命を守り、暮らしを支える器」と捉えています。
-                医療施設から福祉施設、地域のコミュニティスペースまで、
-                人々の生活に寄り添う空間づくりを通じて、持続可能なまちづくりに貢献します。
-            </p>
+        <div class="intro-container animate-on-scroll">
+            <h2>Architecture & Care Design</h2>
+            <p>JmATの建築事業は、「命を守る」と「暮らしをつくる」を両立させる設計を行います。<br><br>医療施設、介護施設、コミュニティスペース、そして持続可能な住宅。すべてに共通するのは、「そこで暮らす人の幸せ」を最優先に考える姿勢です。</p>
         </div>
     </section>
 
-    <!-- テスティモニアル帯 -->
-    <section class="testimonials-band">
-        <div class="testimonials-slider">
-            <span class="testimonial-item">"地域医療を支える建築パートナー"</span>
-            <span class="testimonial-item">"人に優しい設計が素晴らしい"</span>
-            <span class="testimonial-item">"持続可能な未来を見据えた提案"</span>
-            <span class="testimonial-item">"コミュニティの核となる空間づくり"</span>
-            <span class="testimonial-item">"医療と建築の融合"</span>
-            <span class="testimonial-item">"地域医療を支える建築パートナー"</span>
-            <span class="testimonial-item">"人に優しい設計が素晴らしい"</span>
-            <span class="testimonial-item">"持続可能な未来を見据えた提案"</span>
-            <span class="testimonial-item">"コミュニティの核となる空間づくり"</span>
-            <span class="testimonial-item">"医療と建築の融合"</span>
-        </div>
-    </section>
-
-    <!-- サービス詳細 -->
-    <section class="services-detail">
-        <h2>提供する<span class="highlight">サービス</span></h2>
-
-        <div class="service-row">
-            <div class="service-image">
-                <img src="Hospital.png" alt="医療施設設計">
+    <section class="services-section">
+        <h2 class="animate-on-scroll">サービス内容</h2>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll delay-1">
+                <h3>🏥 医療施設設計</h3>
+                <p>病院、クリニック、移動診療施設など、医療の質を高める空間設計を行います。</p>
             </div>
-            <div class="service-text">
-                <h3>医療・福祉施設設計</h3>
-                <p>
-                    救急医療の現場で培った知見を活かし、患者とスタッフ双方にとって
-                    最適な動線と空間を設計します。感染対策、プライバシー確保、
-                    緊急時対応を考慮した、命を守るための建築を提案します。
-                </p>
-                <span class="service-tag">病院設計</span>
-                <span class="service-tag">クリニック</span>
-                <span class="service-tag">福祉施設</span>
+            <div class="service-card animate-on-scroll delay-2">
+                <h3>🏠 介護施設・高齢者住宅</h3>
+                <p>高齢者が尊厳を持って暮らせる、安全で快適な住環境を設計します。</p>
             </div>
-        </div>
-
-        <div class="service-row reverse">
-            <div class="service-image">
-                <img src="kaigomura.png" alt="地域コミュニティ設計">
+            <div class="service-card animate-on-scroll delay-3">
+                <h3>🌿 サステナブル建築</h3>
+                <p>環境に配慮した素材選定、省エネ設計、自然との調和を重視した建築。</p>
             </div>
-            <div class="service-text">
-                <h3>地域コミュニティ設計</h3>
-                <p>
-                    高齢化が進む地域において、世代を超えた交流が生まれる
-                    コミュニティスペースを設計。地域の特性を活かしながら、
-                    住民が集い、つながる場所をつくります。
-                </p>
-                <span class="service-tag">コミュニティセンター</span>
-                <span class="service-tag">多世代交流施設</span>
-                <span class="service-tag">公共空間</span>
-            </div>
-        </div>
-
-        <div class="service-row">
-            <div class="service-image">
-                <img src="Sustainable.png" alt="サステナブル建築">
-            </div>
-            <div class="service-text">
-                <h3>サステナブル建築</h3>
-                <p>
-                    環境負荷を最小限に抑えながら、快適で健康的な空間を実現。
-                    自然エネルギーの活用、地域材の使用、長寿命設計など、
-                    次世代に引き継げる建築を目指します。
-                </p>
-                <span class="service-tag">ZEB設計</span>
-                <span class="service-tag">木造建築</span>
-                <span class="service-tag">省エネ設計</span>
+            <div class="service-card animate-on-scroll">
+                <h3>🏘️ コミュニティデザイン</h3>
+                <p>人と人がつながる場所づくり。介護村構想など、新しいコミュニティの形を提案します。</p>
             </div>
         </div>
     </section>
 
-    <!-- デリバラブル -->
-    <section class="deliverables">
-        <h2>DELIVERABLES</h2>
-        <div class="deliverables-grid">
-            <div class="deliverable-card">
-                <div class="deliverable-icon">🏥</div>
-                <h3>医療施設設計</h3>
-                <p>病院・クリニック・診療所</p>
+    <section class="projects-section">
+        <h2 class="animate-on-scroll">プロジェクト実績</h2>
+        <div class="projects-grid">
+            <div class="project-card animate-on-scroll delay-1">
+                <img src="kaigomura.png" alt="介護村">
+                <div class="project-overlay"><h3>介護村コミュニティ</h3><p>日本・構想中</p></div>
             </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">🏠</div>
-                <h3>福祉施設設計</h3>
-                <p>介護施設・グループホーム</p>
+            <div class="project-card animate-on-scroll delay-2">
+                <img src="Hospital.png" alt="移動診療施設">
+                <div class="project-overlay"><h3>移動診療施設</h3><p>インド・進行中</p></div>
             </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">🌳</div>
-                <h3>まちづくり</h3>
-                <p>都市計画・地域開発</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">♻️</div>
-                <h3>環境設計</h3>
-                <p>サステナブル・ZEB</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">📐</div>
-                <h3>設計監理</h3>
-                <p>品質管理・工事監理</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">💡</div>
-                <h3>コンサルティング</h3>
-                <p>企画・調査・分析</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">🔧</div>
-                <h3>リノベーション</h3>
-                <p>改修・用途変更</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">📋</div>
-                <h3>維持管理</h3>
-                <p>メンテナンス計画</p>
+            <div class="project-card animate-on-scroll delay-3">
+                <img src="Sustainable.png" alt="サステナブル住宅">
+                <div class="project-overlay"><h3>サステナブル住宅</h3><p>日本・完成</p></div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="faq-section">
-        <h2>よくあるご質問</h2>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">医療施設の設計実績はありますか？</div>
-                <p class="faq-answer">
-                    はい、救急医療事業で培った現場知見を活かし、
-                    病院、クリニック、訪問看護ステーションなど多数の医療施設設計実績があります。
-                </p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">プロジェクトの進め方を教えてください</div>
-                <p class="faq-answer">
-                    まずはヒアリングで課題とご要望を把握し、企画提案から設計、施工監理、
-                    完成後のアフターフォローまで一貫してサポートいたします。
-                </p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">対応エリアはどこですか？</div>
-                <p class="faq-answer">
-                    全国対応しております。地域の特性や法規制を考慮した設計を行います。
-                    まずはお気軽にご相談ください。
-                </p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">概算費用はどのくらいですか？</div>
-                <p class="faq-answer">
-                    プロジェクトの規模や仕様により異なります。
-                    まずは無料相談でお話をお聞かせください。概算見積もりをご提示いたします。
-                </p>
-            </div>
+    <section class="concept-section">
+        <div class="concept-container animate-on-scroll">
+            <h2>建築が、命をつなぐ</h2>
+            <p>私たちは建築を「ハコ」ではなく「仕組み」として捉えています。<br><br>医療が届きにくい地域に診療施設を、高齢者が孤立しない住環境を、子どもたちが安心して過ごせる場所を。建築の力で、社会課題の解決に貢献します。</p>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section">
-        <h2>プロジェクトのご相談はこちら</h2>
-        <p>建築・まちづくりに関するご相談をお待ちしております</p>
-        <a href="#contact" class="cta-button">無料相談を予約する</a>
+        <h2 class="animate-on-scroll">プロジェクトのご相談</h2>
+        <p class="animate-on-scroll delay-1">施設設計・コミュニティデザインのご相談を承ります</p>
+        <a href="contact.html" class="cta-btn animate-on-scroll delay-2">お問い合わせ</a>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>企業情報</h3>
-                <ul>
-                    <li><a href="#">会社概要</a></li>
-                    <li><a href="#">代表挨拶</a></li>
-                    <li><a href="#">企業理念</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>サービス</h3>
-                <ul>
-                    <li><a href="service-emergency.html">救急医療事業</a></li>
-                    <li><a href="service-visitnurse.html">訪問看護事業</a></li>
-                    <li><a href="service-cosmetics.html">コスメティック事業</a></li>
-                    <li><a href="service-construction.html">建築・まちづくり</a></li>
-                    <li><a href="swrvice-figurine.html">エンタメ事業</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>情報</h3>
-                <ul>
-                    <li><a href="#">お知らせ</a></li>
-                    <li><a href="#">採用情報</a></li>
-                    <li><a href="#">プライバシーポリシー</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul>
-                    <li><a href="#">お問い合わせ</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#cba2a5ada48ba1a6aabfe5a1bb"><span class="__cf_email__" data-cfemail="2e474048416e44434f5a00445e">[email&#160;protected]</span></a></li>
-                </ul>
-            </div>
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2024 JmAT. All Rights Reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
 
-    <!-- マスコットキャラクター -->
-    <div class="mascot-container" id="mascot">
-        <div class="mascot-bubble">こんにちは！ご質問はありますか？ 👋</div>
-        <img src="https://i.imgur.com/placeholder.png" alt="Mascot" class="mascot" id="mascotImg">
-    </div>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // マスコットのインタラクション
-        const mascot = document.getElementById('mascot');
-        const mascotImg = document.getElementById('mascotImg');
-        
-        // 実際の画像パスに変更してください
-        // mascotImg.src = 'mascot.png';
-
-        // スクロール時のアニメーション
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop) {
-                // 下スクロール
-                mascotImg.classList.add('mascot-scrolling');
-            } else {
-                // 上スクロール
-                mascotImg.classList.remove('mascot-scrolling');
-            }
-            
-            setTimeout(() => {
-                mascotImg.classList.remove('mascot-scrolling');
-            }, 500);
-            
-            lastScrollTop = scrollTop;
-        });
-
-        // クリック時のアニメーション
-        mascot.addEventListener('click', () => {
-            mascotImg.classList.add('mascot-wave');
-            setTimeout(() => {
-                mascotImg.classList.remove('mascot-wave');
-            }, 500);
-        });
-
-        // マウス追従（軽い動き）
-        document.addEventListener('mousemove', (e) => {
-            const x =
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
