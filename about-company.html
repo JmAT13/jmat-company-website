@@ -15,55 +15,55 @@
         .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
 
-        header { background: rgba(74, 60, 42, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
-        .nav-link:hover { color: #7dd3c0; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
         .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
         .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
         .dropdown a:hover { background: #f0f0f0; }
 
-        .hero { background: linear-gradient(-45deg, #4a3c2a, #5a4d38, #3d3225, #6b5a45); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: white; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
-        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
         .hero h1 { font-size: 3.5rem; font-weight: 700; animation: fadeInUp 1s ease; }
 
         .company-section { padding: 6rem 2rem; background: white; }
         .company-container { max-width: 1000px; margin: 0 auto; }
-        .company-section h2 { font-size: 2.5rem; color: #4a3c2a; margin-bottom: 3rem; text-align: center; }
-        .company-section h2 .highlight { color: #7dd3c0; }
+        .company-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 3rem; text-align: center; }
+        .company-section h2 .highlight { color: #4a3c2a; }
         .company-table { width: 100%; border-collapse: collapse; }
         .company-table tr { border-bottom: 1px solid #eee; }
-        .company-table tr:hover { background: #fafafa; }
-        .company-table th { text-align: left; padding: 1.5rem 1rem; color: #4a3c2a; font-weight: 600; width: 200px; vertical-align: top; }
+        .company-table tr:hover { background: #f8fdfb; }
+        .company-table th { text-align: left; padding: 1.5rem 1rem; color: #7dd3c0; font-weight: 600; width: 200px; vertical-align: top; }
         .company-table td { padding: 1.5rem 1rem; color: #555; }
 
-        .numbers-section { padding: 6rem 2rem; background: #4a3c2a; color: white; }
+        .numbers-section { padding: 6rem 2rem; background: #7dd3c0; color: #4a3c2a; }
         .numbers-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; }
         .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .number-card { text-align: center; padding: 2rem; }
-        .number-card .number { font-size: 4rem; font-weight: 700; color: #7dd3c0; }
-        .number-card .label { font-size: 1rem; opacity: 0.8; }
+        .number-card .number { font-size: 4rem; font-weight: 700; color: #4a3c2a; }
+        .number-card .label { font-size: 1rem; color: #3d3225; }
 
         .access-section { padding: 6rem 2rem; background: #f8f8f8; }
         .access-container { max-width: 1000px; margin: 0 auto; }
-        .access-section h2 { font-size: 2.5rem; color: #4a3c2a; margin-bottom: 3rem; text-align: center; }
+        .access-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 3rem; text-align: center; }
         .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        .access-info h3 { color: #4a3c2a; font-size: 1.5rem; margin-bottom: 1rem; }
+        .access-info h3 { color: #7dd3c0; font-size: 1.5rem; margin-bottom: 1rem; }
         .access-info p { color: #666; margin-bottom: 0.5rem; }
-        .access-info a { color: #7dd3c0; text-decoration: none; }
-        .map-placeholder { background: linear-gradient(135deg, #667eea, #764ba2); height: 300px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .access-info a { color: #4a3c2a; text-decoration: none; font-weight: 600; }
+        .map-placeholder { background: linear-gradient(135deg, #7dd3c0, #5ab8a5); height: 300px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
 
-        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; }
         .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #7dd3c0; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
         .footer-section ul { list-style: none; }
-        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
-        .footer-section a:hover { color: #7dd3c0; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
 
         @media (max-width: 1024px) { .numbers-grid { grid-template-columns: repeat(2, 1fr); } .access-grid { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .company-table th, .company-table td { display: block; width: 100%; } .footer-content { grid-template-columns: 1fr; } }
@@ -145,8 +145,6 @@
     </footer>
 
     <script>
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 100));
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     </script>
