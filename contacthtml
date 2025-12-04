@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | JmAT Japan合同会社</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
+        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { opacity: 0.7; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
+        .dropdown a:hover { background: #f0f0f0; }
+
+        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 10rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; }
+        .hero h1 .highlight { color: #7dd3c0; }
+        .hero p { margin-top: 1rem; opacity: 0.9; }
+
+        .contact-section { padding: 6rem 2rem; background: white; }
+        .contact-container { max-width: 800px; margin: 0 auto; }
+        .contact-intro { text-align: center; margin-bottom: 3rem; }
+        .contact-intro h2 { font-size: 1.8rem; color: #4a3c2a; margin-bottom: 1rem; }
+        .contact-intro p { color: #666; }
+
+        .contact-form { background: #fafafa; padding: 3rem; border-radius: 16px; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; color: #4a3c2a; margin-bottom: 0.5rem; }
+        .form-group label .required { color: #e74c3c; font-size: 0.85rem; margin-left: 0.3rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #7dd3c0; }
+        .form-group textarea { min-height: 200px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .privacy-check { display: flex; align-items: flex-start; gap: 0.8rem; margin: 2rem 0; }
+        .privacy-check input { width: auto; margin-top: 0.3rem; }
+        .privacy-check label { font-weight: normal; color: #555; font-size: 0.95rem; }
+        .privacy-check a { color: #7dd3c0; }
+
+        .submit-btn { width: 100%; padding: 1.2rem; background: #7dd3c0; color: #4a3c2a; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .submit-btn:hover { background: #5bc4ad; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(125,211,192,0.4); }
+
+        .contact-info { padding: 4rem 2rem; background: #f8f8f8; }
+        .info-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .info-card { background: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .info-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .info-card h3 { color: #4a3c2a; margin-bottom: 0.5rem; }
+        .info-card p { color: #666; font-size: 0.95rem; }
+        .info-card a { color: #7dd3c0; text-decoration: none; }
+
+        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #7dd3c0; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 2rem; }
+            nav { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .info-container { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="https://jmat13.github.io/jmat-company-website/" class="logo">JmAT</a>
+            <nav>
+                <div class="nav-item"><a href="https://jmat13.github.io/jmat-company-website/" class="nav-link">HOME</a></div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">ABOUT</a>
+                    <div class="dropdown">
+                        <a href="about-company.html">会社概要</a>
+                        <a href="about-message.html">代表挨拶</a>
+                        <a href="about-philosophy.html">企業理念</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link">SERVICES</a>
+                    <div class="dropdown">
+                        <a href="service-emergency.html">救急医療事業</a>
+                        <a href="service-visitnurse.html">外傷医療×訪問看護</a>
+                        <a href="service-cosmetics.html">コスメティック事業</a>
+                        <a href="service-construction.html">建築・まちづくり</a>
+                        <a href="swrvice-figurine.html">エンタメ事業</a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="hero-label">CONTACT</span>
+        <h1>お問い合わせ</h1>
+        <p>ご質問・ご相談など、お気軽にお問い合わせください</p>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-intro">
+                <h2>お問い合わせフォーム</h2>
+                <p>以下のフォームに必要事項をご入力の上、送信してください。<br>担当者より2〜3営業日以内にご連絡いたします。</p>
+            </div>
+
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>お名前<span class="required">*必須</span></label>
+                        <input type="text" name="name" required placeholder="山田 太郎">
+                    </div>
+                    <div class="form-group">
+                        <label>会社名・団体名</label>
+                        <input type="text" name="company" placeholder="株式会社〇〇">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>メールアドレス<span class="required">*必須</span></label>
+                        <input type="email" name="email" required placeholder="example@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>電話番号</label>
+                        <input type="tel" name="phone" placeholder="03-1234-5678">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>お問い合わせ種別<span class="required">*必須</span></label>
+                    <select name="category" required>
+                        <option value="">選択してください</option>
+                        <option value="事業に関するお問い合わせ">事業に関するお問い合わせ</option>
+                        <option value="採用に関するお問い合わせ">採用に関するお問い合わせ</option>
+                        <option value="取材・メディア関連">取材・メディア関連</option>
+                        <option value="寄付・支援について">寄付・支援について</option>
+                        <option value="パートナーシップ・協業">パートナーシップ・協業</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>お問い合わせ内容<span class="required">*必須</span></label>
+                    <textarea name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+                </div>
+
+                <div class="privacy-check">
+                    <input type="checkbox" id="privacy" required>
+                    <label for="privacy"><a href="#">プライバシーポリシー</a>に同意の上、送信してください。</label>
+                </div>
+
+                <button type="submit" class="submit-btn">送信する</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact-info">
+        <div class="info-container">
+            <div class="info-card">
+                <div class="icon">📍</div>
+                <h3>所在地</h3>
+                <p>〒103-0004<br>東京都中央区東日本橋3-3-17</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">📞</div>
+                <h3>電話番号</h3>
+                <p><a href="tel:03-1234-5678">03-1234-5678</a></p>
+            </div>
+            <div class="info-card">
+                <div class="icon">✉️</div>
+                <h3>メール</h3>
+                <p><a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">救急医療事業</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
+    </footer>
+</body>
+</html>
