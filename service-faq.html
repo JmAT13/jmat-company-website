@@ -149,7 +149,7 @@
     <a href="/index.html#services">SERVICES</a>
     <a href="/index.html#support">DONATION</a>
   </nav>
-  <a href="mailto:info@jmat.jp" class="btn-outline">お問い合わせ</a>
+  <a href="/cdn-cgi/l/email-protection#0c65626a634c66616d7822667c" class="btn-outline">お問い合わせ</a>
 </header>
 
 <main>
@@ -259,7 +259,7 @@
 
     <div class="cta-bottom" id="contact">
       <p>ここに掲載されていないご質問や、より詳しい情報が必要な場合は、直接お問い合わせください。</p>
-      <button class="btn-primary" onclick="location.href='mailto:info@jmat.jp'">info@jmat.jp にメールする</button>
+      <button class="btn-primary" onclick="location.href='mailto:info@jmat.jp'"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cba2a5ada48ba1a6aabfe5a1bb">[email&#160;protected]</a> にメールする</button>
     </div>
   </section>
 </main>
@@ -268,20 +268,10 @@
   © JmAT Japan / NPO GOTO — FAQ
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // fade-in
   const fadeEls = document.querySelectorAll('.fade');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
   }, { threshold: 0.15 });
-  fadeEls.forEach(el => io.observe(el));
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.querySelector('.faq-question').addEventListener('click', () => {
-      item.classList.toggle('active');
-    });
-  });
-</script>
-</body>
-</html>
+  fadeEls.forEach(el => io
