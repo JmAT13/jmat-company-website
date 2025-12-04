@@ -927,9 +927,116 @@
             .projects-grid, .footer-content { grid-template-columns: 1fr; }
             .mascot { width: 120px; }
         }
+        /* ========== ローディングアニメーション ========== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #4a3c2a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-infinity {
+            width: 180px;
+            height: auto;
+            animation: infinityPulse 2s ease-in-out infinite;
+            filter: invert(78%) sepia(27%) saturate(487%) hue-rotate(112deg) brightness(92%) contrast(89%);
+            /* 黒からミント色(#7dd3c0)に変換 */
+        }
+
+        .loader-infinity img {
+            width: 100%;
+            height: auto;
+        }
+
+        @keyframes infinityPulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1;
+                filter: invert(78%) sepia(27%) saturate(487%) hue-rotate(112deg) brightness(92%) contrast(89%);
+            }
+            25% { 
+                transform: scale(1.1) rotate(3deg); 
+                opacity: 0.8;
+                filter: invert(78%) sepia(27%) saturate(487%) hue-rotate(112deg) brightness(100%) contrast(89%);
+            }
+            50% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1;
+                filter: invert(78%) sepia(27%) saturate(487%) hue-rotate(112deg) brightness(92%) contrast(89%);
+            }
+            75% { 
+                transform: scale(1.1) rotate(-3deg); 
+                opacity: 0.8;
+                filter: invert(78%) sepia(27%) saturate(487%) hue-rotate(112deg) brightness(100%) contrast(89%);
+            }
+        }
+
+        .loader-text {
+            margin-top: 2rem;
+            color: white;
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            opacity: 0;
+            animation: loaderTextFade 2s ease-in-out infinite;
+        }
+
+        @keyframes loaderTextFade {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            margin-top: 2rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .loader-bar::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: #7dd3c0;
+            border-radius: 3px;
+            animation: loaderProgress 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loaderProgress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+
+        body.loading {
+            overflow: hidden;
+        }
     </style>
 </head>
-<body>
+<body class="loading">
+    <!-- ローディングアニメーション -->
+    <div id="loader">
+        <div class="loader-infinity">
+            <img src="infinity-logo.png" alt="Loading">
+        </div>
+        <div class="loader-text">LOADING</div>
+        <div class="loader-bar"></div>
+    </div>
+
     <header id="header">
         <div class="header-container">
             <a href="#" class="logo">JmAT</a>
@@ -1123,7 +1230,7 @@
                 <p>JmAT株式会社</p>
                 <p>東京都中央区東日本橋3-3-17</p>
                 <p><a href="tel:03-1234-5678">03-1234-5678</a></p>
-                <p><a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
+                <p><a href="/cdn-cgi/l/email-protection#c8a1a6aea788a2a5a9bce6a2b8"><span class="__cf_email__" data-cfemail="026b6c646d42686f63762c6872">[email&#160;protected]</span></a></p>
             </div>
             <div class="contact-card animate-right">
                 <h3>FOLLOW US</h3>
@@ -1166,7 +1273,7 @@
                 <h3>Contact</h3>
                 <ul>
                     <li><a href="contact.html">お問い合わせ</a></li>
-                    <li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#620b0c040d22080f03164c0812"><span class="__cf_email__" data-cfemail="a4cdcac2cbe4cec9c5d08aced4">[email&#160;protected]</span></a></li>
                 </ul>
             </div>
         </div>
@@ -1180,7 +1287,16 @@
         <img src="mascot.png" alt="Mascot" class="mascot" id="mascotImg">
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // ローディングアニメーション終了
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hidden');
+                document.body.classList.remove('loading');
+            }, 1500); // 1.5秒後に非表示
+        });
+
         // ヘッダースクロール効果
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
@@ -1215,14 +1331,3 @@
                 p.style.transform = `translateY(${window.pageYOffset * (i + 1) * 0.05}px)`;
             });
         });
-
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
-</body>
-</html>
