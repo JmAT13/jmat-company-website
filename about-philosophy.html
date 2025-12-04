@@ -3,211 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>企業理念 | JmAT Japan合同会社</title>
+    <title>企業理念 | JmAT株式会社</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
-        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        header { background: rgba(74, 60, 42, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        header.scrolled { padding: 1rem 4rem; box-shadow: 0 5px 30px rgba(0,0,0,0.2); }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
         .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
-        .nav-link:hover { opacity: 0.7; }
-        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.5rem 0; }
+        .nav-link:hover { color: #7dd3c0; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
         .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
         .dropdown a:hover { background: #f0f0f0; }
 
-        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 10rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero { background: linear-gradient(-45deg, #4a3c2a, #5a4d38, #3d3225, #6b5a45); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: white; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
         .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
-        .hero h1 { font-size: 3.5rem; font-weight: 700; }
-        .hero h1 .highlight { color: #7dd3c0; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; animation: fadeInUp 1s ease; }
 
-        .philosophy-section { padding: 6rem 2rem; background: white; text-align: center; }
-        .philosophy-container { max-width: 900px; margin: 0 auto; }
-        .philosophy-main { font-size: 2.5rem; color: #4a3c2a; font-weight: 700; margin-bottom: 2rem; line-height: 1.5; }
-        .philosophy-main .highlight { color: #7dd3c0; }
-        .philosophy-desc { font-size: 1.2rem; color: #555; line-height: 2; }
+        .mission-section { padding: 8rem 2rem; background: white; text-align: center; }
+        .mission-section h2 { font-size: 1.2rem; color: #7dd3c0; letter-spacing: 0.2em; margin-bottom: 2rem; }
+        .mission-section .main-text { font-size: 3rem; color: #4a3c2a; font-weight: 700; line-height: 1.6; max-width: 900px; margin: 0 auto 2rem; }
+        .mission-section .main-text .highlight { color: #7dd3c0; }
+        .mission-section p { font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto; }
 
-        .mission-vision { padding: 6rem 2rem; background: #f8f8f8; }
-        .mv-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-        .mv-card { background: white; padding: 3rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .mv-card h2 { font-size: 0.9rem; color: #7dd3c0; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 1rem; }
-        .mv-card h3 { font-size: 1.8rem; color: #4a3c2a; margin-bottom: 1.5rem; line-height: 1.5; }
-        .mv-card p { color: #555; line-height: 1.9; margin-bottom: 1rem; }
-        .mv-card .subtitle { font-size: 0.85rem; color: #999; margin-bottom: 1rem; }
-
-        .global-list { margin-top: 1.5rem; }
-        .global-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem 0; color: #555; }
-        .global-item span { font-size: 1.2rem; }
-
-        .values-section { padding: 6rem 2rem; background: #4a3c2a; color: white; }
-        .values-section h2 { text-align: center; font-size: 0.9rem; color: #7dd3c0; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-        .values-section h3 { text-align: center; font-size: 2rem; margin-bottom: 4rem; }
+        .values-section { padding: 6rem 2rem; background: #f8f8f8; }
+        .values-section h2 { text-align: center; font-size: 2.5rem; color: #4a3c2a; margin-bottom: 4rem; }
         .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .value-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; transition: all 0.3s; }
-        .value-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
-        .value-card .number { font-size: 2.5rem; color: #7dd3c0; font-weight: 700; margin-bottom: 0.5rem; }
-        .value-card h4 { font-size: 1.2rem; margin-bottom: 0.3rem; }
-        .value-card .english { font-size: 0.85rem; color: #7dd3c0; margin-bottom: 1rem; }
-        .value-card p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.8; }
+        .value-card { background: white; padding: 3rem 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); transition: all 0.5s; position: relative; overflow: hidden; }
+        .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, #7dd3c0, #4a3c2a); transform: scaleX(0); transition: transform 0.5s; }
+        .value-card:hover::before { transform: scaleX(1); }
+        .value-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .value-icon { font-size: 4rem; margin-bottom: 1.5rem; }
+        .value-card h3 { font-size: 2rem; color: #7dd3c0; margin-bottom: 1rem; }
+        .value-card p { color: #666; font-size: 1rem; line-height: 1.9; }
 
-        .links-section { padding: 4rem 2rem; background: white; }
-        .links-container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .link-card { background: #fafafa; padding: 2rem; border-radius: 12px; text-decoration: none; color: #333; transition: all 0.3s; border: 2px solid transparent; }
-        .link-card:hover { border-color: #7dd3c0; transform: translateY(-5px); }
-        .link-card h3 { color: #4a3c2a; margin-bottom: 0.5rem; }
-        .link-card p { color: #666; font-size: 0.95rem; }
+        .vision-section { padding: 8rem 2rem; background: #4a3c2a; color: white; text-align: center; }
+        .vision-section h2 { font-size: 1.2rem; letter-spacing: 0.2em; margin-bottom: 2rem; color: #7dd3c0; }
+        .vision-section .vision-text { font-size: 2.5rem; font-weight: 300; max-width: 900px; margin: 0 auto; line-height: 1.8; }
+        .vision-section .vision-text span { color: #7dd3c0; font-weight: 700; }
+
+        .action-section { padding: 6rem 2rem; background: white; }
+        .action-container { max-width: 900px; margin: 0 auto; }
+        .action-section h2 { text-align: center; font-size: 2.5rem; color: #4a3c2a; margin-bottom: 3rem; }
+        .action-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .action-item { display: flex; align-items: flex-start; gap: 1.5rem; padding: 2rem; background: #fafafa; border-radius: 16px; transition: all 0.3s; }
+        .action-item:hover { background: #f0f0f0; transform: translateX(10px); }
+        .action-number { width: 50px; height: 50px; background: #7dd3c0; color: #4a3c2a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; flex-shrink: 0; }
+        .action-content h3 { color: #4a3c2a; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .action-content p { color: #666; }
 
         footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
         .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #7dd3c0; }
         .footer-section ul { list-style: none; }
         .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
         .footer-section a:hover { color: #7dd3c0; }
         .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
-        @media (max-width: 1024px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { 
-            header { padding: 1rem 2rem; } 
-            nav { display: none; } 
-            .hero h1 { font-size: 2.5rem; }
-            .philosophy-main { font-size: 1.8rem; }
-            .mv-container { grid-template-columns: 1fr; }
-            .values-grid { grid-template-columns: 1fr; }
-            .links-container { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1024px) { .values-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .mission-section .main-text { font-size: 2rem; } .vision-section .vision-text { font-size: 1.8rem; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="header-container">
-            <a href="https://jmat13.github.io/jmat-company-website/" class="logo">JmAT</a>
+            <a href="index.html" class="logo">JmAT</a>
             <nav>
-                <div class="nav-item"><a href="https://jmat13.github.io/jmat-company-website/" class="nav-link">HOME</a></div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">ABOUT</a>
-                    <div class="dropdown">
-                        <a href="about-company.html">会社概要</a>
-                        <a href="about-message.html">代表挨拶</a>
-                        <a href="about-philosophy.html">企業理念</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">SERVICES</a>
-                    <div class="dropdown">
-                        <a href="service-emergency.html">救急医療事業</a>
-                        <a href="service-visitnurse.html">外傷医療×訪問看護</a>
-                        <a href="service-cosmetics.html">コスメティック事業</a>
-                        <a href="service-construction.html">建築・まちづくり</a>
-                        <a href="swrvice-figurine.html">エンタメ事業</a>
-                    </div>
-                </div>
-                <div class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></div>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="swrvice-figurine.html">エンタメ事業</a></div></div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
             </nav>
         </div>
     </header>
 
     <section class="hero">
         <span class="hero-label">PHILOSOPHY</span>
-        <h1>企業<span class="highlight">理念</span></h1>
+        <h1>企業理念</h1>
     </section>
 
-    <section class="philosophy-section">
-        <div class="philosophy-container">
-            <p class="philosophy-main">「すべての人に、<span class="highlight">"生きる機会"</span> を届ける。」</p>
-            <p class="philosophy-desc">医療が届かない場所へ、支援が必要なのに声が届かない人へ、<br>国や制度を越えて、一人ひとりの生きる可能性を守り、<br>未来をつくる選択肢を広げる。</p>
-        </div>
-    </section>
-
-    <section class="mission-vision">
-        <div class="mv-container">
-            <div class="mv-card">
-                <h2>MISSION</h2>
-                <p class="subtitle">今やるべきこと・組織の存在理由</p>
-                <h3>医療・介護・街づくり・技術を統合し、<br>どこにいても命と暮らしを支える<br>"動く社会システム" を創る。</h3>
-            </div>
-            <div class="mv-card">
-                <h2>VISION</h2>
-                <p class="subtitle">10〜20年後に実現する未来像</p>
-                <h3>世界中に "命がつながる拠点" を広げ、<br>誰もが安心して生き抜ける<br>社会インフラを築く。</h3>
-                <div class="global-list">
-                    <div class="global-item"><span>🇺🇸</span> アメリカ：モバイル外傷医療</div>
-                    <div class="global-item"><span>🇮🇳</span> インド：現場型医療・介護支援</div>
-                    <div class="global-item"><span>🇯🇵</span> 日本：介護村・医療×地域コミュニティ</div>
-                    <div class="global-item"><span>🇰🇷</span> 韓国：医療×美容×ケア統合</div>
-                    <div class="global-item"><span>🌍</span> 世界：国境を越える医療チーム</div>
-                </div>
-            </div>
-        </div>
+    <section class="mission-section">
+        <h2 class="animate-on-scroll">MISSION</h2>
+        <p class="main-text animate-on-scroll delay-1">Connecting lives to <span class="highlight">∞</span><br>"POSSIBLE"</p>
+        <p class="animate-on-scroll delay-2">当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
     </section>
 
     <section class="values-section">
-        <h2>VALUE</h2>
-        <h3>行動指針／判断基準</h3>
+        <h2 class="animate-on-scroll">OUR VALUES</h2>
         <div class="values-grid">
-            <div class="value-card">
-                <div class="number">01</div>
-                <h4>先に動く</h4>
-                <p class="english">Move First</p>
-                <p>迷う前に現場へ出る。行動こそが生命を救い、未来を切り開く原動力になる。</p>
+            <div class="value-card animate-on-scroll delay-1">
+                <div class="value-icon">🚀</div>
+                <h3>Bigger</h3>
+                <p>私たちはより大きく考えます。規模だけでなく、大きなアイデア、思考、創造性において限界を設けません。</p>
             </div>
-            <div class="value-card">
-                <div class="number">02</div>
-                <h4>現場から学び、現場で変える</h4>
-                <p class="english">Field Driven</p>
-                <p>机上ではなく、現場の声・人の痛み・地域の実情から答えをつくる。</p>
+            <div class="value-card animate-on-scroll delay-2">
+                <div class="value-icon">💪</div>
+                <h3>Bolder</h3>
+                <p>大胆であることは私たちのDNAです。他の人がしないことを敢えて行い、インパクトのある仕事を創造します。</p>
             </div>
-            <div class="value-card">
-                <div class="number">03</div>
-                <h4>国境も業界も超える</h4>
-                <p class="english">Beyond Borders</p>
-                <p>医療×介護×建築×IP×教育。領域の壁を越えることで、解決できなかった課題が解決できる。</p>
-            </div>
-            <div class="value-card">
-                <div class="number">04</div>
-                <h4>すべての人を尊重する</h4>
-                <p class="english">Human Dignity</p>
-                <p>国籍・年齢・背景に関わらず、一人ひとりの尊厳と選択肢を守る。</p>
-            </div>
-            <div class="value-card">
-                <div class="number">05</div>
-                <h4>持続できる仕組みをつくる</h4>
-                <p class="english">Sustainable Impact</p>
-                <p>一時的な支援ではなく、地域が自走できる医療・介護・コミュニティの"仕組み"を提供する。</p>
-            </div>
-            <div class="value-card">
-                <div class="number">06</div>
-                <h4>子どもたちに、誇れる世界を残す</h4>
-                <p class="english">For the Next Generation</p>
-                <p>次の世代が世界を自由に生きられるように、今できる最大の行動を選ぶ。</p>
+            <div class="value-card animate-on-scroll delay-3">
+                <div class="value-icon">✨</div>
+                <h3>Better</h3>
+                <p>成果を提供するだけでなく、一緒に働くことを楽しめるパートナーであること。それが最善の関係です。</p>
             </div>
         </div>
     </section>
 
-    <section class="links-section">
-        <div class="links-container">
-            <a href="about-company.html" class="link-card">
-                <h3>🏢 会社概要</h3>
-                <p>会社情報・所在地をご確認いただけます</p>
-            </a>
-            <a href="about-message.html" class="link-card">
-                <h3>📝 代表挨拶</h3>
-                <p>代表・大下甚からのメッセージをご覧ください</p>
-            </a>
+    <section class="vision-section">
+        <h2 class="animate-on-scroll">VISION</h2>
+        <p class="vision-text animate-on-scroll delay-1">
+            生まれた場所や環境によって、<br>
+            救急医療が届くかどうかが決まってしまう。<br><br>
+            そのギャップを<span>「∞」</span>で繋ぎ、<br>
+            <span>楽しむことがそのまま支援になる</span><br>
+            世界をつくる。
+        </p>
+    </section>
+
+    <section class="action-section">
+        <div class="action-container">
+            <h2 class="animate-on-scroll">行動指針</h2>
+            <div class="action-list">
+                <div class="action-item animate-on-scroll delay-1">
+                    <div class="action-number">1</div>
+                    <div class="action-content">
+                        <h3>現場から発想する</h3>
+                        <p>机上の空論ではなく、現場のリアルな声から課題を見つけ、解決策を生み出します。</p>
+                    </div>
+                </div>
+                <div class="action-item animate-on-scroll delay-2">
+                    <div class="action-number">2</div>
+                    <div class="action-content">
+                        <h3>境界を越える</h3>
+                        <p>国境、業界、職種の壁を超えて、多様な力を結集させます。</p>
+                    </div>
+                </div>
+                <div class="action-item animate-on-scroll delay-3">
+                    <div class="action-number">3</div>
+                    <div class="action-content">
+                        <h3>楽しさを武器に</h3>
+                        <p>支援は「義務」ではなく「楽しさ」から。エンタメの力で社会課題を解決します。</p>
+                    </div>
+                </div>
+                <div class="action-item animate-on-scroll">
+                    <div class="action-number">4</div>
+                    <div class="action-content">
+                        <h3>透明性を大切に</h3>
+                        <p>支援の流れ、資金の使途を明確にし、信頼を築きます。</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
-            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">救急医療事業</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
-            <div class="footer-section"><h3>情報</h3><ul><li><a href="#">お知らせ</a></li><li><a href="#">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
-            <div class="footer-section"><h3>Contact</h3><ul><li><a href="#">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
+        <div class="footer-bottom"><p>© 2024 JmAT株式会社 All Rights Reserved.</p></div>
     </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 100));
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
