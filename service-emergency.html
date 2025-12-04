@@ -3,109 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>寄付型クラウドファンディング | JmAT株式会社</title>
+    <title>寄付型CF | JmAT Japan合同会社</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
-        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
-        .nav-link:hover { opacity: 0.7; }
-        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
         .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
         .dropdown a:hover { background: #f0f0f0; }
 
-        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 10rem 2rem 6rem; margin-top: 75px; text-align: center; }
-        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
-        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; color: #3d3225; }
 
         .intro-section { padding: 6rem 2rem; background: white; }
         .intro-container { max-width: 900px; margin: 0 auto; text-align: center; }
-        .intro-container h2 { font-size: 2rem; color: #4a3c2a; margin-bottom: 2rem; }
-        .intro-container p { font-size: 1.1rem; color: #555; line-height: 2; }
+        .intro-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 2rem; }
+        .intro-section p { font-size: 1.1rem; color: #555; line-height: 2; }
 
         .features-section { padding: 6rem 2rem; background: #f8f8f8; }
-        .features-section h2 { text-align: center; font-size: 2rem; color: #4a3c2a; margin-bottom: 3rem; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; }
-        .feature-card { background: white; padding: 2.5rem; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .features-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .feature-card { background: white; padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
         .feature-card .icon { font-size: 3rem; margin-bottom: 1rem; }
-        .feature-card h3 { color: #4a3c2a; margin-bottom: 1rem; font-size: 1.3rem; }
+        .feature-card h3 { font-size: 1.3rem; color: #7dd3c0; margin-bottom: 1rem; }
         .feature-card p { color: #666; font-size: 0.95rem; }
 
         .projects-section { padding: 6rem 2rem; background: white; }
-        .projects-section h2 { text-align: center; font-size: 2rem; color: #4a3c2a; margin-bottom: 3rem; }
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-        .project-card { background: #fafafa; border-radius: 16px; overflow: hidden; transition: transform 0.3s; }
-        .project-card:hover { transform: translateY(-5px); }
-        .project-image { height: 200px; background: linear-gradient(135deg, #7dd3c0, #4a3c2a); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
-        .project-content { padding: 2rem; }
-        .project-content h3 { color: #4a3c2a; margin-bottom: 0.5rem; font-size: 1.3rem; }
-        .project-content p { color: #666; font-size: 0.95rem; margin-bottom: 1rem; }
-        .project-progress { background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; }
-        .project-progress-bar { background: #7dd3c0; height: 100%; }
-        .project-stats { display: flex; justify-content: space-between; font-size: 0.85rem; color: #999; }
+        .projects-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .project-card { max-width: 900px; margin: 0 auto 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .project-card:nth-child(odd) { direction: rtl; }
+        .project-card:nth-child(odd) > * { direction: ltr; }
+        .project-image { border-radius: 20px; overflow: hidden; }
+        .project-image img { width: 100%; height: 300px; object-fit: cover; }
+        .project-content h3 { font-size: 1.5rem; color: #4a3c2a; margin-bottom: 1rem; }
+        .project-content p { color: #666; margin-bottom: 1.5rem; }
+        .donate-btn { display: inline-block; background: #4a3c2a; color: white; padding: 0.8rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .donate-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(74, 60, 42, 0.3); }
 
-        .how-it-works { padding: 6rem 2rem; background: #4a3c2a; color: white; }
-        .how-it-works h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
-        .steps-container { display: flex; justify-content: center; gap: 3rem; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; }
-        .step { text-align: center; flex: 1; min-width: 200px; }
-        .step-number { width: 60px; height: 60px; background: #7dd3c0; color: #4a3c2a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 1rem; }
-        .step h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .step p { font-size: 0.95rem; opacity: 0.8; }
+        .cta-section { padding: 6rem 2rem; background: #7dd3c0; text-align: center; color: #4a3c2a; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .cta-section p { margin-bottom: 2rem; color: #3d3225; }
+        .cta-btn { display: inline-block; background: #4a3c2a; color: white; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; }
+        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(74, 60, 42, 0.3); }
 
-        .cta-section { padding: 6rem 2rem; background: #f8f8f8; text-align: center; }
-        .cta-section h2 { font-size: 2rem; color: #4a3c2a; margin-bottom: 1rem; }
-        .cta-section p { color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .cta-btn { display: inline-block; padding: 1.2rem 3rem; background: #7dd3c0; color: #4a3c2a; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; }
-        .cta-btn:hover { background: #5bc4ad; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(125,211,192,0.3); }
-
-        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; }
         .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
         .footer-section ul { list-style: none; }
-        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
-        .footer-section a:hover { color: #7dd3c0; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
 
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } .projects-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) {
-            header { padding: 1rem 2rem; }
-            nav { display: none; }
-            .hero h1 { font-size: 2.2rem; }
-            .steps-container { flex-direction: column; align-items: center; }
-            .footer-content { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } .project-card { grid-template-columns: 1fr; } .project-card:nth-child(odd) { direction: ltr; } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .features-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="header-container">
             <a href="index.html" class="logo">JmAT</a>
             <nav>
                 <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">ABOUT</a>
-                    <div class="dropdown">
-                        <a href="about-company.html">会社概要</a>
-                        <a href="about-message.html">代表挨拶</a>
-                        <a href="about-philosophy.html">企業理念</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">SERVICES</a>
-                    <div class="dropdown">
-                        <a href="service-emergency.html">寄付型CF</a>
-                        <a href="service-visitnurse.html">外傷医療×訪問看護</a>
-                        <a href="service-cosmetics.html">コスメティック事業</a>
-                        <a href="service-construction.html">建築・まちづくり</a>
-                        <a href="swrvice-figurine.html">エンタメ事業</a>
-                    </div>
-                </div>
+                <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="service-figurine.html">エンタメ事業</a></div></div>
                 <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
                 <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
                 <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
@@ -114,167 +91,78 @@
     </header>
 
     <section class="hero">
-        <span class="hero-label">DONATION CROWDFUNDING</span>
+        <span class="hero-label">SERVICE</span>
         <h1>寄付型クラウドファンディング</h1>
-        <p>自社プロジェクト専用のクラウドファンディングで、<br>医療が届かない地域への支援を実現します</p>
+        <p>あなたの想いが、誰かの命につながる</p>
     </section>
 
     <section class="intro-section">
-        <div class="intro-container">
-            <h2>「届けたい」想いを、カタチに</h2>
-            <p>JmATの寄付型クラウドファンディングは、医療や支援が届きにくい地域・人々へ、<br>直接支援を届けるためのプラットフォームです。<br><br>集まった資金は100%、現地での医療活動や設備導入、人材育成に活用されます。<br>寄付者の皆様には、プロジェクトの進捗を定期的にレポートでお届けします。</p>
+        <div class="intro-container animate-on-scroll">
+            <h2>自社プロジェクト専用CF</h2>
+            <p>JmATの寄付型クラウドファンディングは、医療が届かない地域への支援を実現するためのプラットフォームです。<br><br>集まった資金は100%、現地の医療機器購入、移動診療車の運営、医療スタッフの派遣などに活用されます。支援者の皆様には、プロジェクトの進捗を定期的にレポートでお届けします。</p>
         </div>
     </section>
 
     <section class="features-section">
-        <h2>JmAT CFの特徴</h2>
+        <h2 class="animate-on-scroll">プラットフォームの特徴</h2>
         <div class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card animate-on-scroll delay-1">
                 <div class="icon">💯</div>
-                <h3>100%活用</h3>
-                <p>集まった寄付金は手数料を除き、全額がプロジェクトに使用されます。</p>
+                <h3>100%現場還元</h3>
+                <p>運営費は別途確保。寄付金は全額、現地の医療支援に使われます。</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card animate-on-scroll delay-2">
                 <div class="icon">📊</div>
-                <h3>透明性</h3>
-                <p>資金の使途を詳細にレポート。どこでどう使われたか明確にお伝えします。</p>
+                <h3>透明性の確保</h3>
+                <p>資金の使途を詳細にレポート。どこで何に使われたか全て公開します。</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card animate-on-scroll delay-3">
                 <div class="icon">🌍</div>
-                <h3>グローバル</h3>
-                <p>日本だけでなく、世界中の医療が必要な地域への支援を行います。</p>
+                <h3>現地との直接連携</h3>
+                <p>インド・アメリカの現地チームと直接連携。確実に届けます。</p>
             </div>
         </div>
     </section>
 
     <section class="projects-section">
-        <h2>進行中のプロジェクト</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">🏥</div>
-                <div class="project-content">
-                    <h3>インド農村部への移動診療車導入</h3>
-                    <p>医療アクセスが困難な農村部へ、設備を整えた移動診療車を届けます。</p>
-                    <div class="project-progress">
-                        <div class="project-progress-bar" style="width: 75%;"></div>
-                    </div>
-                    <div class="project-stats">
-                        <span>達成率: 75%</span>
-                        <span>残り: 25日</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">🩺</div>
-                <div class="project-content">
-                    <h3>離島への救急医療キット配布</h3>
-                    <p>日本国内の離島に、応急処置が可能な医療キットを配布します。</p>
-                    <div class="project-progress">
-                        <div class="project-progress-bar" style="width: 45%;"></div>
-                    </div>
-                    <div class="project-stats">
-                        <span>達成率: 45%</span>
-                        <span>残り: 40日</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">👨‍⚕️</div>
-                <div class="project-content">
-                    <h3>現地医療スタッフ育成プログラム</h3>
-                    <p>アジア各国で救急対応ができる人材を育成するプログラムです。</p>
-                    <div class="project-progress">
-                        <div class="project-progress-bar" style="width: 90%;"></div>
-                    </div>
-                    <div class="project-stats">
-                        <span>達成率: 90%</span>
-                        <span>残り: 10日</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">🚑</div>
-                <div class="project-content">
-                    <h3>災害時緊急医療チーム派遣基金</h3>
-                    <p>災害発生時に即座に対応できる医療チームの維持・派遣費用です。</p>
-                    <div class="project-progress">
-                        <div class="project-progress-bar" style="width: 60%;"></div>
-                    </div>
-                    <div class="project-stats">
-                        <span>達成率: 60%</span>
-                        <span>常時募集</span>
-                    </div>
-                </div>
+        <h2 class="animate-on-scroll">進行中のプロジェクト</h2>
+        <div class="project-card animate-on-scroll">
+            <div class="project-image"><img src="Hospital.png" alt="インド移動診療車"></div>
+            <div class="project-content">
+                <h3>インド農村部 移動診療車プロジェクト</h3>
+                <p>医療機関から遠く離れた農村部に、移動診療車で医療を届けます。1台の診療車が年間5,000人以上の診察を可能にします。</p>
+                <a href="contact.html" class="donate-btn">このプロジェクトを支援</a>
             </div>
         </div>
-    </section>
-
-    <section class="how-it-works">
-        <h2>ご支援の流れ</h2>
-        <div class="steps-container">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>プロジェクトを選ぶ</h3>
-                <p>支援したいプロジェクトを選択</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>金額を決める</h3>
-                <p>1,000円から支援可能</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>決済</h3>
-                <p>クレジットカード・銀行振込対応</p>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>レポート受取</h3>
-                <p>活動報告をお届け</p>
+        <div class="project-card animate-on-scroll">
+            <div class="project-image"><img src="kaigomura.png" alt="介護村"></div>
+            <div class="project-content">
+                <h3>日本 介護村コミュニティ構想</h3>
+                <p>高齢者が安心して暮らせる新しい形のコミュニティを創ります。医療・介護・生活が一体となった持続可能な街づくり。</p>
+                <a href="contact.html" class="donate-btn">このプロジェクトを支援</a>
             </div>
         </div>
     </section>
 
     <section class="cta-section">
-        <h2>あなたの支援が、誰かの命を救います</h2>
-        <p>寄付に関するご質問や、法人・団体としての協賛についてはお気軽にお問い合わせください。</p>
-        <a href="contact.html" class="cta-btn">お問い合わせ・寄付する</a>
+        <h2 class="animate-on-scroll">支援の輪に加わりませんか</h2>
+        <p class="animate-on-scroll delay-1">月々1,000円からの継続支援も受け付けています</p>
+        <a href="contact.html" class="cta-btn animate-on-scroll delay-2">支援する</a>
     </section>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>企業情報</h3>
-                <ul>
-                    <li><a href="about-company.html">会社概要</a></li>
-                    <li><a href="about-message.html">代表挨拶</a></li>
-                    <li><a href="about-philosophy.html">企業理念</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>サービス</h3>
-                <ul>
-                    <li><a href="service-emergency.html">寄付型CF</a></li>
-                    <li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li>
-                    <li><a href="service-cosmetics.html">コスメティック事業</a></li>
-                    <li><a href="service-construction.html">建築・まちづくり</a></li>
-                    <li><a href="swrvice-figurine.html">エンタメ事業</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>情報</h3>
-                <ul>
-                    <li><a href="news.html">お知らせ</a></li>
-                    <li><a href="recruit.html">採用情報</a></li>
-                    <li><a href="#">プライバシーポリシー</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul>
-                    <li><a href="contact.html">お問い合わせ</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#c3aaada5ac83a9aea2b7eda9b3"><span class="__cf_email__" data-cfemail="5c35323a331c36313d2872362c">[email&#160;protected]</span></a></li>
-                </ul>
-            </div>
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
-        <div class="footer-bott
+        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
