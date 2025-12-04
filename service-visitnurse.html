@@ -3,275 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>外傷医療 × 訪問看護 | JmAT株式会社</title>
+    <title>外傷医療×訪問看護 | JmAT Japan合同会社</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
-        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
-        .nav-link:hover { opacity: 0.7; }
-        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
         .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
         .dropdown a:hover { background: #f0f0f0; }
 
-        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 12rem 2rem 8rem; margin-top: 75px; text-align: center; }
-        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 2rem; }
-        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; }
-        .hero h1 .highlight { color: #7dd3c0; }
-        .hero .subtitle { font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; color: #3d3225; }
 
         .intro-section { padding: 6rem 2rem; background: white; }
-        .intro-container { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .intro-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #4a3c2a; }
-        .intro-section p { font-size: 1.15rem; line-height: 2; color: #555; }
+        .intro-container { max-width: 900px; margin: 0 auto; text-align: center; }
+        .intro-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 2rem; }
+        .intro-section p { font-size: 1.1rem; color: #555; line-height: 2; }
 
-        .problem-section { background: #f8f8f8; padding: 6rem 2rem; }
-        .problem-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
-        .problem-section h2 .highlight { color: #7dd3c0; }
-        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .problem-card { background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .problem-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .problem-card h3::before { content: '①'; color: #7dd3c0; font-weight: bold; }
-        .problem-card:nth-child(2) h3::before { content: '②'; }
-        .problem-card:nth-child(3) h3::before { content: '③'; }
-        .problem-card p { color: #666; line-height: 1.8; }
+        .features-section { padding: 6rem 2rem; background: #f8f8f8; }
+        .features-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .feature-card { background: white; padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .feature-card .icon { font-size: 3rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.3rem; color: #7dd3c0; margin-bottom: 1rem; }
+        .feature-card p { color: #666; font-size: 0.95rem; }
 
-        .model-section { padding: 6rem 2rem; background: white; }
-        .model-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
-        .model-section h2 .highlight { color: #7dd3c0; }
-        .model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .model-card { background: #fafafa; border: 2px solid #e0e0e0; padding: 2rem; border-radius: 16px; transition: all 0.3s; }
-        .model-card:hover { border-color: #7dd3c0; transform: translateY(-5px); }
-        .model-card h3 { font-size: 1.2rem; color: #7dd3c0; margin-bottom: 1.5rem; text-align: center; padding-bottom: 1rem; border-bottom: 1px solid #e0e0e0; }
-        .model-card ul { list-style: none; }
-        .model-card li { padding: 0.5rem 0; color: #555; font-size: 0.95rem; padding-left: 1.5rem; position: relative; }
-        .model-card li::before { content: '✓'; position: absolute; left: 0; color: #7dd3c0; font-weight: bold; }
+        .global-section { padding: 6rem 2rem; background: white; }
+        .global-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .global-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .global-card { background: #f8fdfb; padding: 2.5rem; border-radius: 20px; border-left: 4px solid #7dd3c0; }
+        .global-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .global-card p { color: #666; font-size: 0.95rem; }
 
-        .cases-section { background: #4a3c2a; color: white; padding: 6rem 2rem; }
-        .cases-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; }
-        .cases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 1400px; margin: 0 auto; }
-        .case-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; }
-        .case-card h3 { font-size: 1.1rem; color: #7dd3c0; margin-bottom: 1rem; }
-        .case-card p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.8; }
+        .concept-section { padding: 6rem 2rem; background: #7dd3c0; color: #4a3c2a; }
+        .concept-container { max-width: 900px; margin: 0 auto; text-align: center; }
+        .concept-section h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+        .concept-section p { font-size: 1.1rem; line-height: 2; color: #3d3225; }
 
-        .services-list { padding: 6rem 2rem; background: white; }
-        .services-list h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
-        .services-list h2 .highlight { color: #7dd3c0; }
-        .services-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 1000px; margin: 0 auto; }
-        .service-tag { background: #7dd3c0; color: #4a3c2a; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: 1rem; }
+        .cta-section { padding: 6rem 2rem; background: white; text-align: center; }
+        .cta-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 1rem; }
+        .cta-section p { color: #666; margin-bottom: 2rem; }
+        .cta-btn { display: inline-block; background: #4a3c2a; color: white; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; }
+        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(74, 60, 42, 0.3); }
 
-        .global-section { padding: 6rem 2rem; background: #f8f8f8; }
-        .global-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
-        .global-section h2 .highlight { color: #7dd3c0; }
-        .global-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .global-card { background: white; padding: 2rem; border-radius: 16px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .global-card .flag { font-size: 3rem; margin-bottom: 1rem; }
-        .global-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; }
-        .global-card p { color: #666; font-size: 0.95rem; line-height: 1.8; }
-
-        .cta-section { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 6rem 2rem; text-align: center; }
-        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-        .cta-section p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-        .cta-button { display: inline-block; background: #7dd3c0; color: #333; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s; }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-
-        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; }
         .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
         .footer-section ul { list-style: none; }
-        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; }
-        .footer-section a:hover { color: #7dd3c0; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
 
-        @media (max-width: 1024px) { 
-            .problem-grid, .model-grid, .global-grid { grid-template-columns: 1fr; } 
-            .cases-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) { 
-            header { padding: 1rem 2rem; } 
-            nav { display: none; } 
-            .hero h1 { font-size: 2.2rem; } 
-            .cases-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; } 
-        }
+        @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } .global-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .features-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="header-container">
-            <a href="https://jmat13.github.io/jmat-company-website/" class="logo">JmAT</a>
+            <a href="index.html" class="logo">JmAT</a>
             <nav>
-                <div class="nav-item"><a href="https://jmat13.github.io/jmat-company-website/" class="nav-link">HOME</a></div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">ABOUT</a>
-                    <div class="dropdown"><a href="#">会社概要</a><a href="#">代表挨拶</a><a href="#">企業理念</a></div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">SERVICES</a>
-                    <div class="dropdown">
-                        <a href="service-emergency.html">救急医療事業</a>
-                        <a href="service-visitnurse.html">外傷医療×訪問看護</a>
-                        <a href="service-cosmetics.html">コスメティック事業</a>
-                        <a href="service-construction.html">建築・まちづくり</a>
-                        <a href="swrvice-figurine.html">エンタメ事業</a>
-                        <a href="service-faq.html">よくあるご質問</a>
-                    </div>
-                </div>
-                <div class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></div>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="service-figurine.html">エンタメ事業</a></div></div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-        <span class="hero-label">TRAUMA CARE × VISITING NURSE</span>
-        <h1>外傷医療 <span class="highlight">×</span> 訪問看護</h1>
-        <p class="subtitle">"病院に行かなくても外傷・急病に対応できる訪問看護ステーション" をつくる<br>訪問看護（保険適用）＋外傷処置（自費 or 医療連携）のハイブリッド型現場医療モデル</p>
+        <span class="hero-label">SERVICE</span>
+        <h1>外傷医療×訪問看護</h1>
+        <p>現場で命をつなぐ、動く医療チーム</p>
     </section>
 
     <section class="intro-section">
-        <div class="intro-container">
-            <h2>なぜ「統合」が必要なのか</h2>
-            <p>ケガ・軽度外傷・熱傷・軽度骨折の初期対応・創傷処置・感染管理・緊急の点滴・輸液・在宅での緊急処置──<br>これらを「現場で完結」させる新しい医療モデルが、今、求められています。</p>
+        <div class="intro-container animate-on-scroll">
+            <h2>Trauma Care & Home Nursing</h2>
+            <p>JmATは、病院の外で命を守る医療を提供します。<br><br>救急救命士・看護師・医師がチームを組み、災害現場、在宅医療、そして医療過疎地域へ。「医療が届かない」を「医療が届く」に変える、動く医療システムを構築しています。</p>
         </div>
     </section>
 
-    <section class="problem-section">
-        <h2>市場の<span class="highlight">課題</span></h2>
-        <div class="problem-grid">
-            <div class="problem-card">
-                <h3>病院は外来がパンク</h3>
-                <p>軽症外傷でも3〜4時間待ちが当たり前。患者も医療機関も疲弊している現状があります。</p>
+    <section class="features-section">
+        <h2 class="animate-on-scroll">サービスの特徴</h2>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll delay-1">
+                <div class="icon">🚑</div>
+                <h3>外傷医療チーム</h3>
+                <p>救急救命士と看護師による専門チームが、外傷患者への初期対応を行います。</p>
             </div>
-            <div class="problem-card">
-                <h3>訪問看護には"外傷治療のスキル"が不足</h3>
-                <p>高齢者宅でケガが頻発しても、結局「病院に行ってください」と言うしかない。現場で対応できる体制が必要です。</p>
+            <div class="feature-card animate-on-scroll delay-2">
+                <div class="icon">🏠</div>
+                <h3>訪問看護サービス</h3>
+                <p>在宅での医療ケアを必要とする方へ、看護師が定期的に訪問します。</p>
             </div>
-            <div class="problem-card">
-                <h3>高齢化×独居増加で"現場で治す医療"が必須</h3>
-                <p>80〜90代が転倒 → 傷が治らない → 感染 → 入院。この悪循環を防ぐ医療モデルが求められています。</p>
+            <div class="feature-card animate-on-scroll delay-3">
+                <div class="icon">📱</div>
+                <h3>遠隔医療サポート</h3>
+                <p>オンラインでの医療相談、遠隔モニタリングで24時間サポート。</p>
             </div>
-        </div>
-    </section>
-
-    <section class="model-section">
-        <h2>統合モデルの<span class="highlight">構造</span></h2>
-        <div class="model-grid">
-            <div class="model-card">
-                <h3>要素①：訪問看護（保険）</h3>
-                <ul>
-                    <li>医師指示書</li>
-                    <li>創傷処置</li>
-                    <li>皮膚トラブル</li>
-                    <li>褥瘡管理</li>
-                    <li>バイタル管理</li>
-                    <li>点滴管理</li>
-                    <li>疼痛コントロール</li>
-                    <li>慢性創傷の計画的ケア</li>
-                </ul>
-            </div>
-            <div class="model-card">
-                <h3>要素②：外傷医療（自費＋提携医）</h3>
-                <ul>
-                    <li>創縫合（縫う）</li>
-                    <li>骨折初期固定</li>
-                    <li>外傷の画像診断（提携クリニック）</li>
-                    <li>緊急度評価</li>
-                    <li>除去処置（刺・トゲ・異物）</li>
-                    <li>熱傷処置</li>
-                </ul>
-            </div>
-            <div class="model-card">
-                <h3>要素③：医師のバックアップ</h3>
-                <ul>
-                    <li>医療処置の指示書</li>
-                    <li>夜間オンコール</li>
-                    <li>必要時の外来受入</li>
-                    <li>訪問看護への指示・指導</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="cases-section">
-        <h2>有効なケース事例</h2>
-        <div class="cases-grid">
-            <div class="case-card">
-                <h3>🏠 家で転倒 → 膝を強打・出血</h3>
-                <p>訪看が到着（15分）→ 洗浄・止血・縫合は医師指示で可能 → 自宅で完了 → 入院回避</p>
-            </div>
-            <div class="case-card">
-                <h3>🧠 認知症の人が爪を剥がす</h3>
-                <p>病院に行くまで悪化しやすい → 訪看＋外傷医療チームが即対応で重症化を防ぐ</p>
-            </div>
-            <div class="case-card">
-                <h3>🏥 施設で擦過傷・切創が発生</h3>
-                <p>職員は処置できない、往診医も遅い → 訪看が即処置 → 施設側からの評価爆増</p>
-            </div>
-            <div class="case-card">
-                <h3>🌡️ 熱中症・脱水での点滴</h3>
-                <p>在宅で最速10分で投与 → 夜間救急搬送が大幅減</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="services-list">
-        <h2>対応できる<span class="highlight">処置</span></h2>
-        <div class="services-tags">
-            <span class="service-tag">ケガ</span>
-            <span class="service-tag">軽度外傷（切創・擦過傷）</span>
-            <span class="service-tag">熱傷</span>
-            <span class="service-tag">軽度骨折の初期対応</span>
-            <span class="service-tag">創傷処置</span>
-            <span class="service-tag">感染管理</span>
-            <span class="service-tag">緊急の点滴・輸液</span>
-            <span class="service-tag">在宅での緊急処置</span>
-            <span class="service-tag">外傷初期対応</span>
-            <span class="service-tag">プレホスピタルケア</span>
-            <span class="service-tag">モバイル救急チーム</span>
-            <span class="service-tag">国際医療支援</span>
         </div>
     </section>
 
     <section class="global-section">
-        <h2>グローバル<span class="highlight">展開</span></h2>
+        <h2 class="animate-on-scroll">グローバル展開</h2>
         <div class="global-grid">
-            <div class="global-card">
-                <div class="flag">🇺🇸</div>
-                <h3>アメリカ</h3>
-                <p>Urgent Careと相性抜群。Mobile Clinic Licenseを取得し、世界最高利益を目指す。</p>
+            <div class="global-card animate-on-scroll delay-1">
+                <h3>🇺🇸 アメリカ</h3>
+                <p>モバイル外傷医療ユニットの展開。都市部から離れた地域での緊急医療対応を行っています。</p>
             </div>
-            <div class="global-card">
-                <div class="flag">🇮🇳</div>
-                <h3>インド</h3>
-                <p>現場医療そのもの。最短1〜3ヶ月で運営可能。許可が緩く、大量需要あり。</p>
+            <div class="global-card animate-on-scroll delay-2">
+                <h3>🇮🇳 インド</h3>
+                <p>農村部への移動診療車による医療アクセス改善。年間5,000人以上の診察を実施。</p>
             </div>
-            <div class="global-card">
-                <div class="flag">🇰🇷</div>
-                <h3>韓国</h3>
-                <p>日本式訪看モデルがそのまま通用。美容医療と組めると単価爆増。</p>
+            <div class="global-card animate-on-scroll delay-3">
+                <h3>🇯🇵 日本</h3>
+                <p>在宅医療・訪問看護サービスの提供。高齢者が住み慣れた地域で暮らし続けられるよう支援。</p>
             </div>
+            <div class="global-card animate-on-scroll">
+                <h3>🇰🇷 韓国</h3>
+                <p>医療・美容・ケアを統合したサービスモデルの構築。ホリスティックなケアを提供。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="concept-section">
+        <div class="concept-container animate-on-scroll">
+            <h2>"動く医療" で命をつなぐ</h2>
+            <p>従来の医療は「病院で待つ」スタイル。私たちは「現場に行く」医療を実現します。<br><br>災害時の緊急対応から、日常の在宅ケアまで。医療を必要とする人のもとへ、最短で駆けつける仕組みをつくり続けています。</p>
         </div>
     </section>
 
     <section class="cta-section">
-        <h2>プロジェクト相談</h2>
-        <p>アメリカ・インド・日本での連携パートナーを募集しています</p>
-        <a href="#contact" class="cta-button">お問い合わせ</a>
+        <h2 class="animate-on-scroll">サービスについてのお問い合わせ</h2>
+        <p class="animate-on-scroll delay-1">訪問看護のご依頼、パートナーシップのご相談を承ります</p>
+        <a href="contact.html" class="cta-btn animate-on-scroll delay-2">お問い合わせ</a>
     </section>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="#">会社概要</a></li><li><a href="#">代表挨拶</a></li><li><a href="#">企業理念</a></li></ul></div>
-            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">救急医療事業</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
-            <div class="footer-section"><h3>情報</h3><ul><li><a href="#">お知らせ</a></li><li><a href="#">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
-            <div class="footer-section"><h3>Contact</h3><ul><li><a href="#">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#1c75727a735c76717d6832766c"><span class="__cf_email__" data-cfemail="c2abaca4ad82a8afa3b6eca8b2">[email&#160;protected]</span></a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2024 JmAT. All Rights Reserved.</p></div>
+        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
-</body>
-</html>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach
