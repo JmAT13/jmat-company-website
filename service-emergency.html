@@ -1,222 +1,67 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>救急医療事業・寄付型CF | JmAT株式会社</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.6; color: #333; }
-        
-        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
-        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
-        nav { display: flex; gap: 3rem; }
-        .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; transition: opacity 0.3s; }
-        .nav-link:hover { opacity: 0.7; }
-        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
-        .nav-item:hover .dropdown { display: block; }
-        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; transition: background 0.3s; }
-        .dropdown a:hover { background: #f0f0f0; }
+「外傷医療 × 訪問看護の統合」														
+病院に行かなくても外傷・急病に対応できる訪問看護ステーション” をつくる	"・ケガ
+・軽度外傷（切創・擦過傷）
+・熱傷
+・軽度骨折の初期対応
+・創傷処置
+・感染管理
+・緊急の点滴・輸液
+・在宅での緊急処置"																			
+訪問看護（保険適用）＋外傷処置（自費 or 医療連携） として提供する ハイブリッド型の現場医療モデル。
+					
+統合”が必要な市場の穴							
+① 病院は外来がパンク
+→ 軽症外傷でも 3〜4時間待ちが当たり前。
+② 訪問看護には“外傷治療のスキル”が不足		
+→ 高齢者宅でケガが頻発しても、結局「病院に行ってください」と言うしかない
+③ 高齢化 × 独居増加で“現場で治す医療”が必須	
+→ 80〜90代が転倒する → 傷が治らない → 感染 → 入院。これを防ぐ医療モデルが求められている。	
+統合モデルの構造（実務レベル）	◆ 要素①：訪問看護（保険）					"要素②：外傷医療（主に自費＋提携医が必要）
+訪問看護では制度上できないが医師の指示・連携を組むことで提供可能。"					要素③：医師のバックアップ（提携クリニック運営）									
+	"・医師指示書
+・創傷処置
+・皮膚トラブル
+・褥瘡管理
+・バイタル
+・点滴管理
+・疼痛コントロール
+・慢性創傷の計画的ケア"					"・創縫合（縫う）
+・骨折初期固定
+・外傷の画像診断（提携クリニック）
+・緊急度評価
+・除去処置（刺・トゲ・異物）
+・熱傷処置
+✔「訪看＋外傷医療チーム」のハイブリッドなら実現する。"					"・医療処置の指示書
+・夜間オンコール
+・必要時の外来受入
+・訪問看護への指示・指導
+✔訪看主導で外傷医療を“現場で完結”させる仕組み。"									
+																				
+有効なケース事例	家で転倒 → 膝を強打。出血。					認知症の人が爪を剥がす					施設で擦過傷・切創が発生					熱中症・脱水での点滴				
+	"→ 訪看が到着（15分）
+→ 洗浄・止血・縫合は医師指示で可能
+→ 自宅で完了 → 入院回避"					"→ 病院に行くまで悪化しやすい
+→ 訪看＋外傷医療チームが即対応"					"→ 職員は処置できない
+→ 往診医も遅い
+→ 訪看が即処置 → 施設側からの評価爆増"					"→ 在宅で最速10分で投与
+→ 夜間救急搬送が大幅減"				
 
-        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 12rem 2rem 8rem; margin-top: 75px; text-align: center; }
-        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 2rem; }
-        .hero h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1.5rem; }
-        .hero h1 .highlight { color: #7dd3c0; }
-        .hero .subtitle { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
-
-        .intro-section { padding: 6rem 2rem; background: white; }
-        .intro-container { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .intro-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #4a3c2a; }
-        .intro-section p { font-size: 1.2rem; line-height: 2; color: #555; }
-
-        .testimonials-band { background: #f8f8f8; padding: 3rem 0; overflow: hidden; }
-        .testimonials-slider { display: flex; gap: 4rem; animation: scrollTestimonials 30s linear infinite; }
-        .testimonial-item { white-space: nowrap; font-size: 1.1rem; color: #666; font-style: italic; }
-        @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        .services-detail { padding: 6rem 2rem; background: white; }
-        .services-detail h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
-        .services-detail h2 .highlight { color: #7dd3c0; }
-        .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto 4rem; align-items: center; }
-        .service-row.reverse { direction: rtl; }
-        .service-row.reverse > * { direction: ltr; }
-        .service-image { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .service-image img { width: 100%; height: auto; object-fit: contain; display: block; }
-        .service-text h3 { font-size: 1.8rem; margin-bottom: 1rem; color: #4a3c2a; }
-        .service-text p { font-size: 1.1rem; line-height: 1.9; color: #555; margin-bottom: 1.5rem; }
-        .service-tag { display: inline-block; background: #7dd3c0; color: #4a3c2a; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; }
-
-        .deliverables { background: #4a3c2a; color: white; padding: 6rem 2rem; }
-        .deliverables h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; }
-        .deliverables-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .deliverable-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; text-align: center; transition: all 0.3s; }
-        .deliverable-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
-        .deliverable-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .deliverable-card h3 { font-size: 1.1rem; color: #7dd3c0; margin-bottom: 0.5rem; }
-        .deliverable-card p { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
-
-        .cta-section { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 6rem 2rem; text-align: center; }
-        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-        .cta-section p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-        .cta-button { display: inline-block; background: #7dd3c0; color: #333; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s, box-shadow 0.3s; }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-
-        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
-        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .footer-section ul { list-style: none; }
-        .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; padding: 0.4rem 0; transition: color 0.3s; }
-        .footer-section a:hover { color: #7dd3c0; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
-
-        @media (max-width: 1024px) { .service-row { grid-template-columns: 1fr; } .service-row.reverse { direction: ltr; } .deliverables-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .hero { padding: 8rem 2rem 5rem; } .deliverables-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <a href="https://jmat13.github.io/jmat-company-website/" class="logo">JmAT</a>
-            <nav>
-                <div class="nav-item"><a href="https://jmat13.github.io/jmat-company-website/" class="nav-link">HOME</a></div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">ABOUT</a>
-                    <div class="dropdown">
-                        <a href="#">会社概要</a>
-                        <a href="#">代表挨拶</a>
-                        <a href="#">企業理念</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">SERVICES</a>
-                    <div class="dropdown">
-                        <a href="service-emergency.html">救急医療事業</a>
-                        <a href="service-visitnurse.html">訪看事業</a>
-                        <a href="service-cosmetics.html">コスメティック事業</a>
-                        <a href="service-construction.html">建築・まちづくり</a>
-                        <a href="swrvice-figurine.html">エンタメ事業</a>
-                        <a href="service-faq.html">よくあるご質問</a>
-                    </div>
-                </div>
-                <div class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></div>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero">
-        <span class="hero-label">EMERGENCY MEDICAL & CROWDFUNDING</span>
-        <h1>救急医療事業・<span class="highlight">寄付型CF</span></h1>
-        <p class="subtitle">生きる可能性の最大化 ─ 自社プロジェクト専用のクラウドファンディング</p>
-    </section>
-
-    <section class="intro-section">
-        <div class="intro-container">
-            <h2>命を守るインフラを、みんなの力で</h2>
-            <p>救急医療の現場から見えてきた課題を解決するため、自社プロジェクト専用のクラウドファンディングを運営。医療機器の導入、途上国への救急システム構築、医療従事者の教育支援など、「生きる可能性を最大化」するプロジェクトを推進します。</p>
-        </div>
-    </section>
-
-    <section class="testimonials-band">
-        <div class="testimonials-slider">
-            <span class="testimonial-item">"一人ひとりの支援が命を救う"</span>
-            <span class="testimonial-item">"透明性のある資金運用"</span>
-            <span class="testimonial-item">"現場発のリアルなプロジェクト"</span>
-            <span class="testimonial-item">"支援の成果が見える"</span>
-            <span class="testimonial-item">"一人ひとりの支援が命を救う"</span>
-            <span class="testimonial-item">"透明性のある資金運用"</span>
-            <span class="testimonial-item">"現場発のリアルなプロジェクト"</span>
-            <span class="testimonial-item">"支援の成果が見える"</span>
-        </div>
-    </section>
-
-    <section class="services-detail">
-        <h2>提供する<span class="highlight">サービス</span></h2>
-        <div class="service-row">
-            <div class="service-image"><img src="service-emergency.png" alt="救急医療"></div>
-            <div class="service-text">
-                <h3>救急医療支援プロジェクト</h3>
-                <p>ドクターヘリ、救急車、AEDなど命を守る医療機器の導入支援。地域の救急医療体制を強化し、一人でも多くの命を救います。</p>
-                <span class="service-tag">医療機器導入</span>
-                <span class="service-tag">救急体制強化</span>
-                <span class="service-tag">地域医療支援</span>
-            </div>
-        </div>
-        <div class="service-row reverse">
-            <div class="service-image"><img src="service-emergency.png" alt="クラウドファンディング"></div>
-            <div class="service-text">
-                <h3>寄付型クラウドファンディング</h3>
-                <p>自社プロジェクト専用のCFプラットフォームを運営。支援者と現場をダイレクトにつなぎ、資金の使途を100%可視化します。</p>
-                <span class="service-tag">資金調達</span>
-                <span class="service-tag">透明性</span>
-                <span class="service-tag">成果報告</span>
-            </div>
-        </div>
-        <div class="service-row">
-            <div class="service-image"><img src="service-emergency.png" alt="国際支援"></div>
-            <div class="service-text">
-                <h3>国際医療支援</h3>
-                <p>途上国への救急医療システム構築、医療従事者の教育支援。国境を越えて「当たり前の医療」を届けます。</p>
-                <span class="service-tag">途上国支援</span>
-                <span class="service-tag">人材育成</span>
-                <span class="service-tag">技術移転</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="deliverables">
-        <h2>DELIVERABLES</h2>
-        <div class="deliverables-grid">
-            <div class="deliverable-card">
-                <div class="deliverable-icon">🚑</div>
-                <h3>救急医療支援</h3>
-                <p>機器導入・体制構築</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">💝</div>
-                <h3>寄付型CF</h3>
-                <p>資金調達・透明運用</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">🌍</div>
-                <h3>国際支援</h3>
-                <p>途上国医療支援</p>
-            </div>
-            <div class="deliverable-card">
-                <div class="deliverable-icon">📊</div>
-                <h3>成果報告</h3>
-                <p>100%可視化</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <h2>プロジェクトを支援する</h2>
-        <p>あなたの支援が、誰かの命を救います</p>
-        <a href="#contact" class="cta-button">支援・お問い合わせ</a>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>企業情報</h3>
-                <ul><li><a href="#">会社概要</a></li><li><a href="#">代表挨拶</a></li><li><a href="#">企業理念</a></li></ul>
-            </div>
-            <div class="footer-section">
-                <h3>サービス</h3>
-                <ul><li><a href="service-emergency.html">救急医療事業</a></li><li><a href="service-visitnurse.html">訪問看護事業</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul>
-            </div>
-            <div class="footer-section">
-                <h3>情報</h3>
-                <ul><li><a href="#">お知らせ</a></li><li><a href="#">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul><li><a href="#">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul>
-            </div>
-        </div>
-        <div class="footer-bottom"><p>© 2024 JmAT. All Rights Reserved.</p></div>
-    </footer>
-</body>
-</html>
+・現場医療（外傷） を重視
+・訪看も複数拠点で展開
+・救急医療を海外進出
+・医療×介護×建築×IPの統合モデルを構築中"					"・日本で最強の差別化
+・アメリカではUrgent Careと相性抜群
+・インドでは現場医療そのもの
+・韓国では美容医療と組み合わせ可能"					※「Urgent care」→「急病診療所」を意味。生命にかかわらないが、かかりつけ医が閉まっている時間帯などに、緊急性の高い症状（風邪、インフルエンザ、軽傷など）を診てもらうことができる施設。救急外来（ER）よりも待ち時間が短く、費用も安いことが一般的。									
+																				
+									
+	"収益は最大だが最も制度が重い
+・Mobile Clinic License
+・医師・NP・RN・車両設備
+・LA郡のゾーニングが難問
+→ しかし成功すれば 世界最高利益"					"最短1〜3ヶ月で運営可能
+・許可が緩い
+・提携医師で外傷処置が広くできる
+・障壁が低く、大量需要あり"					"日本式訪看モデルがそのまま通用
+・制度が日本と近い
+・美容医療と組めると単価爆増
