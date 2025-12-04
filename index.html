@@ -11,20 +11,123 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
 
-        /* ヘッダー */
+        /* ========== アニメーション定義 ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-10px); }
+            75% { transform: translateY(-30px) translateX(5px); }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes rotateInfinity {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes scrollWheel {
+            0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(15px); opacity: 0; }
+        }
+
+        /* スクロールアニメーション用クラス */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-left.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-scale.animated {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ディレイ */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        /* ========== ヘッダー ========== */
         header {
-            background: #4a3c2a;
+            background: rgba(74, 60, 42, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1.5rem 4rem;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 4rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
         }
 
         .header-container {
@@ -40,6 +143,11 @@
             font-size: 1.8rem;
             font-weight: bold;
             text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         nav {
@@ -56,16 +164,31 @@
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
             display: block;
             padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #7dd3c0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .nav-link:hover {
-            opacity: 0.7;
+            color: #7dd3c0;
         }
 
-        /* ドロップダウンメニュー */
         .dropdown {
             display: none;
             position: absolute;
@@ -73,8 +196,8 @@
             left: 0;
             background: white;
             min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-            border-radius: 4px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-radius: 12px;
             margin-top: 0.5rem;
             padding: 0.5rem 0;
         }
@@ -88,20 +211,69 @@
             padding: 0.75rem 1.5rem;
             color: #333;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
 
         .dropdown a:hover {
-            background: #f0f0f0;
+            background: linear-gradient(90deg, #7dd3c0, transparent);
+            padding-left: 2rem;
         }
 
-        /* ヒーローセクション */
+        /* ========== ヒーローセクション ========== */
         .hero {
-            background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%);
+            background: linear-gradient(-45deg, #4a3c2a, #5a4d38, #3d3225, #6b5a45);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             color: white;
             text-align: center;
-            padding: 12rem 2rem 8rem;
+            padding: 14rem 2rem 10rem;
             margin-top: 75px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(125, 211, 192, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(125, 211, 192, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(125, 211, 192, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 60%; top: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 80%; top: 70%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 30%; top: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 70%; top: 90%; animation-delay: 5s; }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -109,25 +281,32 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             line-height: 1.3;
+            animation: fadeInUp 1s ease forwards;
         }
 
         .hero h1 .infinity {
-            color: white;
+            display: inline-block;
+            animation: rotateInfinity 10s linear infinite;
+            color: #7dd3c0;
         }
 
         .hero .possible {
             display: block;
-            font-size: 4.5rem;
+            font-size: 5rem;
             color: #7dd3c0;
             font-weight: 700;
             margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+            text-shadow: 0 0 40px rgba(125, 211, 192, 0.5);
         }
 
         .hero .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
             font-weight: 400;
-            opacity: 0.9;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
         }
 
         .cta-button {
@@ -139,15 +318,63 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(125, 211, 192, 0.4);
         }
 
-        /* クライアント帯 */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeInUp 1s ease 1.2s forwards;
+            opacity: 0;
+        }
+
+        .scroll-indicator .mouse {
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .scroll-indicator .wheel {
+            width: 4px;
+            height: 10px;
+            background: #7dd3c0;
+            border-radius: 2px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollWheel 2s ease infinite;
+        }
+
+        /* ========== クライアント帯 ========== */
         .clients-section {
             background: #f5f5f5;
             padding: 4rem 0;
@@ -183,23 +410,18 @@
         .client-logo:hover {
             filter: grayscale(0%);
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* About セクション */
+        /* ========== About セクション ========== */
         .about-section {
             background: white;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             text-align: center;
         }
 
         .about-section h2 {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 2rem;
         }
 
@@ -208,73 +430,124 @@
         }
 
         .about-section .tagline {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 600;
             margin-bottom: 2rem;
             color: #4a3c2a;
         }
 
         .about-section p {
-            font-size: 1.1rem;
-            line-height: 2;
+            font-size: 1.2rem;
+            line-height: 2.2;
             max-width: 900px;
             margin: 0 auto;
             color: #555;
         }
 
-        /* Values セクション */
+        /* ========== Values セクション ========== */
         .values-section {
-            background: #f5f5f5;
-            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f8f8, #fff);
+            padding: 8rem 2rem;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #4a3c2a;
         }
 
         .values-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .value-card {
             background: white;
-            padding: 3rem 2rem;
-            border-radius: 16px;
+            padding: 3.5rem 2.5rem;
+            border-radius: 24px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #7dd3c0, #4a3c2a);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
         }
 
         .value-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
 
         .value-icon {
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .value-card h3 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #7dd3c0;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .value-card p {
             color: #666;
             line-height: 1.8;
+            font-size: 1.05rem;
         }
 
-        /* Services セクション */
+        /* ========== Services セクション ========== */
         .services-section {
             background: #4a3c2a;
             color: white;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-section::before {
+            content: '∞';
+            position: absolute;
+            font-size: 40rem;
+            color: rgba(255,255,255,0.02);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
         .services-section h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             text-align: center;
             margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .services-section h2 .highlight {
@@ -287,46 +560,188 @@
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .service-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2.5rem;
-            border-radius: 12px;
-            transition: all 0.3s;
+            padding: 3rem;
+            border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             text-decoration: none;
-            display: block;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(125, 211, 192, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
         }
 
         .service-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            border-color: #7dd3c0;
+            box-shadow: 0 20px 50px rgba(125, 211, 192, 0.2);
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #7dd3c0;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .service-card p {
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.05rem;
+            opacity: 0.8;
             line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Contact セクション */
-        .contact-section {
+        .service-card .arrow {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ========== Projects セクション ========== */
+        .projects-section {
             background: white;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
+        }
+
+        .projects-section h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #4a3c2a;
+        }
+
+        .projects-section .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            cursor: pointer;
+        }
+
+        .project-bg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            transition: transform 0.7s ease;
+        }
+
+        .project-bg-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .project-bg-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .project-bg-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .project-bg-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .project-bg-5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .project-bg-6 { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+
+        .project-card:hover .project-bg {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(74, 60, 42, 0.95) 0%, transparent 60%);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay h3 {
+            color: #7dd3c0;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-overlay h3 {
+            transform: translateY(0);
+        }
+
+        .project-overlay p {
+            color: white;
+            font-size: 0.95rem;
+            transform: translateY(20px);
+            transition: transform 0.5s ease 0.1s;
+        }
+
+        .project-card:hover .project-overlay p {
+            transform: translateY(0);
+        }
+
+        /* ========== Contact セクション ========== */
+        .contact-section {
+            background: linear-gradient(135deg, #f8f8f8, #eee);
+            padding: 8rem 2rem;
         }
 
         .contact-section h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             text-align: center;
             margin-bottom: 4rem;
+            color: #4a3c2a;
         }
 
         .contact-section h2 .highlight {
@@ -342,39 +757,47 @@
         }
 
         .contact-card {
-            background: #f8f8f8;
+            background: white;
             padding: 3rem;
-            border-radius: 12px;
+            border-radius: 20px;
             text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
 
         .contact-card h3 {
-            font-size: 1.8rem;
-            color: #7dd3c0;
-            margin-bottom: 2rem;
+            color: #4a3c2a;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .contact-card p {
-            color: #555;
-            margin-bottom: 0.8rem;
+            color: #666;
+            margin-bottom: 0.5rem;
             font-size: 1.05rem;
         }
 
         .contact-card a {
             color: #7dd3c0;
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
         }
 
         .contact-card a:hover {
-            opacity: 0.7;
+            color: #5bc4ad;
         }
 
-        /* Footer */
+        /* ========== Footer ========== */
         footer {
             background: #4a3c2a;
             color: white;
-            padding: 4rem 2rem 2rem;
+            padding: 5rem 2rem 2rem;
         }
 
         .footer-content {
@@ -388,6 +811,7 @@
         .footer-section h3 {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: #7dd3c0;
         }
 
         .footer-section ul {
@@ -398,25 +822,23 @@
             color: rgba(255,255,255,0.7);
             text-decoration: none;
             display: block;
-            padding: 0.4rem 0;
-            transition: color 0.3s;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
         }
 
         .footer-section a:hover {
             color: #7dd3c0;
+            padding-left: 10px;
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .footer-bottom p {
             color: rgba(255,255,255,0.5);
         }
 
-        /* マスコットアニメーション */
+        /* ========== マスコット ========== */
         .mascot-container {
             position: fixed;
             bottom: 30px;
@@ -431,19 +853,10 @@
         }
 
         .mascot {
-            width: 300px;
+            width: 200px;
             height: auto;
             animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(-3deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(3deg);
-            }
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
 
         .mascot-bubble {
@@ -453,11 +866,11 @@
             background: white;
             padding: 1rem 1.5rem;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             margin-bottom: 15px;
             opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
+            transform: translateY(10px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             white-space: nowrap;
             font-size: 0.9rem;
             color: #4a3c2a;
@@ -476,109 +889,97 @@
 
         .mascot-container:hover .mascot-bubble {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* レスポンシブ */
+        /* ========== ハンバーガーメニュー ========== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* ========== レスポンシブ ========== */
         @media (max-width: 1024px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .services-grid, .values-grid, .contact-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            header {
-                padding: 1rem 2rem;
-            }
-
-            nav {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero {
-                padding: 8rem 2rem 5rem;
-            }
-
-            .about-section h2 {
-                font-size: 2rem;
-            }
-
-            .services-section h2 {
-                font-size: 2rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+            header { padding: 1rem 2rem; }
+            nav { display: none; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .possible { font-size: 3rem; }
+            .hero { padding: 10rem 2rem 6rem; }
+            .about-section h2, .services-section h2 { font-size: 2.5rem; }
+            .projects-grid, .footer-content { grid-template-columns: 1fr; }
+            .mascot { width: 120px; }
         }
     </style>
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header>
+    <header id="header">
         <div class="header-container">
             <a href="#" class="logo">JmAT</a>
             <nav>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">HOME</a>
-                </div>
+                <div class="nav-item"><a href="#" class="nav-link">HOME</a></div>
                 <div class="nav-item">
                     <a href="#about" class="nav-link">ABOUT</a>
                     <div class="dropdown">
                         <a href="#about">会社概要</a>
-                        <a href="#message">代表挨拶</a>
-                        <a href="#philosophy">企業理念</a>
+                        <a href="#values">企業理念</a>
                     </div>
                 </div>
                 <div class="nav-item">
                     <a href="#services" class="nav-link">SERVICES</a>
                     <div class="dropdown">
-                        <a href="service-emergency.html">救急医療事業</a>
-                        <a href="service-visitnurse.html">訪看事業</a>
+                        <a href="service-emergency.html">寄付型CF</a>
+                        <a href="service-visitnurse.html">外傷医療×訪問看護</a>
                         <a href="service-cosmetics.html">コスメティック事業</a>
                         <a href="service-construction.html">建築・まちづくり</a>
-                        <a href="swrvice-figurine.html">エンタメ（フィギュア）事業</a>
-                        <a href="service-faq.html">よくあるご質問</a>
+                        <a href="swrvice-figurine.html">エンタメ事業</a>
                     </div>
                 </div>
-                <div class="nav-item">
-                    <a href="news.html" class="nav-link">NEWS</a>
-                </div>
-                <div class="nav-item">
-                    <a href="recruit.html" class="nav-link">RECRUIT</a>
-                </div>
-                <div class="nav-item">
-                    <a href="contact.html" class="nav-link">CONTACT</a>
-                </div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
             </nav>
+            <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
     </header>
 
-    <!-- ヒーローセクション -->
     <section class="hero">
-        <h1>Connecting lives to <span class="infinity">∞</span></h1>
-        <p class="possible">"POSSIBLE"</p>
-        <p class="subtitle">当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
-        <a href="#about" class="cta-button">GET STARTED</a>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Connecting lives to <span class="infinity">∞</span></h1>
+            <p class="possible">"POSSIBLE"</p>
+            <p class="subtitle">当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
+            <a href="#about" class="cta-button">GET STARTED</a>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"><div class="wheel"></div></div>
+        </div>
     </section>
 
-    <!-- クライアント帯 -->
     <section class="clients-section">
         <h3>Trusted Partners & Services</h3>
         <div class="clients-slider">
@@ -588,7 +989,6 @@
             <img src="service-construction.png" alt="建築" class="client-logo">
             <img src="service-figurine.png" alt="フィギュア" class="client-logo">
             <img src="infinity-logo.png" alt="JmAT" class="client-logo">
-            <!-- 複製 -->
             <img src="service-emergency.png" alt="救急医療" class="client-logo">
             <img src="service-visitnurse.png" alt="訪問看護" class="client-logo">
             <img src="service-cosmetics.png" alt="コスメティック" class="client-logo">
@@ -598,82 +998,134 @@
         </div>
     </section>
 
-    <!-- About セクション -->
     <section class="about-section" id="about">
-        <h2>ABOUT <span class="highlight">US</span></h2>
-        <p class="tagline">現場から世界をつなぐ | 医療とものづくり</p>
-        <p>
-            生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。
-            そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。
-            命を守る医療と、日常を少し楽しくするコスメやフィギュア。
+        <h2 class="animate-on-scroll">ABOUT <span class="highlight">US</span></h2>
+        <p class="tagline animate-on-scroll delay-1">現場から世界をつなぐ | 医療とものづくり</p>
+        <p class="animate-on-scroll delay-2">
+            生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。<br>
+            そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。<br><br>
+            命を守る医療と、日常を少し楽しくするコスメやフィギュア。<br>
             一見離れているように見える領域を「∞」でつなぎ、"楽しむことがそのまま支援になる" 世界をつくっていきます。
         </p>
     </section>
 
-    <!-- Values セクション -->
-    <section class="values-section">
+    <section class="values-section" id="values">
+        <h2 class="animate-on-scroll">OUR VALUES</h2>
         <div class="values-grid">
-            <div class="value-card">
+            <div class="value-card animate-on-scroll delay-1">
                 <div class="value-icon">🚀</div>
                 <h3>Bigger</h3>
                 <p>私たちはより大きく考えます。規模だけでなく、大きなアイデア、思考、創造性において。</p>
             </div>
-            <div class="value-card">
+            <div class="value-card animate-on-scroll delay-2">
                 <div class="value-icon">💪</div>
                 <h3>Bolder</h3>
                 <p>大胆であることは私たちのDNAです。他の人がしないことを敢えて行い、インパクトのある仕事を創造します。</p>
             </div>
-            <div class="value-card">
+            <div class="value-card animate-on-scroll delay-3">
                 <div class="value-icon">✨</div>
                 <h3>Better</h3>
-                <p>結局のところ、成果を提供するだけでなく、一緒に働くことを楽しめるエージェンシーを持つことが最善です。</p>
+                <p>結局のところ、成果を提供するだけでなく、一緒に働くことを楽しめるパートナーであることが最善です。</p>
             </div>
         </div>
     </section>
 
-    <!-- Services セクション -->
     <section class="services-section" id="services">
-        <h2>OUR <span class="highlight">SERVICES</span></h2>
+        <h2 class="animate-on-scroll">OUR <span class="highlight">SERVICES</span></h2>
         <div class="services-grid">
-            <a href="service-emergency.html" class="service-card">
+            <a href="service-emergency.html" class="service-card animate-on-scroll delay-1">
                 <h3>寄付型CF</h3>
-                <p>自社プロジェクト専用のクラウドファンディング</p>
+                <p>自社プロジェクト専用のクラウドファンディングで、医療が届かない地域への支援を実現します。</p>
+                <span class="arrow">→</span>
             </a>
-            <a href="service-visitnurse.html" class="service-card">
+            <a href="service-visitnurse.html" class="service-card animate-on-scroll delay-2">
                 <h3>外傷医療 × 訪問看護</h3>
-                <p>病院に行かなくても外傷・急病に対応できるハイブリッド型現場医療</p>
+                <p>病院に行かなくても外傷・急病に対応できるハイブリッド型現場医療を提供します。</p>
+                <span class="arrow">→</span>
             </a>
-            <a href="service-construction.html" class="service-card">
+            <a href="service-construction.html" class="service-card animate-on-scroll delay-3">
                 <h3>Architecture & Care Design</h3>
-                <p>「命を守るインフラ」であり「暮らしをつくる器」</p>
+                <p>「命を守るインフラ」であり「暮らしをつくる器」としての建築を設計します。</p>
+                <span class="arrow">→</span>
             </a>
-            <a href="swrvice-figurine.html" class="service-card">
+            <a href="swrvice-figurine.html" class="service-card animate-on-scroll delay-4">
                 <h3>Entertainment</h3>
-                <p>「楽しさ」が支援につながるエンタメ制作</p>
+                <p>「楽しさ」が支援につながるエンタメ制作で、新しい社会貢献の形を創ります。</p>
+                <span class="arrow">→</span>
             </a>
-            <a href="service-cosmetics.html" class="service-card">
+            <a href="service-cosmetics.html" class="service-card animate-on-scroll delay-5">
                 <h3>Cosmetics</h3>
-                <p>現場で本当に役立つスカルプケア・スキンケア製品の開発</p>
+                <p>現場で本当に役立つスカルプケア・スキンケア製品を開発しています。</p>
+                <span class="arrow">→</span>
             </a>
-            <a href="service-faq.html" class="service-card">
+            <a href="service-faq.html" class="service-card animate-on-scroll delay-5">
                 <h3>頭皮・肌ケアプロジェクト</h3>
-                <p>世界共通の悩みに向き合うコスメブランドを展開</p>
+                <p>世界共通の悩みに向き合うコスメブランドを展開しています。</p>
+                <span class="arrow">→</span>
             </a>
         </div>
     </section>
 
-    <!-- Contact セクション -->
+    <section class="projects-section" id="projects">
+        <h2 class="animate-on-scroll">Our Projects</h2>
+        <p class="section-subtitle animate-on-scroll delay-1">CRAFTED WITH OUR HANDS</p>
+        <div class="projects-grid">
+            <div class="project-card animate-scale delay-1">
+                <div class="project-bg project-bg-1">🏥</div>
+                <div class="project-overlay">
+                    <h3>インド移動診療車プロジェクト</h3>
+                    <p>農村部への医療アクセス向上</p>
+                </div>
+            </div>
+            <div class="project-card animate-scale delay-2">
+                <div class="project-bg project-bg-2">🩺</div>
+                <div class="project-overlay">
+                    <h3>離島医療キット配布</h3>
+                    <p>日本の離島への救急医療支援</p>
+                </div>
+            </div>
+            <div class="project-card animate-scale delay-3">
+                <div class="project-bg project-bg-3">👨‍⚕️</div>
+                <div class="project-overlay">
+                    <h3>医療人材育成</h3>
+                    <p>アジア各国での救急対応研修</p>
+                </div>
+            </div>
+            <div class="project-card animate-scale delay-4">
+                <div class="project-bg project-bg-4">🏠</div>
+                <div class="project-overlay">
+                    <h3>ケアデザイン建築</h3>
+                    <p>医療と住まいの融合設計</p>
+                </div>
+            </div>
+            <div class="project-card animate-scale delay-5">
+                <div class="project-bg project-bg-5">💄</div>
+                <div class="project-overlay">
+                    <h3>オリジナルコスメ開発</h3>
+                    <p>現場ニーズから生まれた製品</p>
+                </div>
+            </div>
+            <div class="project-card animate-scale delay-5">
+                <div class="project-bg project-bg-6">🎨</div>
+                <div class="project-overlay">
+                    <h3>チャリティフィギュア</h3>
+                    <p>エンタメで社会貢献</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="contact-section" id="contact">
-        <h2>CONTACT <span class="highlight">US</span></h2>
+        <h2 class="animate-on-scroll">CONTACT <span class="highlight">US</span></h2>
         <div class="contact-grid">
-            <div class="contact-card">
+            <div class="contact-card animate-left">
                 <h3>JAPAN</h3>
                 <p>JmAT株式会社</p>
                 <p>東京都中央区東日本橋3-3-17</p>
                 <p><a href="tel:03-1234-5678">03-1234-5678</a></p>
-                <p><a href="/cdn-cgi/l/email-protection#375e595158775d5a5643195d47"><span class="__cf_email__" data-cfemail="9ef7f0f8f1def4f3ffeab0f4ee">[email&#160;protected]</span></a></p>
+                <p><a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
             </div>
-            <div class="contact-card">
+            <div class="contact-card animate-right">
                 <h3>FOLLOW US</h3>
                 <p><a href="#">Instagram</a></p>
                 <p><a href="#">Facebook</a></p>
@@ -683,22 +1135,20 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>企業情報</h3>
                 <ul>
                     <li><a href="#about">会社概要</a></li>
-                    <li><a href="#message">代表挨拶</a></li>
-                    <li><a href="#philosophy">企業理念</a></li>
+                    <li><a href="#values">企業理念</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>サービス</h3>
                 <ul>
-                    <li><a href="service-emergency.html">救急医療事業</a></li>
-                    <li><a href="service-visitnurse.html">訪看事業</a></li>
+                    <li><a href="service-emergency.html">寄付型CF</a></li>
+                    <li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li>
                     <li><a href="service-cosmetics.html">コスメティック事業</a></li>
                     <li><a href="service-construction.html">建築・まちづくり</a></li>
                     <li><a href="swrvice-figurine.html">エンタメ事業</a></li>
@@ -725,29 +1175,54 @@
         </div>
     </footer>
 
-    <!-- マスコットキャラクター -->
     <div class="mascot-container" id="mascot">
         <div class="mascot-bubble">こんにちは！ 👋</div>
         <img src="mascot.png" alt="Mascot" class="mascot" id="mascotImg">
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        const mascot = document.getElementById('mascot');
-        const mascotImg = document.getElementById('mascotImg');
-
-        // スクロール時のアニメーション
-        let lastScrollTop = 0;
+    <script>
+        // ヘッダースクロール効果
+        const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            if (scrollTop > lastScrollTop) {
-                mascotImg.style.animation = 'float 3s ease-in-out infinite, bounce 0.5s ease';
-            }
-            setTimeout(() => {
-                mascotImg.style.animation = 'float 3s ease-in-out infinite';
-            }, 500);
-            lastScrollTop = scrollTop;
+            header.classList.toggle('scrolled', window.scrollY > 100);
         });
 
-        // マウス追従
+        // スクロールアニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('animated');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right, .animate-scale').forEach(el => observer.observe(el));
+
+        // マスコット
+        const bubble = document.querySelector('.mascot-bubble');
+        const mascotImg = document.getElementById('mascotImg');
+        const messages = ['こんにちは！ 👋', '何かお探しですか？ 🔍', 'お問い合わせはこちら！ 📧', '一緒に世界を変えよう！ 🌍', '∞ POSSIBLE ✨'];
+        let i = 0;
+        setInterval(() => { i = (i + 1) % messages.length; bubble.textContent = messages[i]; }, 5000);
+
         document.addEventListener('mousemove', (e) => {
-            const x =
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            mascotImg.style.transform = `rotate(${x * 0.5}deg) translateX(${x}px) translateY(${y}px)`;
+        });
+
+        // パララックス
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.particle').forEach((p, i) => {
+                p.style.transform = `translateY(${window.pageYOffset * (i + 1) * 0.05}px)`;
+            });
+        });
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
