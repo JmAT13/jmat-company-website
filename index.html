@@ -946,8 +946,6 @@
         #loader.hidden {
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;
-            display: none !important;
         }
 
         .loader-infinity {
@@ -1039,9 +1037,12 @@
         <div class="loader-bar"></div>
     </div>
     <script>
-        // 1.5秒後にローダーを非表示（インライン実行で確実に動作）
+        // 1.5秒後にローダーを非表示
         setTimeout(function() {
-            document.getElementById('loader').style.display = 'none';
+            var loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.display = 'none';
+            }
             document.body.classList.remove('loading');
         }, 1500);
     </script>
@@ -1296,9 +1297,18 @@
         <img src="mascot.png" alt="Mascot" class="mascot" id="mascotImg">
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // ローディングアニメーション終了
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hidden');
+                document.body.classList.remove('loading');
+            }, 1500); // 1.5秒後に非表示
+        });
+
         // ヘッダースクロール効果
-        var header = document.getElementById('header');
+        const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled', window.scrollY > 100);
         });
