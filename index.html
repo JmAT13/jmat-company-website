@@ -946,6 +946,8 @@
         #loader.hidden {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
+            display: none !important;
         }
 
         .loader-infinity {
@@ -1288,30 +1290,32 @@
     </div>
 
     <script>
-        // ローディングアニメーション終了（複数のフォールバック）
-        function hideLoader() {
-            const loader = document.getElementById('loader');
-            if (loader && !loader.classList.contains('hidden')) {
-                loader.classList.add('hidden');
+        // ローディングアニメーション終了（確実に動作させる）
+        (function() {
+            function hideLoader() {
+                var loader = document.getElementById('loader');
+                if (loader) {
+                    loader.classList.add('hidden');
+                    loader.style.display = 'none';
+                }
                 document.body.classList.remove('loading');
             }
-        }
-
-        // 方法1: DOMContentLoaded + 遅延
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(hideLoader, 1500);
-        });
-
-        // 方法2: window.onload（フォールバック）
-        window.onload = () => {
-            setTimeout(hideLoader, 1500);
-        };
-
-        // 方法3: 強制終了（5秒後に必ず消す）
-        setTimeout(hideLoader, 5000);
+            
+            // ページ読み込み完了後1.5秒で非表示
+            if (document.readyState === 'complete') {
+                setTimeout(hideLoader, 1500);
+            } else {
+                window.addEventListener('load', function() {
+                    setTimeout(hideLoader, 1500);
+                });
+            }
+            
+            // フォールバック: 3秒後に強制非表示
+            setTimeout(hideLoader, 3000);
+        })();
 
         // ヘッダースクロール効果
-        const header = document.getElementById('header');
+        var header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled', window.scrollY > 100);
         });
