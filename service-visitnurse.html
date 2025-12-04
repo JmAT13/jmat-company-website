@@ -1,209 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>訪問看護事業 | JmAT Japan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- CSSは emergency.html と同じ。省略せずコピペしてOK -->
-  <style>
-    /* 上と同じCSSをここにそのまま貼ってください（省略可） */
-    :root {
-      --mint: #7FE8C8;
-      --mint-dark: #0f766e;
-      --bg: #f9fffd;
-      --text: #111827;
-      --text-sub: #4b5563;
-      --border: #e5e7eb;
-      --radius: 20px;
-      --max-width: 1040px;
-    }
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-    a { color: inherit; text-decoration: none; }
-    header {
-      position: fixed; top:0; left:0; right:0;
-      padding:16px 24px;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid rgba(148,163,184,.3);
-      z-index:50;
-      display:flex; justify-content:space-between; align-items:center;
-    }
-    .brand { font-weight:700; letter-spacing:.14em; font-size:13px; }
-    nav { display:flex; gap:18px; font-size:13px; }
-    nav a { color: var(--text-sub); }
-    nav a:hover { color: var(--mint-dark); }
-    .btn-outline {
-      border-radius:999px; border:1px solid var(--mint);
-      padding:6px 14px; font-size:12px;
-    }
-    main { padding-top:80px; }
-    .section { max-width:var(--max-width); margin:0 auto; padding:40px 20px; }
-    .hero {
-      display:grid; grid-template-columns:1.1fr 1fr;
-      gap:32px; align-items:center;
-      padding-top:40px; padding-bottom:20px;
-    }
-    .eyebrow {
-      font-size:11px; letter-spacing:.2em;
-      color:var(--mint-dark); text-transform:uppercase;
-      margin-bottom:8px;
-    }
-    .hero-title { font-size:30px; font-weight:800; margin-bottom:8px; }
-    .hero-sub { font-size:15px; color:var(--text-sub); margin-bottom:16px; }
-    .hero-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
-    .tag {
-      font-size:11px; padding:4px 10px; border-radius:999px;
-      border:1px solid #a5f3fc; background:#ecfeff; color:#0e7490;
-    }
-    .hero-cta { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .btn-primary {
-      background:var(--mint); color:#065f46; border:none;
-      border-radius:999px; padding:8px 18px; font-size:12px;
-      font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-      cursor:pointer;
-    }
-    .hero-visual { text-align:center; }
-    .hero-visual img {
-      max-width:380px; width:100%;
-      filter:drop-shadow(0 10px 26px rgba(15,23,42,.18));
-    }
-    .block {
-      background:#ffffff; border-radius:var(--radius);
-      border:1px solid var(--border);
-      padding:22px 24px; margin-bottom:18px;
-    }
-    .block h2 { font-size:18px; margin-bottom:6px; }
-    .block p { font-size:14px; color:var(--text-sub); }
-    .twocol { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-    ul { padding-left:18px; font-size:14px; color:var(--text-sub); }
-    .cta-bottom { text-align:center; margin-top:24px; }
-    .cta-bottom p { font-size:14px; color:var(--text-sub); margin-bottom:12px; }
-    footer {
-      margin-top:40px; border-top:1px solid var(--border);
-      padding:18px 20px 24px; font-size:12px;
-      text-align:center; color:var(--text-sub);
-    }
-    .fade { opacity:0; transform:translateY(24px); transition:all .7s ease-out; }
-    .fade.show { opacity:1; transform:translateY(0); }
-    .parallax { will-change:transform; transition:transform .15s linear; }
-    @media(max-width:840px){
-      .hero { grid-template-columns:1fr; }
-      .twocol { grid-template-columns:1fr; }
-      nav { display:none; }
-    }
-  </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訪問看護事業 | JmAT株式会社</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.6; color: #333; }
+        
+        header { background: #4a3c2a; padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; transition: opacity 0.3s; }
+        .nav-link:hover { opacity: 0.7; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); border-radius: 4px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; transition: background 0.3s; }
+        .dropdown a:hover { background: #f0f0f0; }
 
-<body>
-<header>
-  <div class="brand">JmAT JAPAN / VISITING NURSE</div>
-  <nav>
-    <a href="/index.html">TOP</a>
-    <a href="/index.html#services">SERVICES</a>
-    <a href="/index.html#support">DONATION</a>
-  </nav>
-  <a href="mailto:info@jmat.jp" class="btn-outline">お問い合わせ</a>
-</header>
+        .hero { background: linear-gradient(135deg, #4a3c2a 0%, #5a4d38 100%); color: white; padding: 12rem 2rem 8rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(125, 211, 192, 0.2); color: #7dd3c0; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 2rem; }
+        .hero h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .hero h1 .highlight { color: #7dd3c0; }
+        .hero .subtitle { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
 
-<main>
-  <section class="section hero fade">
-    <div>
-      <div class="eyebrow">VISITING NURSE</div>
-      <h1 class="hero-title">訪問看護事業</h1>
-      <p class="hero-sub">
-        病院のベッドから、ご自宅のベッドまで。<br>
-        「その人らしい生活」を、看護の力でつなぎ続けます。
-      </p>
-      <div class="hero-tags">
-        <span class="tag">24時間対応体制</span>
-        <span class="tag">急性期〜在宅のブリッジ</span>
-        <span class="tag">多職種連携</span>
-        <span class="tag">地域包括ケア</span>
-      </div>
-      <div class="hero-cta">
-        <button class="btn-primary" onclick="location.href='#contact'">導入・連携の相談</button>
-        <span style="font-size:12px; color:var(--text-sub);">
-          病院併設型ステーション／独立型ステーションの両方に対応します。
-        </span>
-      </div>
-    </div>
-    <div class="hero-visual parallax" data-speed="0.2">
-      <img src="service-visitnurse.png" alt="訪問看護イメージ">
-    </div>
-  </section>
+        .intro-section { padding: 6rem 2rem; background: white; }
+        .intro-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .intro-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #4a3c2a; }
+        .intro-section p { font-size: 1.2rem; line-height: 2; color: #555; }
 
-  <section class="section fade">
-    <div class="block">
-      <h2>事業コンセプト</h2>
-      <p>
-        「退院した瞬間から、患者さんと家族の不安は始まる」。  
-        その不安を少しでも和らげるために、JmAT Japan は、
-        病院・在宅・施設をゆるやかにつなぐ訪問看護の仕組みづくりを支援します。
-      </p>
-    </div>
+        .testimonials-band { background: #f8f8f8; padding: 3rem 0; overflow: hidden; }
+        .testimonials-slider { display: flex; gap: 4rem; animation: scrollTestimonials 30s linear infinite; }
+        .testimonial-item { white-space: nowrap; font-size: 1.1rem; color: #666; font-style: italic; }
+        @keyframes scrollTestimonials { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    <div class="twocol">
-      <div class="block">
-        <h2>主な支援内容</h2>
-        <ul>
-          <li>訪問看護ステーションの立ち上げ・運営設計</li>
-          <li>病院併設型ステーションの医療連携フロー構築</li>
-          <li>24時間対応・オンコール体制の設計</li>
-          <li>多職種カンファレンスの設計とファシリテーション</li>
-          <li>終末期・がん看護・難病看護の支援体制づくり</li>
-        </ul>
-      </div>
-      <div class="block">
-        <h2>現場で大事にしていること</h2>
-        <ul>
-          <li>患者さん・家族の「生活歴」や「価値観」を尊重すること</li>
-          <li>病院・主治医・ケアマネジャーとの情報連携をスムーズにすること</li>
-          <li>看護師が孤立しないよう、チームで支えること</li>
-          <li>急変時の対応フローを、家族とも共有しておくこと</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="block">
-      <h2>JmAT Japan が関わるメリット</h2>
-      <p>
-        設計図だけでなく、実際の訪問看護ステーション運営の現場感覚も踏まえた支援が可能です。
-        また、建築事業とも連携し、「訪問しやすい動線」「訪問を受け入れやすい住環境」まで、
-        トータルで考えることができます。
-      </p>
-    </div>
-
-    <div id="contact" class="cta-bottom">
-      <p>訪問看護ステーションの新規立ち上げ・再構築のご相談をお待ちしています。</p>
-      <button class="btn-primary" onclick="location.href='mailto:info@jmat.jp'">info@jmat.jp にメールする</button>
-    </div>
-  </section>
-</main>
-
-<footer>
-  © JmAT Japan Visiting Nurse / NPO GOTO
-</footer>
-
-<script>
-  const fadeEls = document.querySelectorAll('.fade');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-  }, { threshold: 0.2 });
-  fadeEls.forEach(el => io.observe(el));
-
-  window.addEventListener('scroll', () => {
-    document.querySelectorAll('.parallax').forEach(el => {
-      const speed = parseFloat(el.dataset.speed || 0.2);
-      const y = window.scrollY * speed;
-      el.style.transform = `translateY(${y}px)`;
-    });
-  });
-</script>
-</body>
-</html>
+        .services-detail { padding: 6rem 2rem; background: white; }
+        .services-detail h2 { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #4a3c2a; }
+        .services-detail h2 .highlight { color: #7dd3c0; }
+        .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto 4rem; align-items: center; }
+        .service-row.reverse { direction: rtl; }
+        .service-row.reverse > * { direction: ltr; }
+        .service-image { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .service-image img { width: 100%; height: auto; object-fit: contain; display: block; }
+        .service-text h3 { font-size:
