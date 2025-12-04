@@ -15,12 +15,11 @@
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
 
         header { background: rgba(74, 60, 42, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
-        header.scrolled { padding: 1rem 4rem; box-shadow: 0 5px 30px rgba(0,0,0,0.2); }
         .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
         .logo { color: white; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
         nav { display: flex; gap: 3rem; }
         .nav-item { position: relative; }
-        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.5rem 0; }
+        .nav-link { color: white; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-link:hover { color: #7dd3c0; }
         .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
         .nav-item:hover .dropdown { display: block; }
@@ -40,9 +39,7 @@
         .values-section { padding: 6rem 2rem; background: #f8f8f8; }
         .values-section h2 { text-align: center; font-size: 2.5rem; color: #4a3c2a; margin-bottom: 4rem; }
         .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .value-card { background: white; padding: 3rem 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); transition: all 0.5s; position: relative; overflow: hidden; }
-        .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, #7dd3c0, #4a3c2a); transform: scaleX(0); transition: transform 0.5s; }
-        .value-card:hover::before { transform: scaleX(1); }
+        .value-card { background: white; padding: 3rem 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); transition: all 0.5s; }
         .value-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
         .value-icon { font-size: 4rem; margin-bottom: 1.5rem; }
         .value-card h3 { font-size: 2rem; color: #7dd3c0; margin-bottom: 1rem; }
@@ -50,17 +47,16 @@
 
         .vision-section { padding: 8rem 2rem; background: #4a3c2a; color: white; text-align: center; }
         .vision-section h2 { font-size: 1.2rem; letter-spacing: 0.2em; margin-bottom: 2rem; color: #7dd3c0; }
-        .vision-section .vision-text { font-size: 2.5rem; font-weight: 300; max-width: 900px; margin: 0 auto; line-height: 1.8; }
-        .vision-section .vision-text span { color: #7dd3c0; font-weight: 700; }
+        .vision-section .main-text { font-size: 2.5rem; font-weight: 700; line-height: 1.6; max-width: 900px; margin: 0 auto 2rem; }
+        .vision-section p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
 
         .action-section { padding: 6rem 2rem; background: white; }
-        .action-container { max-width: 900px; margin: 0 auto; }
-        .action-section h2 { text-align: center; font-size: 2.5rem; color: #4a3c2a; margin-bottom: 3rem; }
-        .action-list { display: flex; flex-direction: column; gap: 1.5rem; }
-        .action-item { display: flex; align-items: flex-start; gap: 1.5rem; padding: 2rem; background: #fafafa; border-radius: 16px; transition: all 0.3s; }
-        .action-item:hover { background: #f0f0f0; transform: translateX(10px); }
-        .action-number { width: 50px; height: 50px; background: #7dd3c0; color: #4a3c2a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; flex-shrink: 0; }
-        .action-content h3 { color: #4a3c2a; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .action-section h2 { text-align: center; font-size: 2.5rem; color: #4a3c2a; margin-bottom: 4rem; }
+        .action-list { max-width: 800px; margin: 0 auto; }
+        .action-item { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #eee; }
+        .action-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .action-number { font-size: 3rem; font-weight: 700; color: #7dd3c0; line-height: 1; }
+        .action-content h3 { font-size: 1.5rem; color: #4a3c2a; margin-bottom: 0.5rem; }
         .action-content p { color: #666; }
 
         footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
@@ -71,8 +67,16 @@
         .footer-section a:hover { color: #7dd3c0; }
         .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
 
-        @media (max-width: 1024px) { .values-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .mission-section .main-text { font-size: 2rem; } .vision-section .vision-text { font-size: 1.8rem; } .footer-content { grid-template-columns: 1fr; } }
+        @media (max-width: 1024px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { 
+            header { padding: 1rem 2rem; } 
+            nav { display: none; } 
+            .hero h1 { font-size: 2.5rem; } 
+            .mission-section .main-text { font-size: 2rem; }
+            .values-grid { grid-template-columns: 1fr; } 
+            .action-item { flex-direction: column; gap: 1rem; }
+            .footer-content { grid-template-columns: 1fr; } 
+        }
     </style>
 </head>
 <body>
@@ -82,7 +86,7 @@
             <nav>
                 <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
                 <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
-                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="swrvice-figurine.html">エンタメ事業</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="service-figurine.html">エンタメ事業</a></div></div>
                 <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
                 <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
                 <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
@@ -97,17 +101,22 @@
 
     <section class="mission-section">
         <h2 class="animate-on-scroll">MISSION</h2>
-        <p class="main-text animate-on-scroll delay-1">Connecting lives to <span class="highlight">∞</span><br>"POSSIBLE"</p>
-        <p class="animate-on-scroll delay-2">当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
+        <p class="main-text animate-on-scroll delay-1">
+            Connecting lives to <span class="highlight">∞</span> POSSIBLE
+        </p>
+        <p class="animate-on-scroll delay-2">
+            生まれた場所や環境に関わらず、すべての人が「当たり前」の医療やサービスにアクセスできる世界を創る。<br>
+            医療、建築、エンタメ、コスメ——一見離れた領域を「∞」でつなぎ、新しい支援の形を実現します。
+        </p>
     </section>
 
     <section class="values-section">
-        <h2 class="animate-on-scroll">OUR VALUES</h2>
+        <h2 class="animate-on-scroll">VALUES</h2>
         <div class="values-grid">
             <div class="value-card animate-on-scroll delay-1">
                 <div class="value-icon">🚀</div>
                 <h3>Bigger</h3>
-                <p>私たちはより大きく考えます。規模だけでなく、大きなアイデア、思考、創造性において限界を設けません。</p>
+                <p>私たちはより大きく考えます。規模だけでなく、大きなアイデア、思考、創造性において常に挑戦し続けます。</p>
             </div>
             <div class="value-card animate-on-scroll delay-2">
                 <div class="value-icon">💪</div>
@@ -117,53 +126,53 @@
             <div class="value-card animate-on-scroll delay-3">
                 <div class="value-icon">✨</div>
                 <h3>Better</h3>
-                <p>成果を提供するだけでなく、一緒に働くことを楽しめるパートナーであること。それが最善の関係です。</p>
+                <p>結局のところ、成果を提供するだけでなく、一緒に働くことを楽しめるパートナーであることが最善です。</p>
             </div>
         </div>
     </section>
 
     <section class="vision-section">
         <h2 class="animate-on-scroll">VISION</h2>
-        <p class="vision-text animate-on-scroll delay-1">
-            生まれた場所や環境によって、<br>
-            救急医療が届くかどうかが決まってしまう。<br><br>
-            そのギャップを<span>「∞」</span>で繋ぎ、<br>
-            <span>楽しむことがそのまま支援になる</span><br>
-            世界をつくる。
+        <p class="main-text animate-on-scroll delay-1">
+            「届かない」を「届く」に変え、<br>
+            楽しむことがそのまま支援になる世界をつくる
+        </p>
+        <p class="animate-on-scroll delay-2">
+            フィギュアを買うことが誰かの命を救うことにつながる。<br>
+            コスメを使うことが医療支援につながる。<br>
+            そんな循環型の社会貢献モデルを私たちは本気で目指しています。
         </p>
     </section>
 
     <section class="action-section">
-        <div class="action-container">
-            <h2 class="animate-on-scroll">行動指針</h2>
-            <div class="action-list">
-                <div class="action-item animate-on-scroll delay-1">
-                    <div class="action-number">1</div>
-                    <div class="action-content">
-                        <h3>現場から発想する</h3>
-                        <p>机上の空論ではなく、現場のリアルな声から課題を見つけ、解決策を生み出します。</p>
-                    </div>
+        <h2 class="animate-on-scroll">行動指針</h2>
+        <div class="action-list">
+            <div class="action-item animate-on-scroll delay-1">
+                <div class="action-number">01</div>
+                <div class="action-content">
+                    <h3>現場第一主義</h3>
+                    <p>机上の空論ではなく、常に現場の声を聴き、現場から解決策を生み出します。</p>
                 </div>
-                <div class="action-item animate-on-scroll delay-2">
-                    <div class="action-number">2</div>
-                    <div class="action-content">
-                        <h3>境界を越える</h3>
-                        <p>国境、業界、職種の壁を超えて、多様な力を結集させます。</p>
-                    </div>
+            </div>
+            <div class="action-item animate-on-scroll delay-2">
+                <div class="action-number">02</div>
+                <div class="action-content">
+                    <h3>境界を越える</h3>
+                    <p>医療、建築、エンタメ、コスメ——領域の壁を越え、新しい価値を創造します。</p>
                 </div>
-                <div class="action-item animate-on-scroll delay-3">
-                    <div class="action-number">3</div>
-                    <div class="action-content">
-                        <h3>楽しさを武器に</h3>
-                        <p>支援は「義務」ではなく「楽しさ」から。エンタメの力で社会課題を解決します。</p>
-                    </div>
+            </div>
+            <div class="action-item animate-on-scroll delay-3">
+                <div class="action-number">03</div>
+                <div class="action-content">
+                    <h3>楽しさと社会貢献の両立</h3>
+                    <p>楽しいことが誰かのためになる。その循環を生み出すビジネスモデルを追求します。</p>
                 </div>
-                <div class="action-item animate-on-scroll">
-                    <div class="action-number">4</div>
-                    <div class="action-content">
-                        <h3>透明性を大切に</h3>
-                        <p>支援の流れ、資金の使途を明確にし、信頼を築きます。</p>
-                    </div>
+            </div>
+            <div class="action-item animate-on-scroll">
+                <div class="action-number">04</div>
+                <div class="action-content">
+                    <h3>グローバル視点</h3>
+                    <p>日本だけでなく、世界中の「届かない」に目を向け、解決に取り組みます。</p>
                 </div>
             </div>
         </div>
@@ -172,14 +181,18 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
-            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="swrvice-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
-            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#1e777078715e74737f6a30746e"><span class="__cf_email__" data-cfemail="cba2a5ada48ba1a6aabfe5a1bb">[email&#160;protected]</span></a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
         <div class="footer-bottom"><p>© 2024 JmAT株式会社 All Rights Reserved.</p></div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 100));
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entr
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
