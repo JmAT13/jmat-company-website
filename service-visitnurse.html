@@ -41,7 +41,7 @@
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .feature-card { background: white; padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s; }
         .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        a.feature-card { color: inherit; }
+        a.feature-card { color: inherit; text-decoration: none; display: block; }
         a.feature-card:hover h3 { color: #5ab8a5; }
         .feature-card .icon { font-size: 3rem; margin-bottom: 1rem; }
         .feature-card h3 { font-size: 1.3rem; color: #7dd3c0; margin-bottom: 1rem; }
@@ -108,7 +108,7 @@
     <section class="features-section">
         <h2 class="animate-on-scroll">サービスの特徴</h2>
         <div class="features-grid">
-            <a href="service-trauma-model.html" class="feature-card animate-on-scroll delay-1" style="text-decoration: none; display: block; cursor: pointer;">
+            <a href="service-trauma-model.html" class="feature-card animate-on-scroll delay-1">
                 <div class="icon">🚑</div>
                 <h3>外傷医療チーム</h3>
                 <p>救急救命士と看護師による専門チームが、外傷患者への初期対応を行います。</p>
@@ -167,10 +167,21 @@
             <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
             <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
-            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#1d74737b725d77707c6933776d"><span class="__cf_email__" data-cfemail="2e474048416e44434f5a00445e">[email&#160;protected]</span></a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        const observer = new IntersectionObserver((entries) => { entries.forEach
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
