@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外傷医療×訪問看護 | JmAT Japan合同会社</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; background: #fff; }
+
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* Header */
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
+        .dropdown a:hover { background: #f0f0f0; }
+
+        /* Hero */
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 10rem 2rem 5rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.4rem; color: #3d3225; margin-bottom: 0.5rem; font-weight: 500; }
+        .hero p { font-size: 1.1rem; color: #3d3225; }
+
+        /* Main */
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+
+        /* Section */
+        .section { margin-bottom: 5rem; }
+        .section-title { display: flex; align-items: center; gap: 15px; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 3px solid #7dd3c0; }
+        .section-title .icon { font-size: 1.8rem; }
+        .section-title h2 { font-size: 1.5rem; font-weight: 700; color: #4a3c2a; }
+
+        /* Cards */
+        .card { background: #fff; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; border: 2px solid #e8f5f2; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+
+        /* Service List */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+        .service-item { background: #f8fdfb; padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; border-left: 3px solid #7dd3c0; }
+
+        /* Highlight Box */
+        .highlight-box { background: #7dd3c0; color: #4a3c2a; border-radius: 16px; padding: 2rem; text-align: center; margin: 2rem 0; }
+        .highlight-box h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+
+        /* Problem Cards */
+        .problem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .problem-card { background: #fff; border-radius: 16px; padding: 1.5rem; border-left: 5px solid #e6a55a; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .problem-card h4 { color: #c88a3a; margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .problem-card p { color: #555; font-size: 0.95rem; }
+
+        /* Structure Grid */
+        .structure-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        @media (max-width: 900px) { .structure-grid { grid-template-columns: 1fr; } }
+        .structure-card { background: #fff; border-radius: 16px; overflow: hidden; border: 2px solid #e8f5f2; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .structure-card-header { background: #7dd3c0; color: #4a3c2a; padding: 1.25rem; text-align: center; }
+        .structure-card-header h4 { font-size: 1.05rem; }
+        .structure-card-body { padding: 1.5rem; }
+        .structure-card-body ul { list-style: none; }
+        .structure-card-body li { padding: 0.5rem 0; border-bottom: 1px solid #e8f5f2; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+        .structure-card-body li:last-child { border-bottom: none; }
+        .structure-card-body li::before { content: "•"; color: #7dd3c0; font-weight: bold; }
+
+        /* Case Studies */
+        .case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        @media (max-width: 768px) { .case-grid { grid-template-columns: 1fr; } }
+        .case-card { background: #fff; border-radius: 16px; padding: 1.5rem; border: 2px solid #e8f5f2; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .case-card h4 { color: #4a3c2a; margin-bottom: 1rem; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; }
+        .case-flow { background: #f8fdfb; padding: 1rem; border-radius: 10px; }
+        .case-flow p { margin: 0.4rem 0; font-size: 0.9rem; }
+        .arrow { color: #7dd3c0; font-weight: bold; }
+
+        /* Staff Table */
+        .staff-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .staff-table th, .staff-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e8f5f2; }
+        .staff-table th { background: #7dd3c0; color: #4a3c2a; font-weight: 600; }
+        .staff-table tr:hover { background: #f8fdfb; }
+
+        /* Points Grid */
+        .points-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+        @media (max-width: 768px) { .points-grid { grid-template-columns: repeat(2, 1fr); } }
+        .point-item { background: #fff; border-radius: 12px; padding: 1.5rem; text-align: center; border: 2px solid #7dd3c0; }
+        .point-item .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .point-item p { font-size: 0.9rem; color: #4a3c2a; font-weight: 500; }
+
+        /* Pricing */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .pricing-card { background: #fff; border-radius: 16px; overflow: hidden; border: 2px solid #e8f5f2; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .pricing-header { background: #7dd3c0; color: #4a3c2a; padding: 1.25rem; text-align: center; }
+        .pricing-header h4 { font-size: 1rem; }
+        .pricing-header.orange { background: linear-gradient(135deg, #e6a55a 0%, #d4944a 100%); color: #fff; }
+        .pricing-body { padding: 1.25rem; }
+        .pricing-item { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #e8f5f2; }
+        .pricing-item:last-child { border-bottom: none; }
+        .pricing-item .label { color: #666; font-size: 0.9rem; }
+        .pricing-item .value { font-weight: 600; color: #4a3c2a; font-size: 0.95rem; }
+        .pricing-footer { background: #f8fdfb; margin: 0.5rem -1.25rem -1.25rem; padding: 1rem 1.25rem; border-radius: 0 0 14px 14px; }
+
+        /* Calculator */
+        .calculator { background: #fff; border-radius: 20px; padding: 2.5rem; border: 3px solid #7dd3c0; box-shadow: 0 10px 40px rgba(125, 211, 192, 0.2); }
+        .calculator-title { text-align: center; margin-bottom: 2rem; }
+        .calculator-title h3 { font-size: 1.4rem; color: #4a3c2a; margin-bottom: 0.5rem; }
+        .calculator-title p { color: #666; }
+        .calc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        @media (max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
+        .calc-section { background: #f8fdfb; border-radius: 16px; padding: 1.5rem; }
+        .calc-section h4 { color: #4a3c2a; margin-bottom: 1.25rem; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; }
+        .input-group { margin-bottom: 1rem; }
+        .input-group label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; color: #666; }
+        .input-group input { width: 100%; padding: 0.75rem 1rem; border: 2px solid #c5e8df; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; }
+        .input-group input:focus { outline: none; border-color: #7dd3c0; }
+        .input-row { display: flex; gap: 1rem; }
+        .input-row .input-group { flex: 1; }
+
+        .result-box { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; border-radius: 16px; padding: 2rem; text-align: center; margin-top: 2rem; }
+        .result-box h4 { font-size: 1rem; opacity: 0.85; margin-bottom: 0.5rem; }
+        .result-value { font-size: 2.5rem; font-weight: 700; }
+        .result-sub { font-size: 0.85rem; opacity: 0.8; margin-top: 0.5rem; }
+        .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+        @media (max-width: 768px) { .result-grid { grid-template-columns: 1fr; } }
+        .result-item { background: rgba(255,255,255,0.3); padding: 1rem; border-radius: 10px; }
+        .result-item .label { font-size: 0.8rem; opacity: 0.85; }
+        .result-item .value { font-size: 1.2rem; font-weight: 600; margin-top: 0.3rem; }
+        .result-item.highlight { background: rgba(255,255,255,0.5); }
+        .result-item.highlight .value { font-size: 1.4rem; }
+
+        /* Two Column */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+        .do-list, .dont-list { background: #fff; border-radius: 16px; padding: 1.5rem; }
+        .do-list { border: 2px solid #7dd3c0; }
+        .dont-list { border: 2px solid #e74c3c; }
+        .do-list h4 { color: #4a3c2a; }
+        .dont-list h4 { color: #e74c3c; }
+        .do-list ul, .dont-list ul { list-style: none; margin-top: 1rem; }
+        .do-list li, .dont-list li { padding: 0.6rem 0; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .do-list li::before { content: "○"; color: #7dd3c0; font-weight: bold; }
+        .dont-list li::before { content: "✕"; color: #e74c3c; font-weight: bold; }
+
+        /* Warning Box */
+        .warning-box { background: #fff8e6; border: 2px solid #e6a55a; border-radius: 16px; padding: 1.5rem; margin-top: 2rem; }
+        .warning-box h4 { color: #c88a3a; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .warning-box ul { list-style: none; }
+        .warning-box li { padding: 0.5rem 0; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .warning-box li::before { content: "⚠"; }
+
+        /* Footer */
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; margin-top: 4rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.5rem; }
+            nav { display: none; }
+            .hero { padding: 8rem 1.5rem 4rem; }
+            .hero h1 { font-size: 2rem; }
+            .main-container { padding: 2rem 1rem; }
+            .footer-content { grid-template-columns: 1fr; }
+            .problem-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">JmAT</a>
+            <nav>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">寄付型CF</a><a href="service-visitnurse.html">外傷医療×訪問看護</a><a href="service-cosmetics.html">コスメティック事業</a><a href="service-construction.html">建築・まちづくり</a><a href="service-figurine.html">エンタメ事業</a></div></div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="hero-label">HYBRID MEDICAL SERVICE</span>
+        <h1>外傷医療 × 訪問看護</h1>
+        <p class="hero-subtitle">訪問看護（保険適用）＋ 外傷処置（自費 or 医療連携）</p>
+        <p>病院に行かなくても外傷・急病に対応できるハイブリッド型の現場医療モデル</p>
+    </section>
+
+    <main class="main-container">
+        <section class="section">
+            <div class="section-title"><span class="icon">✅</span><h2>私たちが実現すること</h2></div>
+            <div class="highlight-box"><h3>「病院に行かなくても外傷・急病に対応できる訪問看護ステーション」をつくる</h3></div>
+            <div class="service-grid">
+                <div class="service-item">ケガ</div>
+                <div class="service-item">軽度外傷（切創・擦過傷）</div>
+                <div class="service-item">熱傷</div>
+                <div class="service-item">軽度骨折の初期対応</div>
+                <div class="service-item">創傷処置</div>
+                <div class="service-item">感染管理</div>
+                <div class="service-item">緊急の点滴・輸液</div>
+                <div class="service-item">在宅での緊急処置</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">🔍</span><h2>「統合」が必要な市場の穴</h2></div>
+            <div class="problem-grid">
+                <div class="problem-card"><h4>① 病院は外来がパンク</h4><p>軽症外傷でも3〜4時間待ちが当たり前。患者も医療機関も疲弊している。</p></div>
+                <div class="problem-card"><h4>② 訪問看護には外傷治療スキルが不足</h4><p>高齢者宅でケガが頻発しても、結局「病院に行ってください」と言うしかない現状。</p></div>
+                <div class="problem-card"><h4>③ 高齢化×独居増加で現場医療が必須</h4><p>80〜90代が転倒→傷が治らない→感染→入院。この悪循環を防ぐ医療モデルが求められている。</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">🏗️</span><h2>統合モデルの構造（実務レベル）</h2></div>
+            <div class="structure-grid">
+                <div class="structure-card">
+                    <div class="structure-card-header"><h4>要素①：訪問看護（保険）</h4></div>
+                    <div class="structure-card-body"><ul><li>医師指示書</li><li>創傷処置</li><li>皮膚トラブル</li><li>褥瘡管理</li><li>バイタル</li><li>点滴管理</li><li>疼痛コントロール</li><li>慢性創傷の計画的ケア</li></ul></div>
+                </div>
+                <div class="structure-card">
+                    <div class="structure-card-header"><h4>要素②：外傷医療（自費＋提携医）</h4></div>
+                    <div class="structure-card-body"><ul><li>創縫合（縫う）</li><li>骨折初期固定</li><li>外傷の画像診断</li><li>緊急度評価</li><li>除去処置（刺・トゲ・異物）</li><li>熱傷処置</li></ul><p style="margin-top: 1rem; font-size: 0.85rem; color: #666;">※訪問看護では制度上できないが医師の指示・連携で提供可能</p></div>
+                </div>
+                <div class="structure-card">
+                    <div class="structure-card-header"><h4>要素③：医師バックアップ</h4></div>
+                    <div class="structure-card-body"><ul><li>医療処置の指示書</li><li>夜間オンコール</li><li>必要時の外来受入</li><li>訪問看護への指示・指導</li></ul><p style="margin-top: 1rem; font-size: 0.85rem; color: #4a3c2a; font-weight: 500;">✔ 訪看主導で外傷医療を"現場で完結"させる仕組み</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">📋</span><h2>有効なケース事例</h2></div>
+            <div class="case-grid">
+                <div class="case-card"><h4><span>🏠</span> Case 1：家で転倒・膝を強打</h4><div class="case-flow"><p><span class="arrow">→</span> 訪看が到着（15分）</p><p><span class="arrow">→</span> 洗浄・止血・縫合は医師指示で可能</p><p><span class="arrow">→</span> 自宅で完了 → <strong>入院回避</strong></p></div></div>
+                <div class="case-card"><h4><span>🧠</span> Case 2：認知症の方が爪を剥がす</h4><div class="case-flow"><p><span class="arrow">→</span> 病院に行くまで悪化しやすい</p><p><span class="arrow">→</span> 訪看＋外傷医療チームが即対応</p><p><span class="arrow">→</span> <strong>現場で即時処置完了</strong></p></div></div>
+                <div class="case-card"><h4><span>🏥</span> Case 3：施設で擦過傷・切創発生</h4><div class="case-flow"><p><span class="arrow">→</span> 職員は処置できない</p><p><span class="arrow">→</span> 往診医も遅い</p><p><span class="arrow">→</span> 訪看が即処置 → <strong>施設からの評価爆増</strong></p></div></div>
+                <div class="case-card"><h4><span>💧</span> Case 4：熱中症・脱水での点滴</h4><div class="case-flow"><p><span class="arrow">→</span> 在宅で最速10分で投与</p><p><span class="arrow">→</span> <strong>夜間救急搬送が大幅減</strong></p></div></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">👥</span><h2>人員最小 × 収益最大モデル</h2></div>
+            <div class="card">
+                <table class="staff-table">
+                    <thead><tr><th>職種</th><th>人数</th><th>ポイント</th></tr></thead>
+                    <tbody>
+                        <tr><td>管理者（看護師）</td><td>1名</td><td>現場も回る</td></tr>
+                        <tr><td>看護師</td><td><strong>常勤2.5人換算（3名）</strong></td><td>全員「外傷対応可能」</td></tr>
+                        <tr><td>医師</td><td>0.2〜0.4人</td><td>非常勤・指示書のみ</td></tr>
+                        <tr><td>PT/OT</td><td>0〜0.5人</td><td>外注 or スポット</td></tr>
+                        <tr><td>事務</td><td>0人</td><td>管理者 or 外注</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">🎯</span><h2>外傷特化モデルの強み</h2></div>
+            <div class="points-grid">
+                <div class="point-item"><div class="icon">🚨</div><p>緊急性が高い</p></div>
+                <div class="point-item"><div class="icon">💰</div><p>単価が高い</p></div>
+                <div class="point-item"><div class="icon">⚡</div><p>短期集中</p></div>
+                <div class="point-item"><div class="icon">🏥</div><p>病院が嫌がる</p></div>
+            </div>
+            <div class="highlight-box"><h3>👉 「病院が面倒くさがる外傷後管理」を全部引き取る</h3></div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">💴</span><h2>収益の柱（重ね掛け）</h2></div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header"><h4>外傷・創傷系 訪問看護（医療保険）</h4></div>
+                    <div class="pricing-body">
+                        <div class="pricing-item"><span class="label">訪問看護基本療養費</span><span class="value">8,000〜12,000円</span></div>
+                        <div class="pricing-item"><span class="label">創傷処置・褥瘡管理</span><span class="value">＋α</span></div>
+                        <div class="pricing-item"><span class="label">緊急訪問加算</span><span class="value">＋5,000円前後</span></div>
+                        <div class="pricing-item"><span class="label">24時間対応体制</span><span class="value">月定額</span></div>
+                        <div class="pricing-footer"><div class="pricing-item"><span class="label"><strong>1訪問あたり</strong></span><span class="value">15,000〜20,000円</span></div></div>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header"><h4>緊急訪問（夜間・休日）</h4></div>
+                    <div class="pricing-body">
+                        <div class="pricing-item"><span class="label">夜間・早朝訪問看護加算</span><span class="value">約4,000円</span></div>
+                        <div class="pricing-item"><span class="label">深夜加算</span><span class="value">約10,000円</span></div>
+                        <div class="pricing-item"><span class="label">緊急訪問看護加算</span><span class="value">約5,000円</span></div>
+                        <div class="pricing-footer"><div class="pricing-item"><span class="label"><strong>1回あたり</strong></span><span class="value">2万〜3万円クラス</span></div></div>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header"><h4>退院直後パッケージ（病院営業）</h4></div>
+                    <div class="pricing-body">
+                        <div class="pricing-item"><span class="label">3日集中外傷フォロー</span><span class="value">4〜6万円</span></div>
+                        <div class="pricing-item"><span class="label">7日集中管理</span><span class="value">8〜12万円</span></div>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 1rem;">※全て保険内</p>
+                        <p style="font-size: 0.85rem; color: #4a3c2a; margin-top: 0.5rem;">✔ 「退院翌日から3日連続訪問」で病院の悩みを解決</p>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header orange"><h4>自費サービス（爆発点）</h4></div>
+                    <div class="pricing-body">
+                        <div class="pricing-item"><span class="label">即日駆けつけ</span><span class="value">15,000〜30,000円</span></div>
+                        <div class="pricing-item"><span class="label">包帯・創洗浄・再固定</span><span class="value">5,000〜10,000円</span></div>
+                        <div class="pricing-item"><span class="label">家族説明・事故後支援</span><span class="value">10,000円</span></div>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 1rem;">※看護師だけでできる範囲に限定</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">🧮</span><h2>月商シミュレーション</h2></div>
+            <div class="calculator">
+                <div class="calculator-title"><h3>収益自動計算ツール</h3><p>数値を入力すると自動で月商・利益を計算します</p></div>
+                <div class="calc-grid">
+                    <div class="calc-section">
+                        <h4>📊 通常訪問</h4>
+                        <div class="input-group"><label>看護師数（人）</label><input type="number" id="nurseCount" value="3" min="1" max="20"></div>
+                        <div class="input-group"><label>1日あたり訪問件数（件）</label><input type="number" id="visitsPerDay" value="6" min="1" max="30"></div>
+                        <div class="input-group"><label>1訪問あたり単価（円）</label><input type="number" id="pricePerVisit" value="18000" min="1000" step="1000"></div>
+                        <div class="input-group"><label>月間稼働日数（日）</label><input type="number" id="workDays" value="25" min="1" max="31"></div>
+                    </div>
+                    <div class="calc-section">
+                        <h4>🌙 緊急・自費</h4>
+                        <div class="input-group"><label>夜間緊急 月間件数（件）</label><input type="number" id="emergencyCount" value="10" min="0" max="100"></div>
+                        <div class="input-group"><label>夜間緊急 1件あたり単価（円）</label><input type="number" id="emergencyPrice" value="25000" min="1000" step="1000"></div>
+                        <div class="input-group"><label>自費サービス 月間件数（件）</label><input type="number" id="selfPayCount" value="5" min="0" max="100"></div>
+                        <div class="input-group"><label>自費サービス 1件あたり単価（円）</label><input type="number" id="selfPayPrice" value="15000" min="1000" step="1000"></div>
+                    </div>
+                </div>
+                <div class="calc-section" style="margin-top: 1.5rem;">
+                    <h4>💰 経費設定</h4>
+                    <div class="input-row">
+                        <div class="input-group"><label>人件費率（%）</label><input type="number" id="laborCostRate" value="30" min="0" max="100"></div>
+                        <div class="input-group"><label>その他経費率（%）</label><input type="number" id="otherCostRate" value="20" min="0" max="100"></div>
+                    </div>
+                </div>
+                <div class="result-box">
+                    <h4>月商合計</h4>
+                    <div class="result-value" id="totalRevenue">¥0</div>
+                    <div class="result-sub" id="revenueBreakdown">通常: ¥0 + 緊急: ¥0 + 自費: ¥0</div>
+                    <div class="result-grid">
+                        <div class="result-item"><div class="label">通常訪問売上</div><div class="value" id="regularRevenue">¥0</div></div>
+                        <div class="result-item"><div class="label">緊急訪問売上</div><div class="value" id="emergencyRevenue">¥0</div></div>
+                        <div class="result-item"><div class="label">自費サービス売上</div><div class="value" id="selfPayRevenue">¥0</div></div>
+                    </div>
+                    <div class="result-grid" style="margin-top: 1rem;">
+                        <div class="result-item"><div class="label">人件費</div><div class="value" id="laborCost">¥0</div></div>
+                        <div class="result-item"><div class="label">その他経費</div><div class="value" id="otherCost">¥0</div></div>
+                        <div class="result-item highlight"><div class="label"><strong>営業利益</strong></div><div class="value" id="profit">¥0</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">🔄</span><h2>人員回転モデル（超重要）</h2></div>
+            <div class="card">
+                <p style="margin-bottom: 1rem; color: #4a3c2a; font-weight: 500;">看護師3名で回す設計</p>
+                <table class="staff-table">
+                    <thead><tr><th>時間帯</th><th>担当</th></tr></thead>
+                    <tbody><tr><td>日中</td><td>2名が訪問</td></tr><tr><td>待機</td><td>1名オンコール</td></tr><tr><td>夜間</td><td>管理者 or ローテ</td></tr></tbody>
+                </table>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">※常時24h対応を宣言しつつ、実稼働は少ない</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">👨‍⚕️</span><h2>医師を雇わない理由（核心）</h2></div>
+            <div class="two-col">
+                <div class="do-list"><h4>○ 医師はこう使う</h4><ul><li>指示書</li><li>電話相談</li><li>月数回のカンファ</li></ul></div>
+                <div class="dont-list"><h4>✕ やらないこと</h4><ul><li>常勤医師</li><li>在宅ER名乗り</li><li>処置の現場立ち会い</li></ul></div>
+            </div>
+            <div class="highlight-box" style="margin-top: 2rem;"><h3>👉 外傷"管理"に徹することで人件費を最小化</h3></div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">📍</span><h2>このモデルが刺さる地域</h2></div>
+            <div class="points-grid">
+                <div class="point-item"><div class="icon">👴</div><p>高齢者が多い</p></div>
+                <div class="point-item"><div class="icon">🏥</div><p>整形外科・救急病院が多い</p></div>
+                <div class="point-item"><div class="icon">🚑</div><p>夜間救急が混んでる</p></div>
+                <div class="point-item"><div class="icon">🏠</div><p>戸建て比率が高い</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title"><span class="icon">⚖️</span><h2>行政＆指導対策（重要）</h2></div>
+            <div class="warning-box">
+                <h4>⚠️ コンプライアンス遵守事項</h4>
+                <ul><li>「応急手当」ではなく「医師指示下の処置」として実施</li><li>縫合・切開は絶対にやらない</li><li>外傷初期は「観察＋清潔＋被覆管理」に限定</li><li>記録は写真＋SOAP徹底</li></ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#2b42454d446b41464a5f05415b"><span class="__cf_email__" data-cfemail="a5cccbc3cae5cfc8c4d18bcfd5">[email&#160;protected]</span></a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function formatNumber(num) { return '¥' + num.toLocaleString('ja-JP'); }
+        function calculate() {
+            const nurseCount = parseInt(document.getElementById('nurseCount').value) || 0;
+            const visitsPerDay = parseInt(document.getElementById('visitsPerDay').value) || 0;
+            const pricePerVisit = parseInt(document.getElementById('pricePerVisit').value) || 0;
+            const workDays = parseInt(document.getElementById('workDays').value) || 0;
+            const emergencyCount = parseInt(document.getElementById('emergencyCount').value) || 0;
+            const emergencyPrice = parseInt(document.getElementById('emergencyPrice').value) || 0;
+            const selfPayCount = parseInt(document.getElementById('selfPayCount').value) || 0;
+            const selfPayPrice = parseInt(document.getElementById('selfPayPrice').value) || 0;
+            const laborCostRate = parseInt(document.getElementById('laborCostRate').value) || 0;
+            const otherCostRate = parseInt(document.getElementById('otherCostRate').value) || 0;
+
+            const regularRevenue = pricePerVisit * visitsPerDay * workDays;
+            const emergencyRevenue = emergencyCount * emergencyPrice;
+            const selfPayRevenue = selfPayCount * selfPayPrice;
+            const totalRevenue = regularRevenue + emergencyRevenue + selfPayRevenue;
+            const laborCost = Math.round(totalRevenue * (laborCostRate / 100));
+            const otherCost = Math.round(totalRevenue * (otherCostRate / 100));
+            const profit = totalRevenue - laborCost - otherCost;
+
+            document.getElementById('regularRevenue').textContent = formatNumber(regularRevenue);
+            document.getElementById('emergencyRevenue').textContent = formatNumber(emergencyRevenue);
+            document.getElementById('selfPayRevenue').textContent = formatNumber(selfPayRevenue);
+            document.getElementById('totalRevenue').textContent = formatNumber(totalRevenue);
+            document.getElementById('revenueBreakdown').textContent = `通常: ${formatNumber(regularRevenue)} + 緊急: ${formatNumber(emergencyRevenue)} + 自費: ${formatNumber(selfPayRevenue)}`;
+            document.getElementById('laborCost').textContent = formatNumber(laborCost);
+            document.getElementById('otherCost').textContent = formatNumber(otherCost);
+            document.getElementById('pr
