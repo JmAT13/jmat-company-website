@@ -119,7 +119,10 @@
         .input-row { display: flex; gap: 1rem; }
         .input-row .input-group { flex: 1; }
 
-        .result-box { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; border-radius: 16px; padding: 2rem; text-align: center; margin-top: 2rem; }
+        .calc-button { display: block; width: 100%; padding: 1.2rem 2rem; margin-top: 2rem; background: #4a3c2a; color: white; border: none; border-radius: 12px; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .calc-button:hover { background: #3d3225; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(74, 60, 42, 0.3); }
+        .calc-button:active { transform: translateY(0); }
+        .result-box { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; border-radius: 16px; padding: 2rem; text-align: center; margin-top: 1.5rem; }
         .result-box h4 { font-size: 1rem; opacity: 0.85; margin-bottom: 0.5rem; }
         .result-value { font-size: 2.5rem; font-weight: 700; }
         .result-sub { font-size: 0.85rem; opacity: 0.8; margin-top: 0.5rem; }
@@ -343,6 +346,7 @@
                         <div class="input-group"><label>その他経費率（%）</label><input type="number" id="otherCostRate" value="20" min="0" max="100"></div>
                     </div>
                 </div>
+                <button class="calc-button" onclick="calculate()">🧮 自動計算する</button>
                 <div class="result-box">
                     <h4>月商合計</h4>
                     <div class="result-value" id="totalRevenue">¥0</div>
@@ -411,7 +415,8 @@
         <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+    <script>
         function formatNumber(num) { return '¥' + num.toLocaleString('ja-JP'); }
         function calculate() {
             const nurseCount = parseInt(document.getElementById('nurseCount').value) || 0;
@@ -437,7 +442,11 @@
             document.getElementById('emergencyRevenue').textContent = formatNumber(emergencyRevenue);
             document.getElementById('selfPayRevenue').textContent = formatNumber(selfPayRevenue);
             document.getElementById('totalRevenue').textContent = formatNumber(totalRevenue);
-            document.getElementById('revenueBreakdown').textContent = `通常: ${formatNumber(regularRevenue)} + 緊急: ${formatNumber(emergencyRevenue)} + 自費: ${formatNumber(selfPayRevenue)}`;
+            document.getElementById('revenueBreakdown').textContent = '通常: ' + formatNumber(regularRevenue) + ' + 緊急: ' + formatNumber(emergencyRevenue) + ' + 自費: ' + formatNumber(selfPayRevenue);
             document.getElementById('laborCost').textContent = formatNumber(laborCost);
             document.getElementById('otherCost').textContent = formatNumber(otherCost);
-            document.getElementById('pr
+            document.getElementById('profit').textContent = formatNumber(profit);
+        }
+    </script>
+</body>
+</html>
