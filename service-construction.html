@@ -41,6 +41,9 @@
         .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
         .service-card { background: white; padding: 2.5rem; border-radius: 20px; border-left: 4px solid #7dd3c0; transition: all 0.3s; }
         .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        a.service-card-link { text-decoration: none; color: inherit; display: block; }
+        a.service-card-link .service-card { cursor: pointer; }
+        a.service-card-link .service-card::after { content: '→ 詳細を見る'; display: block; margin-top: 1rem; color: #7dd3c0; font-weight: 600; font-size: 0.9rem; }
         .service-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; }
         .service-card p { color: #666; font-size: 0.95rem; }
 
@@ -112,10 +115,12 @@
                 <h3>🏥 医療施設設計</h3>
                 <p>病院、クリニック、移動診療施設など、医療の質を高める空間設計を行います。</p>
             </div>
-            <div class="service-card animate-on-scroll delay-2">
-                <h3>🏠 介護施設・高齢者住宅</h3>
-                <p>高齢者が尊厳を持って暮らせる、安全で快適な住環境を設計します。</p>
-            </div>
+            <a href="kaigo-finance-scheme.html" class="service-card-link animate-on-scroll delay-2">
+                <div class="service-card">
+                    <h3>🏠 介護施設・高齢者住宅</h3>
+                    <p>高齢者が尊厳を持って暮らせる、安全で快適な住環境を設計します。介護金融スキームもご案内しています。</p>
+                </div>
+            </a>
             <div class="service-card animate-on-scroll delay-3">
                 <h3>🌿 サステナブル建築</h3>
                 <p>環境に配慮した素材選定、省エネ設計、自然との調和を重視した建築。</p>
@@ -163,14 +168,10 @@
             <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
             <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">寄付型CF</a></li><li><a href="service-visitnurse.html">外傷医療×訪問看護</a></li><li><a href="service-cosmetics.html">コスメティック事業</a></li><li><a href="service-construction.html">建築・まちづくり</a></li><li><a href="service-figurine.html">エンタメ事業</a></li></ul></div>
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
-            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#1970777f76597374786d377369"><span class="__cf_email__" data-cfemail="036a6d656c43696e62772d6973">[email&#160;protected]</span></a></li></ul></div>
         </div>
         <div class="footer-bottom"><p>© 2024 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
-        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-    </script>
-</body>
-</html>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach
