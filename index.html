@@ -13,43 +13,17 @@
             color: #333; 
             overflow-x: hidden; 
         }
-
-        /* ========== アニメーション ========== */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes fadeInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
-        .animate-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .animate-left.animated { opacity: 1; transform: translateX(0); }
-        .animate-right { opacity: 0; transform: translateX(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .animate-right.animated { opacity: 1; transform: translateX(0); }
-        .animate-scale { opacity: 0; transform: scale(0.8); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .animate-scale.animated { opacity: 1; transform: scale(1); }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
+        a { text-decoration: none; color: inherit; }
 
         /* ========== ヘッダー（ミント色ベース） ========== */
         header {
             background: rgba(125, 211, 192, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1.5rem 4rem;
+            padding: 1.2rem 4rem;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        header.scrolled {
-            padding: 1rem 4rem;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
         }
         .header-container {
             display: flex;
@@ -62,61 +36,36 @@
             color: #4a3c2a;
             font-size: 1.8rem;
             font-weight: bold;
-            text-decoration: none;
         }
-        nav { display: flex; gap: 3rem; }
-        .nav-item { position: relative; }
-        .nav-link {
+        nav { display: flex; gap: 2.5rem; }
+        nav a {
             color: #4a3c2a;
-            text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             padding: 0.5rem 0;
-            transition: color 0.3s;
+            position: relative;
         }
-        .nav-link:hover { color: #3d3225; }
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            border-radius: 12px;
-            margin-top: 0.5rem;
-            padding: 0.5rem 0;
-        }
-        .nav-item:hover .dropdown { display: block; }
-        .dropdown a {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: #333;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-        .dropdown a:hover { background: #f0f0f0; }
-        .hamburger { display: none; cursor: pointer; }
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background: #4a3c2a;
-            margin: 6px 0;
-            transition: 0.3s;
-        }
+        nav a:hover { color: #3d3225; }
 
         /* ========== ヒーローセクション（ミント色グラデーション） ========== */
+        @keyframes gradientShift { 
+            0% { background-position: 0% 50%; } 
+            50% { background-position: 100% 50%; } 
+            100% { background-position: 0% 50%; } 
+        }
         .hero {
             background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             color: #4a3c2a;
             text-align: center;
-            padding: 14rem 2rem 10rem;
-            margin-top: 75px;
+            padding: 12rem 2rem 8rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            overflow: hidden;
         }
         .hero::before {
             content: '';
@@ -127,34 +76,32 @@
                 radial-gradient(circle at 80% 20%, rgba(74, 60, 42, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
-        .hero-content { position: relative; z-index: 2; }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            line-height: 1.3;
-            animation: fadeInUp 1s ease forwards;
+            line-height: 1.2;
         }
-        .hero h1 .infinity {
-            display: inline-block;
-            color: #4a3c2a;
-        }
-        .hero .possible {
-            display: block;
+        .hero .tagline {
             font-size: 5rem;
-            color: #4a3c2a;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease 0.3s forwards;
-            opacity: 0;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
             text-shadow: 0 0 40px rgba(74, 60, 42, 0.3);
         }
-        .hero .subtitle {
-            font-size: 1.3rem;
+        .hero p {
+            font-size: 1.2rem;
             margin-bottom: 3rem;
-            font-weight: 400;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
             color: #3d3225;
         }
         .cta-button {
@@ -163,48 +110,35 @@
             color: white;
             padding: 1.2rem 3rem;
             border-radius: 50px;
-            text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.9s forwards;
         }
         .cta-button:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
         }
 
-        /* ========== パートナーセクション ========== */
-        .clients-section {
-            padding: 3rem 0;
-            background: #f8f8f8;
+        /* ========== スクロールバナー ========== */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .scroll-banner {
+            background: #4a3c2a;
+            color: white;
+            padding: 1rem 0;
             overflow: hidden;
         }
-        .clients-section h3 {
-            text-align: center;
-            color: #999;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-        }
-        .clients-slider {
+        .scroll-text {
             display: flex;
             animation: scroll 20s linear infinite;
-            width: max-content;
+            white-space: nowrap;
         }
-        .client-logo {
-            height: 60px;
-            margin: 0 3rem;
-            filter: grayscale(100%);
-            opacity: 0.6;
-            transition: all 0.3s;
-        }
-        .client-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
+        .scroll-text span {
+            padding: 0 3rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
         }
 
         /* ========== VALUES セクション ========== */
@@ -214,9 +148,10 @@
         }
         .values-section h2 {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #7dd3c0;
             margin-bottom: 4rem;
+            font-style: italic;
         }
         .values-grid {
             display: grid;
@@ -227,31 +162,23 @@
         }
         .value-card {
             text-align: center;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            transition: all 0.3s;
+            padding: 2rem;
         }
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        .value-card .value-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
+        .value-card .icon {
+            width: 100px;
             height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0 auto 1.5rem;
         }
-        .value-card .value-icon img {
-            max-width: 100px;
-            max-height: 100px;
+        .value-card .icon img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
         .value-card h3 {
             font-size: 2rem;
             color: #7dd3c0;
             margin-bottom: 1rem;
+            font-style: italic;
         }
         .value-card p {
             color: #666;
@@ -259,31 +186,32 @@
             line-height: 1.8;
         }
 
-        /* ========== ABOUT セクション（ミント色） ========== */
+        /* ========== ABOUT セクション（ミント色背景） ========== */
         .about-section {
             padding: 8rem 2rem;
             background: #7dd3c0;
-            color: #4a3c2a;
+        }
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
             text-align: center;
         }
-        .about-section h2 {
-            font-size: 2.5rem;
+        .about-label {
+            color: #3d3225;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
             margin-bottom: 1rem;
         }
-        .about-section h2 .highlight { color: #3d3225; }
-        .about-section .tagline {
-            color: #3d3225;
-            font-size: 1.1rem;
+        .about-section h2 {
+            font-size: 2.2rem;
+            color: #4a3c2a;
             margin-bottom: 2rem;
-            letter-spacing: 0.1em;
-            font-weight: 600;
+            line-height: 1.5;
         }
         .about-section p {
-            max-width: 800px;
-            margin: 0 auto;
+            color: #4a3c2a;
             font-size: 1.1rem;
             line-height: 2;
-            color: #4a3c2a;
         }
 
         /* ========== SERVICES セクション ========== */
@@ -291,13 +219,22 @@
             padding: 8rem 2rem;
             background: #f8f8f8;
         }
+        .services-section .section-label {
+            text-align: center;
+            color: #7dd3c0;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
         .services-section h2 {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #7dd3c0;
             margin-bottom: 4rem;
         }
-        .services-section h2 .highlight { color: #4a3c2a; }
+        .services-section h2 .highlight {
+            color: #4a3c2a;
+        }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -309,9 +246,7 @@
             background: white;
             padding: 2.5rem;
             border-radius: 20px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             display: block;
             position: relative;
             overflow: hidden;
@@ -333,7 +268,7 @@
         }
         .service-card h3 {
             font-size: 1.3rem;
-            color: #7dd3c0;
+            color: #4a3c2a;
             margin-bottom: 1rem;
         }
         .service-card p {
@@ -342,18 +277,14 @@
             line-height: 1.7;
         }
         .service-card .arrow {
-            position: absolute;
-            bottom: 1.5rem;
-            right: 1.5rem;
+            display: block;
+            margin-top: 1.5rem;
             font-size: 1.5rem;
-            color: #4a3c2a;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s;
+            color: #7dd3c0;
+            transition: transform 0.3s;
         }
         .service-card:hover .arrow {
-            opacity: 1;
-            transform: translateX(0);
+            transform: translateX(10px);
         }
 
         /* ========== PROJECTS セクション ========== */
@@ -361,18 +292,17 @@
             padding: 8rem 2rem;
             background: white;
         }
+        .projects-section .section-label {
+            text-align: center;
+            color: #7dd3c0;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
         .projects-section h2 {
             text-align: center;
             font-size: 2.5rem;
-            color: #7dd3c0;
-            margin-bottom: 0.5rem;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: #999;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            color: #4a3c2a;
             margin-bottom: 4rem;
         }
         .projects-grid {
@@ -387,7 +317,7 @@
             border-radius: 20px;
             overflow: hidden;
             aspect-ratio: 4/3;
-            cursor: pointer;
+            background: #ddd;
         }
         .project-card img {
             width: 100%;
@@ -395,38 +325,48 @@
             object-fit: cover;
             transition: transform 0.5s;
         }
-        .project-card:hover img { transform: scale(1.1); }
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
         .project-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             padding: 2rem;
-            background: linear-gradient(transparent, rgba(125, 211, 192, 0.95));
-            color: #4a3c2a;
-            transform: translateY(100%);
-            transition: transform 0.3s;
+            background: linear-gradient(transparent, rgba(74, 60, 42, 0.9));
+            color: white;
         }
-        .project-card:hover .project-overlay { transform: translateY(0); }
-        .project-overlay h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 700; }
-        .project-overlay p { font-size: 0.9rem; opacity: 0.8; }
+        .project-overlay h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
 
-        /* ========== CONTACT セクション（ミント色） ========== */
+        /* ========== CONTACT セクション ========== */
         .contact-section {
             padding: 8rem 2rem;
-            background: #7dd3c0;
-            color: #4a3c2a;
+            background: linear-gradient(135deg, #7dd3c0 0%, #5ec4ad 100%);
             text-align: center;
         }
         .contact-section h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            color: #4a3c2a;
             margin-bottom: 2rem;
         }
-        .contact-section h2 .highlight { color: #3d3225; }
-        .contact-section p {
-            max-width: 600px;
-            margin: 0 auto 3rem;
+        .contact-section h2 .highlight {
             color: #3d3225;
+        }
+        .contact-section > p {
+            color: #4a3c2a;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .contact-btn {
             display: inline-block;
@@ -434,43 +374,46 @@
             color: white;
             padding: 1.2rem 3rem;
             border-radius: 50px;
-            text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
         .contact-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
         }
-        .contact-info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .contact-info {
+            display: flex;
+            justify-content: center;
             gap: 4rem;
-            max-width: 800px;
-            margin: 4rem auto 0;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+        .contact-location {
             text-align: left;
+            color: #4a3c2a;
         }
         .contact-location h3 {
-            color: #3d3225;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
         .contact-location p {
-            margin: 0;
-            color: #4a3c2a;
             font-size: 0.95rem;
             line-height: 1.8;
+            margin-bottom: 0;
+            text-align: left;
         }
         .contact-location a {
-            color: #3d3225;
-            text-decoration: none;
-            font-weight: 600;
+            color: #4a3c2a;
+        }
+        .contact-location a:hover {
+            text-decoration: underline;
         }
 
-        /* ========== フッター（暗めのミント色） ========== */
+        /* ========== フッター ========== */
         footer {
-            background: #5ab8a5;
+            background: #4a3c2a;
             color: white;
             padding: 4rem 2rem 2rem;
         }
@@ -482,163 +425,132 @@
             margin: 0 auto 3rem;
         }
         .footer-section h3 {
+            font-size: 1rem;
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: #4a3c2a;
+            color: #7dd3c0;
         }
-        .footer-section ul { list-style: none; }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
         .footer-section a {
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            display: block;
-            padding: 0.4rem 0;
+            color: #ccc;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
-        .footer-section a:hover { color: #4a3c2a; }
+        .footer-section a:hover {
+            color: #7dd3c0;
+        }
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.7);
+            color: #aaa;
+            font-size: 0.85rem;
         }
 
         /* ========== マスコット ========== */
         .mascot-container {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             z-index: 999;
         }
         .mascot {
-            width: 150px;
+            width: 100px;
+            height: auto;
             cursor: pointer;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
             transition: transform 0.3s;
         }
-        .mascot:hover { transform: scale(1.1); }
+        .mascot:hover {
+            transform: scale(1.1);
+        }
         .mascot-bubble {
             position: absolute;
-            bottom: 100%;
+            bottom: 110px;
             right: 0;
             background: white;
             padding: 1rem 1.5rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
             font-size: 0.9rem;
             white-space: nowrap;
             opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s;
-            margin-bottom: 10px;
+            transition: opacity 0.3s;
         }
         .mascot-container:hover .mascot-bubble {
             opacity: 1;
-            transform: translateY(0);
-        }
-        .mascot-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 40px;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid white;
         }
 
         /* ========== レスポンシブ ========== */
-        @media (max-width: 1024px) {
-            .values-grid, .services-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
-            .contact-info-grid { grid-template-columns: 1fr; text-align: center; }
-        }
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             header { padding: 1rem 2rem; }
             nav { display: none; }
-            .hamburger { display: block; }
             .hero h1 { font-size: 2.5rem; }
-            .hero .possible { font-size: 3rem; }
-            .hero { padding: 10rem 2rem 6rem; }
-            .values-grid, .services-grid, .projects-grid { grid-template-columns: 1fr; }
-            .about-section h2, .services-section h2 { font-size: 2.5rem; }
-            .footer-content { grid-template-columns: 1fr; }
-            .mascot { width: 120px; }
+            .hero .tagline { font-size: 3rem; }
+            .values-grid,
+            .services-grid,
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+            .contact-info { flex-direction: column; gap: 2rem; }
         }
     </style>
 </head>
 <body>
-    <header id="header">
+    <header>
         <div class="header-container">
             <a href="#" class="logo">JmAT</a>
             <nav>
-                <div class="nav-item"><a href="#" class="nav-link">HOME</a></div>
-                <div class="nav-item">
-                    <a href="#about" class="nav-link">ABOUT</a>
-                    <div class="dropdown">
-                        <a href="about-company.html">会社概要</a>
-                        <a href="about-message.html">代表挨拶</a>
-                        <a href="about-philosophy.html">企業理念</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="#services" class="nav-link">SERVICES</a>
-                    <div class="dropdown">
-                        <a href="service-emergency.html">寄付型CF</a>
-                        <a href="service-visitnurse.html">外傷医療×訪問看護</a>
-                        <a href="service-cosmetics.html">コスメティック事業</a>
-                        <a href="service-construction.html">建築・まちづくり</a>
-                        <a href="service-figurine.html">エンタメ事業</a>
-                    </div>
-                </div>
-                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
-                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
-                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
+                <a href="#">HOME</a>
+                <a href="#about">ABOUT</a>
+                <a href="#services">SERVICES</a>
+                <a href="news.html">NEWS</a>
+                <a href="recruit.html">RECRUIT</a>
+                <a href="contact.html">CONTACT</a>
             </nav>
-            <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Connecting lives to <span class="infinity">∞</span></h1>
-            <p class="possible">"POSSIBLE"</p>
-            <p class="subtitle">当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
+            <p class="hero-subtitle">WE ARE JmAT</p>
+            <h1>Connecting lives to ∞</h1>
+            <p class="tagline">"POSSIBLE"</p>
+            <p>当たり前を、国境や職種をこえてつくるためのプラットフォーム</p>
             <a href="#about" class="cta-button">GET STARTED</a>
         </div>
     </section>
 
-    <section class="clients-section">
-        <h3>Trusted Partners & Services</h3>
-        <div class="clients-slider">
-            <img src="service-emergency.png" alt="救急医療" class="client-logo">
-            <img src="service-visitnurse.png" alt="訪問看護" class="client-logo">
-            <img src="service-cosmetics.png" alt="コスメティック" class="client-logo">
-            <img src="service-construction.png" alt="建築" class="client-logo">
-            <img src="service-figurine.png" alt="フィギュア" class="client-logo">
-            <img src="infinity-logo.png" alt="JmAT" class="client-logo">
-            <img src="service-emergency.png" alt="救急医療" class="client-logo">
-            <img src="service-visitnurse.png" alt="訪問看護" class="client-logo">
-            <img src="service-cosmetics.png" alt="コスメティック" class="client-logo">
-            <img src="service-construction.png" alt="建築" class="client-logo">
-            <img src="service-figurine.png" alt="フィギュア" class="client-logo">
-            <img src="infinity-logo.png" alt="JmAT" class="client-logo">
+    <div class="scroll-banner">
+        <div class="scroll-text">
+            <span>✦ 医療とものづくりで世界をつなぐ</span>
+            <span>✦ Connecting lives to ∞ POSSIBLE</span>
+            <span>✦ 医療とものづくりで世界をつなぐ</span>
+            <span>✦ Connecting lives to ∞ POSSIBLE</span>
+            <span>✦ 医療とものづくりで世界をつなぐ</span>
+            <span>✦ Connecting lives to ∞ POSSIBLE</span>
+            <span>✦ 医療とものづくりで世界をつなぐ</span>
+            <span>✦ Connecting lives to ∞ POSSIBLE</span>
         </div>
-    </section>
+    </div>
 
     <section class="values-section" id="values">
-        <h2 class="animate-on-scroll">OUR VALUES</h2>
+        <h2>OUR VALUES</h2>
         <div class="values-grid">
-            <div class="value-card animate-on-scroll delay-1">
-                <div class="value-icon"><img src="bigger.png" alt="Bigger"></div>
+            <div class="value-card">
+                <div class="icon"><img src="bigger.png" alt="Bigger"></div>
                 <h3>Bigger</h3>
                 <p>私たちはより大きく考えます。規模だけでなく、大きなアイデア、思考、創造性において。</p>
             </div>
-            <div class="value-card animate-on-scroll delay-2">
-                <div class="value-icon"><img src="bolder.png" alt="Bolder"></div>
+            <div class="value-card">
+                <div class="icon"><img src="bolder.png" alt="Bolder"></div>
                 <h3>Bolder</h3>
                 <p>大胆であることは私たちのDNAです。他の人がしないことを敢えて行い、インパクトのある仕事を創造します。</p>
             </div>
-            <div class="value-card animate-on-scroll delay-3">
-                <div class="value-icon"><img src="better.png" alt="Better"></div>
+            <div class="value-card">
+                <div class="icon"><img src="better.png" alt="Better"></div>
                 <h3>Better</h3>
                 <p>結局のところ、成果を提供するだけでなく、一緒に働くことを楽しめるパートナーであることが最善です。</p>
             </div>
@@ -646,45 +558,48 @@
     </section>
 
     <section class="about-section" id="about">
-        <h2 class="animate-on-scroll">ABOUT <span class="highlight">US</span></h2>
-        <p class="tagline animate-on-scroll delay-1">現場から世界をつなぐ | 医療とものづくり</p>
-        <p class="animate-on-scroll delay-2">
-            生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。<br>
-            そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。<br><br>
-            命を守る医療と、日常を少し楽しくするコスメやフィギュア。<br>
-            一見離れているように見える領域を「∞」でつなぎ、"楽しむことがそのまま支援になる" 世界をつくっていきます。
-        </p>
+        <div class="about-container">
+            <p class="about-label">ABOUT</p>
+            <h2>現場から世界をつなぐ<br>医療とものづくり</h2>
+            <p>
+                生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。<br>
+                そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。<br><br>
+                命を守る医療と、日常を少し楽しくするコスメやフィギュア。<br>
+                一見離れているように見える領域を「∞」でつなぎ、"楽しむことがそのまま支援になる" 世界をつくっていきます。
+            </p>
+        </div>
     </section>
 
     <section class="services-section" id="services">
-        <h2 class="animate-on-scroll">OUR <span class="highlight">SERVICES</span></h2>
+        <p class="section-label">SERVICES</p>
+        <h2>OUR <span class="highlight">SERVICES</span></h2>
         <div class="services-grid">
-            <a href="service-emergency.html" class="service-card animate-on-scroll delay-1">
+            <a href="service-emergency.html" class="service-card">
                 <h3>寄付型CF</h3>
                 <p>自社プロジェクト専用のクラウドファンディングで、医療が届かない地域への支援を実現します。</p>
                 <span class="arrow">→</span>
             </a>
-            <a href="service-visitnurse.html" class="service-card animate-on-scroll delay-2">
+            <a href="service-visitnurse.html" class="service-card">
                 <h3>外傷医療 × 訪問看護</h3>
                 <p>病院に行かなくても外傷・急病に対応できるハイブリッド型現場医療を提供します。</p>
                 <span class="arrow">→</span>
             </a>
-            <a href="service-construction.html" class="service-card animate-on-scroll delay-3">
+            <a href="service-construction.html" class="service-card">
                 <h3>Architecture & Care Design</h3>
                 <p>「命を守るインフラ」であり「暮らしをつくる器」としての建築を設計します。</p>
                 <span class="arrow">→</span>
             </a>
-            <a href="service-figurine.html" class="service-card animate-on-scroll delay-4">
+            <a href="service-figurine.html" class="service-card">
                 <h3>Entertainment</h3>
                 <p>「楽しさ」が支援につながるエンタメ制作で、新しい社会貢献の形を創ります。</p>
                 <span class="arrow">→</span>
             </a>
-            <a href="service-cosmetics.html" class="service-card animate-on-scroll delay-5">
+            <a href="service-cosmetics.html" class="service-card">
                 <h3>Cosmetics</h3>
                 <p>現場で本当に役立つスカルプケア・スキンケア製品を開発しています。</p>
                 <span class="arrow">→</span>
             </a>
-            <a href="service-faq.html" class="service-card animate-on-scroll delay-5">
+            <a href="service-faq.html" class="service-card">
                 <h3>頭皮・肌ケアプロジェクト</h3>
                 <p>世界共通の悩みに向き合うコスメブランドを展開しています。</p>
                 <span class="arrow">→</span>
@@ -693,24 +608,24 @@
     </section>
 
     <section class="projects-section" id="projects">
-        <h2 class="animate-on-scroll">Our Projects</h2>
-        <p class="section-subtitle animate-on-scroll delay-1">CRAFTED WITH OUR HANDS</p>
+        <p class="section-label">Our Projects</p>
+        <h2>CRAFTED WITH OUR HANDS</h2>
         <div class="projects-grid">
-            <div class="project-card animate-scale delay-1">
-                <img src="Hospital.png" alt="救急医療プロジェクト">
+            <div class="project-card">
+                <img src="Hospital.png" alt="インド移動診療車プロジェクト">
                 <div class="project-overlay">
                     <h3>インド移動診療車プロジェクト</h3>
                     <p>農村部への医療アクセス向上</p>
                 </div>
             </div>
-            <div class="project-card animate-scale delay-2">
-                <img src="kaigomura.png" alt="介護村構想">
+            <div class="project-card">
+                <img src="kaigomura.png" alt="介護村プロジェクト">
                 <div class="project-overlay">
                     <h3>介護村プロジェクト</h3>
                     <p>日本の新しい介護コミュニティ</p>
                 </div>
             </div>
-            <div class="project-card animate-scale delay-3">
+            <div class="project-card">
                 <img src="Sustainable.png" alt="サステナブル建築">
                 <div class="project-overlay">
                     <h3>サステナブル建築</h3>
@@ -721,11 +636,11 @@
     </section>
 
     <section class="contact-section" id="contact">
-        <h2 class="animate-on-scroll">CONTACT <span class="highlight">US</span></h2>
-        <p class="animate-on-scroll delay-1">プロジェクトへのご参加、パートナーシップ、採用に関するお問い合わせなど、お気軽にご連絡ください。</p>
-        <a href="contact.html" class="contact-btn animate-on-scroll delay-2">お問い合わせ</a>
+        <h2>CONTACT <span class="highlight">US</span></h2>
+        <p>プロジェクトへのご参加、パートナーシップ、採用に関するお問い合わせなど、お気軽にご連絡ください。</p>
+        <a href="contact.html" class="contact-btn">お問い合わせ</a>
         
-        <div class="contact-info-grid animate-on-scroll delay-3">
+        <div class="contact-info">
             <div class="contact-location">
                 <h3>JAPAN</h3>
                 <p>JmAT Japan合同会社<br>
@@ -789,22 +704,5 @@
         <div class="mascot-bubble">何かお困りですか？🩺</div>
         <img src="mascot.png" alt="JmATマスコット" class="mascot">
     </div>
-
-    <script>
-        // ヘッダースクロール効果
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 100);
-        });
-
-        // スクロールアニメーション
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('animated');
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right, .animate-scale').forEach(el => observer.observe(el));
-
-        // マスコットメッセージ
-        const messages = ['何かお困りですか？🩺', '一緒�
+</body>
+</html>
