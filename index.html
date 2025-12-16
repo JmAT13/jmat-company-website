@@ -15,7 +15,7 @@
         }
         a { text-decoration: none; color: inherit; }
 
-        /* ========== ヘッダー（ミント色ベース） ========== */
+        /* ========== ヘッダー ========== */
         header {
             background: rgba(125, 211, 192, 0.95);
             backdrop-filter: blur(10px);
@@ -32,22 +32,12 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-        .logo {
-            color: #4a3c2a;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; }
         nav { display: flex; gap: 2.5rem; }
-        nav a {
-            color: #4a3c2a;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            position: relative;
-        }
+        nav a { color: #4a3c2a; font-size: 0.95rem; font-weight: 500; padding: 0.5rem 0; position: relative; }
         nav a:hover { color: #3d3225; }
 
-        /* ========== ヒーローセクション（ミント色グラデーション） ========== */
+        /* ========== ヒーローセクション ========== */
         @keyframes gradientShift { 
             0% { background-position: 0% 50%; } 
             50% { background-position: 100% 50%; } 
@@ -66,8 +56,27 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            overflow: hidden;
+            --rotate-angle: 15deg;
         }
+        /* モンキーロゴ背景パターン */
         .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url('monkey-logo.png');
+            background-size: 120px 120px;
+            background-repeat: repeat;
+            opacity: 0.1;
+            transform: rotate(var(--rotate-angle));
+            z-index: 1;
+            pointer-events: none;
+            transition: transform 0.3s ease-out;
+        }
+        .hero::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -75,414 +84,89 @@
                 radial-gradient(circle at 20% 80%, rgba(74, 60, 42, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(74, 60, 42, 0.1) 0%, transparent 50%);
             pointer-events: none;
+            z-index: 1;
         }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        .hero-subtitle {
-            font-size: 1rem;
-            letter-spacing: 0.3em;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-        .hero .tagline {
-            font-size: 5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-            text-shadow: 0 0 40px rgba(74, 60, 42, 0.3);
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            color: #3d3225;
-        }
-        .cta-button {
-            display: inline-block;
-            background: #4a3c2a;
-            color: white;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
-        }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-subtitle { font-size: 1rem; letter-spacing: 0.3em; margin-bottom: 1rem; opacity: 0.8; }
+        .hero h1 { font-size: 4rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; }
+        .hero .tagline { font-size: 5rem; font-weight: 800; margin-bottom: 2rem; letter-spacing: -0.02em; text-shadow: 0 0 40px rgba(74, 60, 42, 0.3); }
+        .hero p { font-size: 1.2rem; margin-bottom: 3rem; color: #3d3225; }
+        .cta-button { display: inline-block; background: #4a3c2a; color: white; padding: 1.2rem 3rem; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; }
+        .cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4); }
 
         /* ========== スクロールバナー ========== */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .scroll-banner {
-            background: #4a3c2a;
-            color: white;
-            padding: 1rem 0;
-            overflow: hidden;
-        }
-        .scroll-text {
-            display: flex;
-            animation: scroll 20s linear infinite;
-            white-space: nowrap;
-        }
-        .scroll-text span {
-            padding: 0 3rem;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-        }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .scroll-banner { background: #4a3c2a; color: white; padding: 1rem 0; overflow: hidden; }
+        .scroll-text { display: flex; animation: scroll 20s linear infinite; white-space: nowrap; }
+        .scroll-text span { padding: 0 3rem; font-size: 0.9rem; letter-spacing: 0.1em; }
 
         /* ========== VALUES セクション ========== */
-        .values-section {
-            padding: 8rem 2rem;
-            background: white;
-        }
-        .values-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #7dd3c0;
-            margin-bottom: 4rem;
-            font-style: italic;
-        }
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .value-card {
-            text-align: center;
-            padding: 2rem;
-        }
-        .value-card .icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1.5rem;
-        }
-        .value-card .icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .value-card h3 {
-            font-size: 2rem;
-            color: #7dd3c0;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-        .value-card p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
+        .values-section { padding: 8rem 2rem; background: white; }
+        .values-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; font-style: italic; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto; }
+        .value-card { text-align: center; padding: 2rem; }
+        .value-card .icon { width: 100px; height: 100px; margin: 0 auto 1.5rem; }
+        .value-card .icon img { width: 100%; height: 100%; object-fit: contain; }
+        .value-card h3 { font-size: 2rem; color: #7dd3c0; margin-bottom: 1rem; font-style: italic; }
+        .value-card p { color: #666; font-size: 1rem; line-height: 1.8; }
 
-        /* ========== ABOUT セクション（ミント色背景） ========== */
-        .about-section {
-            padding: 8rem 2rem;
-            background: #7dd3c0;
-        }
-        .about-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .about-label {
-            color: #3d3225;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            margin-bottom: 1rem;
-        }
-        .about-section h2 {
-            font-size: 2.2rem;
-            color: #4a3c2a;
-            margin-bottom: 2rem;
-            line-height: 1.5;
-        }
-        .about-section p {
-            color: #4a3c2a;
-            font-size: 1.1rem;
-            line-height: 2;
-        }
+        /* ========== ABOUT セクション ========== */
+        .about-section { padding: 8rem 2rem; background: #7dd3c0; }
+        .about-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .about-label { color: #3d3225; font-size: 0.9rem; letter-spacing: 0.2em; margin-bottom: 1rem; }
+        .about-section h2 { font-size: 2.2rem; color: #4a3c2a; margin-bottom: 2rem; line-height: 1.5; }
+        .about-section p { color: #4a3c2a; font-size: 1.1rem; line-height: 2; }
 
         /* ========== SERVICES セクション ========== */
-        .services-section {
-            padding: 8rem 2rem;
-            background: #f8f8f8;
-        }
-        .services-section .section-label {
-            text-align: center;
-            color: #7dd3c0;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            margin-bottom: 1rem;
-        }
-        .services-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #7dd3c0;
-            margin-bottom: 4rem;
-        }
-        .services-section h2 .highlight {
-            color: #4a3c2a;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            display: block;
-            position: relative;
-            overflow: hidden;
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 4px;
-            background: #4a3c2a;
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
+        .services-section { padding: 8rem 2rem; background: #f8f8f8; }
+        .services-section .section-label { text-align: center; color: #7dd3c0; font-size: 0.9rem; letter-spacing: 0.2em; margin-bottom: 1rem; }
+        .services-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .services-section h2 .highlight { color: #4a3c2a; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: white; padding: 2.5rem; border-radius: 20px; transition: all 0.3s ease; display: block; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #4a3c2a; transform: scaleX(0); transition: transform 0.3s; }
         .service-card:hover::before { transform: scaleX(1); }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        .service-card h3 {
-            font-size: 1.3rem;
-            color: #4a3c2a;
-            margin-bottom: 1rem;
-        }
-        .service-card p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-        .service-card .arrow {
-            display: block;
-            margin-top: 1.5rem;
-            font-size: 1.5rem;
-            color: #7dd3c0;
-            transition: transform 0.3s;
-        }
-        .service-card:hover .arrow {
-            transform: translateX(10px);
-        }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .service-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; }
+        .service-card p { color: #666; font-size: 0.95rem; line-height: 1.7; }
+        .service-card .arrow { display: block; margin-top: 1.5rem; font-size: 1.5rem; color: #7dd3c0; transition: transform 0.3s; }
+        .service-card:hover .arrow { transform: translateX(10px); }
 
         /* ========== PROJECTS セクション ========== */
-        .projects-section {
-            padding: 8rem 2rem;
-            background: white;
-        }
-        .projects-section .section-label {
-            text-align: center;
-            color: #7dd3c0;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            margin-bottom: 1rem;
-        }
-        .projects-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #4a3c2a;
-            margin-bottom: 4rem;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .project-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            background: #ddd;
-        }
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .project-card:hover img {
-            transform: scale(1.1);
-        }
-        .project-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem;
-            background: linear-gradient(transparent, rgba(74, 60, 42, 0.9));
-            color: white;
-        }
-        .project-overlay h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .project-overlay p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
+        .projects-section { padding: 8rem 2rem; background: white; }
+        .projects-section .section-label { text-align: center; color: #7dd3c0; font-size: 0.9rem; letter-spacing: 0.2em; margin-bottom: 1rem; }
+        .projects-section h2 { text-align: center; font-size: 2.5rem; color: #4a3c2a; margin-bottom: 4rem; }
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .project-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; background: #ddd; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .project-card:hover img { transform: scale(1.1); }
+        .project-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, rgba(74, 60, 42, 0.9)); color: white; }
+        .project-overlay h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .project-overlay p { font-size: 0.9rem; opacity: 0.8; }
 
         /* ========== CONTACT セクション ========== */
-        .contact-section {
-            padding: 8rem 2rem;
-            background: linear-gradient(135deg, #7dd3c0 0%, #5ec4ad 100%);
-            text-align: center;
-        }
-        .contact-section h2 {
-            font-size: 3rem;
-            color: #4a3c2a;
-            margin-bottom: 2rem;
-        }
-        .contact-section h2 .highlight {
-            color: #3d3225;
-        }
-        .contact-section > p {
-            color: #4a3c2a;
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .contact-btn {
-            display: inline-block;
-            background: #4a3c2a;
-            color: white;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .contact-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4);
-        }
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-        .contact-location {
-            text-align: left;
-            color: #4a3c2a;
-        }
-        .contact-location h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        .contact-location p {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 0;
-            text-align: left;
-        }
-        .contact-location a {
-            color: #4a3c2a;
-        }
-        .contact-location a:hover {
-            text-decoration: underline;
-        }
+        .contact-section { padding: 8rem 2rem; background: linear-gradient(135deg, #7dd3c0 0%, #5ec4ad 100%); text-align: center; }
+        .contact-section h2 { font-size: 3rem; color: #4a3c2a; margin-bottom: 2rem; }
+        .contact-section h2 .highlight { color: #3d3225; }
+        .contact-section > p { color: #4a3c2a; font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .contact-btn { display: inline-block; background: #4a3c2a; color: white; padding: 1.2rem 3rem; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; }
+        .contact-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(74, 60, 42, 0.4); }
+        .contact-info { display: flex; justify-content: center; gap: 4rem; margin-top: 4rem; flex-wrap: wrap; }
+        .contact-location { text-align: left; color: #4a3c2a; }
+        .contact-location h3 { font-size: 1.2rem; margin-bottom: 1rem; font-weight: 700; }
+        .contact-location p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 0; text-align: left; }
+        .contact-location a { color: #4a3c2a; }
+        .contact-location a:hover { text-decoration: underline; }
 
         /* ========== フッター ========== */
-        footer {
-            background: #4a3c2a;
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-        }
-        .footer-section h3 {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: #7dd3c0;
-        }
-        .footer-section ul {
-            list-style: none;
-        }
-        .footer-section li {
-            margin-bottom: 0.8rem;
-        }
-        .footer-section a {
-            color: #ccc;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-        .footer-section a:hover {
-            color: #7dd3c0;
-        }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: #aaa;
-            font-size: 0.85rem;
-        }
-
-        /* ========== マスコット ========== */
-        .mascot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 999;
-        }
-        .mascot {
-            width: 100px;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .mascot:hover {
-            transform: scale(1.1);
-        }
-        .mascot-bubble {
-            position: absolute;
-            bottom: 110px;
-            right: 0;
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            font-size: 0.9rem;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .mascot-container:hover .mascot-bubble {
-            opacity: 1;
-        }
+        footer { background: #4a3c2a; color: white; padding: 4rem 2rem 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { font-size: 1rem; margin-bottom: 1.5rem; color: #7dd3c0; }
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 0.8rem; }
+        .footer-section a { color: #ccc; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-section a:hover { color: #7dd3c0; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: #aaa; font-size: 0.85rem; }
 
         /* ========== レスポンシブ ========== */
         @media (max-width: 968px) {
@@ -490,9 +174,7 @@
             nav { display: none; }
             .hero h1 { font-size: 2.5rem; }
             .hero .tagline { font-size: 3rem; }
-            .values-grid,
-            .services-grid,
-            .projects-grid { grid-template-columns: 1fr; }
+            .values-grid, .services-grid, .projects-grid { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: repeat(2, 1fr); }
             .contact-info { flex-direction: column; gap: 2rem; }
         }
@@ -561,12 +243,7 @@
         <div class="about-container">
             <p class="about-label">ABOUT</p>
             <h2>現場から世界をつなぐ<br>医療とものづくり</h2>
-            <p>
-                生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。<br>
-                そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。<br><br>
-                命を守る医療と、日常を少し楽しくするコスメやフィギュア。<br>
-                一見離れているように見える領域を「∞」でつなぎ、"楽しむことがそのまま支援になる" 世界をつくっていきます。
-            </p>
+            <p>生まれた場所や環境によって、救急医療が届くかどうかが決まってしまう。<br>そのギャップを、現場発の医療チームと建築、そしてプロダクトやエンタメの力で埋めていきたいと考えています。<br><br>命を守る医療と、日常を少し楽しくするコスメやフィギュア。<br>一見離れているように見える領域を「∞」でつなぎ、"楽しむことがそのまま支援になる" 世界をつくっていきます。</p>
         </div>
     </section>
 
@@ -574,36 +251,12 @@
         <p class="section-label">SERVICES</p>
         <h2>OUR <span class="highlight">SERVICES</span></h2>
         <div class="services-grid">
-            <a href="service-emergency.html" class="service-card">
-                <h3>In-house planning CF</h3>
-                <p>自社プロジェクト専用のクラウドファンディングで、医療が届かない地域への支援を実現します。</p>
-                <span class="arrow">→</span>
-            </a>
-            <a href="service-visitnurse.html" class="service-card">
-                <h3>Visitnurse</h3>
-                <p>病院に行かなくても外傷・急病に対応できるハイブリッド型現場医療を提供します。</p>
-                <span class="arrow">→</span>
-            </a>
-            <a href="service-construction.html" class="service-card">
-                <h3>Architecture & Care Design</h3>
-                <p>「命を守るインフラ」であり「暮らしをつくる器」としての建築を設計します。</p>
-                <span class="arrow">→</span>
-            </a>
-            <a href="service-figurine.html" class="service-card">
-                <h3>Entertainment</h3>
-                <p>「楽しさ」が支援につながるエンタメ制作で、新しい社会貢献の形を創ります。</p>
-                <span class="arrow">→</span>
-            </a>
-            <a href="service-cosmetics.html" class="service-card">
-                <h3>Cosmetics</h3>
-                <p>現場で本当に役立つスカルプケア・スキンケア製品を開発しています。</p>
-                <span class="arrow">→</span>
-            </a>
-            <a href="service-faq.html" class="service-card">
-                <h3>Figurine</h3>
-                <p>世界共通の遊びを展開しています。</p>
-                <span class="arrow">→</span>
-            </a>
+            <a href="service-emergency.html" class="service-card"><h3>In-house planning CF</h3><p>自社プロジェクト専用のクラウドファンディングで、医療が届かない地域への支援を実現します。</p><span class="arrow">→</span></a>
+            <a href="service-visitnurse.html" class="service-card"><h3>Visitnurse</h3><p>病院に行かなくても外傷・急病に対応できるハイブリッド型現場医療を提供します。</p><span class="arrow">→</span></a>
+            <a href="service-construction.html" class="service-card"><h3>Architecture & Care Design</h3><p>「命を守るインフラ」であり「暮らしをつくる器」としての建築を設計します。</p><span class="arrow">→</span></a>
+            <a href="service-figurine.html" class="service-card"><h3>Entertainment</h3><p>「楽しさ」が支援につながるエンタメ制作で、新しい社会貢献の形を創ります。</p><span class="arrow">→</span></a>
+            <a href="service-cosmetics.html" class="service-card"><h3>Cosmetics</h3><p>現場で本当に役立つスカルプケア・スキンケア製品を開発しています。</p><span class="arrow">→</span></a>
+            <a href="service-faq.html" class="service-card"><h3>Figurine</h3><p>世界共通の遊びを展開しています。</p><span class="arrow">→</span></a>
         </div>
     </section>
 
@@ -611,27 +264,9 @@
         <p class="section-label">Our Projects</p>
         <h2>CRAFTED WITH OUR HANDS</h2>
         <div class="projects-grid">
-            <div class="project-card">
-                <img src="Hospital.png" alt="インド移動診療車プロジェクト">
-                <div class="project-overlay">
-                    <h3>インド移動診療車プロジェクト</h3>
-                    <p>農村部への医療アクセス向上</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="kaigomura.png" alt="介護村プロジェクト">
-                <div class="project-overlay">
-                    <h3>介護村プロジェクト</h3>
-                    <p>日本の新しい介護コミュニティ</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="Sustainable.png" alt="サステナブル建築">
-                <div class="project-overlay">
-                    <h3>サステナブル建築</h3>
-                    <p>環境に優しい建築設計</p>
-                </div>
-            </div>
+            <div class="project-card"><img src="Hospital.png" alt="インド移動診療車プロジェクト"><div class="project-overlay"><h3>インド移動診療車プロジェクト</h3><p>農村部への医療アクセス向上</p></div></div>
+            <div class="project-card"><img src="kaigomura.png" alt="介護村プロジェクト"><div class="project-overlay"><h3>介護村プロジェクト</h3><p>日本の新しい介護コミュニティ</p></div></div>
+            <div class="project-card"><img src="Sustainable.png" alt="サステナブル建築"><div class="project-overlay"><h3>サステナブル建築</h3><p>環境に優しい建築設計</p></div></div>
         </div>
     </section>
 
@@ -639,74 +274,32 @@
         <h2>CONTACT <span class="highlight">US</span></h2>
         <p>プロジェクトへのご参加、パートナーシップ、採用に関するお問い合わせなど、お気軽にご連絡ください。</p>
         <a href="contact.html" class="contact-btn">お問い合わせ</a>
-        
         <div class="contact-info">
-            <div class="contact-location">
-                <h3>JAPAN</h3>
-                <p>JmAT Japan合同会社<br>
-                〒103-0004<br>
-                東京都中央区東日本橋3-3-17<br>
-                <a href="tel:03-1234-5678">03-1234-5678</a><br>
-                <a href="mailto:info@jmat.jp">info@jmat.jp</a></p>
-            </div>
-            <div class="contact-location">
-                <h3>GLOBAL</h3>
-                <p>インド・アメリカ・日本を拠点に<br>
-                医療と建築、エンタメの力で<br>
-                世界中の「届かない」を「届く」に変える<br>
-                活動を展開しています。</p>
-            </div>
+            <div class="contact-location"><h3>JAPAN</h3><p>JmAT Japan合同会社<br>〒103-0004<br>東京都中央区東日本橋3-3-17<br><a href="tel:03-1234-5678">03-1234-5678</a><br><a href="mailto:info@jmat.jp">info@jmat.jp</a></p></div>
+            <div class="contact-location"><h3>GLOBAL</h3><p>インド・アメリカ・日本を拠点に<br>医療と建築、エンタメの力で<br>世界中の「届かない」を「届く」に変える<br>活動を展開しています。</p></div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>企業情報</h3>
-                <ul>
-                    <li><a href="about-company.html">会社概要</a></li>
-                    <li><a href="about-message.html">代表挨拶</a></li>
-                    <li><a href="about-philosophy.html">企業理念</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>サービス</h3>
-                <ul>
-                    <li><a href="service-emergency.html">In-house planning CF</a></li>
-                    <li><a href="service-visitnurse.html">Visitnurse</a></li>
-                    <li><a href="service-cosmetics.html">Cosmetics</a></li>
-                    <li><a href="service-construction.html">Architecture & Care Design</a></li>
-                    <li><a href="service-figurine.html">Figurine</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>情報</h3>
-                <ul>
-                    <li><a href="news.html">お知らせ</a></li>
-                    <li><a href="recruit.html">採用情報</a></li>
-                    <li><a href="#">プライバシーポリシー</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul>
-                    <li><a href="contact.html">お問い合わせ</a></li>
-                    <li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li>
-                </ul>
-            </div>
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">In-house planning CF</a></li><li><a href="service-visitnurse.html">Visitnurse</a></li><li><a href="service-cosmetics.html">Cosmetics</a></li><li><a href="service-construction.html">Architecture & Care Design</a></li><li><a href="service-figurine.html">Figurine</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@jmat.jp">info@jmat.jp</a></li></ul></div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2020 JmAT Japan合同会社 All Rights Reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>© 2020 JmAT Japan合同会社 All Rights Reserved.</p></div>
     </footer>
 
-    <div class="mascot-container">
-        <div class="mascot-bubble">何かお困りですか？🩺</div>
-        <img src="mascot.png" alt="JmATマスコット" class="mascot">
-    </div>
+    <script>
+        // スクロールに応じてモンキーロゴの傾きを変える
+        document.addEventListener('scroll', function() {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const scrollY = window.scrollY;
+                const rotateAngle = 15 - (scrollY / 300) * 30;
+                hero.style.setProperty('--rotate-angle', rotateAngle + 'deg');
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
