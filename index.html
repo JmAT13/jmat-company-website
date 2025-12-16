@@ -59,19 +59,20 @@
             overflow: hidden;
             --rotate-angle: 15deg;
         }
-        /* モンキーロゴ背景パターン */
+        /* モンキーロゴ（1体・画面いっぱい） */
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
             background-image: url('monkey-logo.png');
-            background-size: 120px 120px;
-            background-repeat: repeat;
-            opacity: 0.1;
-            transform: rotate(var(--rotate-angle));
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.12;
+            transform: translate(-50%, -50%) rotate(var(--rotate-angle));
             z-index: 1;
             pointer-events: none;
             transition: transform 0.3s ease-out;
