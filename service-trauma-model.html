@@ -181,7 +181,7 @@
             <nav>
                 <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
                 <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
-                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">In-house planning CF</a><a href="service-visitnurse.html">Visitnurse</a><a href="service-cosmetics.html">Cosmetics</a><a href="service-construction.html">Architecture &amp; Care Design</a><a href="service-figurine.html">Entertainment</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">In-house planning CF</a><a href="service-visitnurse.html">Visitnurse</a><a href="service-cosmetics.html">Cosmetics</a><a href="service-construction.html">Architecture & Care Design</a><a href="service-figurine.html">Entertainment</a></div></div>
                 <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
                 <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
                 <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
@@ -408,15 +408,15 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
-            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">In-house planning CF</a></li><li><a href="service-visitnurse.html">Visitnurse</a></li><li><a href="service-cosmetics.html">Cosmetics</a></li><li><a href="service-construction.html">Architecture &amp; Care Design</a></li><li><a href="service-figurine.html">Entertainment</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">In-house planning CF</a></li><li><a href="service-visitnurse.html">Visitnurse</a></li><li><a href="service-cosmetics.html">Cosmetics</a></li><li><a href="service-construction.html">Architecture & Care Design</a></li><li><a href="service-figurine.html">Entertainment</a></li></ul></div>
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
-            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#e28b8c848da285838c8b8f87cc8892"><span class="__cf_email__" data-cfemail="3f565159507f585e5156525a11554f">[email&#160;protected]</span></a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@ganime.jp">info@ganime.jp</a></li></ul></div>
         </div>
         <div class="footer-bottom"><p>© 2024 GANIMEDESIGN株式会社 All Rights Reserved.</p></div>
     </footer>
 
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         function formatNumber(num) { return '¥' + num.toLocaleString('ja-JP'); }
         function calculate() {
             const nurseCount = parseInt(document.getElementById('nurseCount').value) || 0;
@@ -443,4 +443,10 @@
             document.getElementById('selfPayRevenue').textContent = formatNumber(selfPayRevenue);
             document.getElementById('totalRevenue').textContent = formatNumber(totalRevenue);
             document.getElementById('revenueBreakdown').textContent = '通常: ' + formatNumber(regularRevenue) + ' + 緊急: ' + formatNumber(emergencyRevenue) + ' + 自費: ' + formatNumber(selfPayRevenue);
-            document.getElementById('laborCost').textContent = fo
+            document.getElementById('laborCost').textContent = formatNumber(laborCost);
+            document.getElementById('otherCost').textContent = formatNumber(otherCost);
+            document.getElementById('profit').textContent = formatNumber(profit);
+        }
+    </script>
+</body>
+</html>
