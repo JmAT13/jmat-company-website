@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー | GANIMEDESIGN株式会社</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; z-index: 1001; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
+        .dropdown a:hover { background: #f0f0f0; }
+
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 10rem 2rem 4rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3rem; font-weight: 700; animation: fadeInUp 1s ease; }
+
+        .policy-section { padding: 4rem 2rem; background: white; }
+        .policy-container { max-width: 900px; margin: 0 auto; }
+        .policy-section h2 { font-size: 1.5rem; color: #7dd3c0; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e0e0e0; }
+        .policy-section h2:first-of-type { margin-top: 0; }
+        .policy-section p { color: #555; margin-bottom: 1rem; }
+        .policy-section ul { margin: 1rem 0 1rem 1.5rem; color: #555; }
+        .policy-section li { margin-bottom: 0.5rem; }
+        .policy-section h3 { font-size: 1.1rem; color: #4a3c2a; margin: 1.5rem 0 0.5rem; }
+
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2rem; } .footer-content { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">GANIMEDESIGN</a>
+            <nav>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">In-house planning CF</a><a href="service-visitnurse.html">Visitnurse</a><a href="service-cosmetics.html">Cosmetics</a><a href="service-construction.html">Architecture &amp; Care Design</a><a href="service-figurine.html">Entertainment</a></div></div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="hero-label">PRIVACY POLICY</span>
+        <h1>プライバシーポリシー</h1>
+    </section>
+
+    <section class="policy-section">
+        <div class="policy-container animate-on-scroll">
+            <h2>1. はじめに</h2>
+            <p>GANIMEDESIGN株式会社（以下「当社」）は、当社が運営するウェブサイト（以下「本サイト」）をご利用いただく皆さまのプライバシーを尊重し、個人情報の保護に関する法令・ガイドラインを遵守するとともに、以下の方針に基づき適切な取り扱いを実施いたします。</p>
+
+            <h2>2. 収集する情報と利用目的</h2>
+            <p>当社は、本サイトの提供・改善および以下の目的のために、次の情報を収集することがあります。</p>
+            
+            <h3>■ 収集する情報</h3>
+            <ul>
+                <li><strong>利用者が入力・送信する情報</strong><br>例）お問い合わせフォームの氏名、メールアドレス、内容等</li>
+                <li><strong>アクセス情報・技術的情報</strong><br>例）IPアドレス、ブラウザ種類、OS、訪問日時、閲覧ページ、アクセスログ、Cookie 等</li>
+            </ul>
+
+            <h3>■ 利用目的</h3>
+            <p>収集した情報は以下の目的で利用します。</p>
+            <ul>
+                <li>お問い合わせへの対応</li>
+                <li>本サイトの運用・改善</li>
+                <li>利用者の利便性向上</li>
+                <li>法令等に基づく対応</li>
+            </ul>
+
+            <h2>3. Cookieおよび類似技術について</h2>
+            <p>本サイトでは、サービス向上および利便性の向上のためにCookieや類似技術を使用することがあります。これらの技術により収集される情報は個人を特定できない統計情報として扱われます。</p>
+            <p>利用者はブラウザ設定によりCookieの受け入れを拒否することができますが、その場合、サイト機能の一部に制限が生じることがあります。</p>
+
+            <h2>4. 情報の第三者提供</h2>
+            <p>当社は次の場合を除き、利用者の同意なく個人情報を第三者に提供することはありません。</p>
+            <ul>
+                <li>法令に基づき提供を求められた場合</li>
+                <li>利用目的を達成するために委託先へ提供する場合（適切な管理・監督を実施）</li>
+                <li>利用者本人の同意がある場合</li>
+            </ul>
+
+            <h2>5. 情報の委託</h2>
+            <p>当社は、本サイトの運用およびサービス提供にあたり、利用者情報の処理を外部事業者に委託することがあります。委託先に対しては適切な安全管理措置を求め、情報の管理・監督を行います。</p>
+
+            <h2>6. 安全管理措置</h2>
+            <p>当社は、個人情報の正確性の維持および安全な管理のため、必要かつ適切な対策を講じます。不正アクセス、漏えい、紛失、改ざん等のリスクを防止するための技術的・組織的措置を実施します。</p>
+
+            <h2>7. 利用者の権利</h2>
+            <p>利用者は、当社が保有する自己の個人情報について、開示・訂正・削除・利用停止等を請求する権利があります。請求がある場合、当社は合理的な期間および範囲で対応いたします。</p>
+
+            <h2>8. 法令・規範の遵守と見直し</h2>
+            <p>当社は、個人情報保護に関する法令・ガイドラインを遵守するとともに、必要に応じて本プライバシーポリシーを見直し、改善してまいります。</p>
+
+            <h2>9. お問い合わせ窓口</h2>
+            <p>ご質問・ご相談・開示請求等の窓口はこちらです：</p>
+            <p><strong>メールアドレス：</strong><a href="mailto:info@ganime.jp" style="color: #7dd3c0;">info@ganime.jp</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">In-house planning CF</a></li><li><a href="service-visitnurse.html">Visitnurse</a></li><li><a href="service-cosmetics.html">Cosmetics</a></li><li><a href="service-construction.html">Architecture &amp; Care Design</a></li><li><a href="service-figurine.html">Entertainment</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="privacy-policy.html">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@ganime.jp">info@ganime.jp</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 GANIMEDESIGN株式会社 All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animated'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>よくあるご質問（FAQ） | JmAT Japan</title>
+  <title>よくあるご質問（FAQ） | GANIMEDESIGN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
@@ -143,13 +143,13 @@
 
 <body>
 <header>
-  <div class="brand">JmAT JAPAN / FAQ</div>
+  <div class="brand">GANIMEDESIGN JAPAN / FAQ</div>
   <nav>
     <a href="/index.html">TOP</a>
     <a href="/index.html#services">SERVICES</a>
     <a href="/index.html#support">DONATION</a>
   </nav>
-  <a href="/cdn-cgi/l/email-protection#0c65626a634c66616d7822667c" class="btn-outline">お問い合わせ</a>
+  <a href="mailto:info@ganime.jp">お問い合わせ</a>
 </header>
 
 <main>
@@ -157,7 +157,7 @@
     <div class="eyebrow">FREQUENTLY ASKED QUESTIONS</div>
     <h1 class="hero-title">よくあるご質問</h1>
     <p class="hero-sub">
-      JmAT Japan・NPO法人GOTOの活動や、寄付・連携・採用などについていただくご質問をまとめました。<br>
+      GANIMEDESIGN・NPO法人GOTOの活動や、寄付・連携・採用などについていただくご質問をまとめました。<br>
       ここにない内容については、お気軽にお問い合わせください。
     </p>
   </section>
@@ -259,19 +259,31 @@
 
     <div class="cta-bottom" id="contact">
       <p>ここに掲載されていないご質問や、より詳しい情報が必要な場合は、直接お問い合わせください。</p>
-      <button class="btn-primary" onclick="location.href='mailto:info@jmat.jp'"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cba2a5ada48ba1a6aabfe5a1bb">[email&#160;protected]</a> にメールする</button>
+      <button class="btn-primary" onclick="location.href='mailto:info@ganime.jp'"><a href="mailto:info@ganime.jp">[email&#160;protected]</a> にメールする</button>
     </div>
   </section>
 </main>
 
 <footer>
-  © JmAT Japan / NPO GOTO — FAQ
+  © GANIMEDESIGN / NPO GOTO — FAQ
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // fade-in
   const fadeEls = document.querySelectorAll('.fade');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
   }, { threshold: 0.15 });
   fadeEls.forEach(el => io
+.observe(el));
+
+  // Toggle FAQ
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>
