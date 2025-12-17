@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ツナグ医療 | GANIMEDESIGN株式会社</title>
+    <title>コスメティック事業 | GANIMEDESIGN株式会社</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
@@ -36,23 +36,15 @@
         .intro-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 2rem; }
         .intro-section p { font-size: 1.1rem; color: #555; line-height: 2; }
 
-        .features-section { padding: 6rem 2rem; background: #f8f8f8; }
-        .features-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .feature-card { background: white; padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s; }
-        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        a.feature-card { color: inherit; text-decoration: none; display: block; }
-        a.feature-card:hover h3 { color: #5ab8a5; }
-        .feature-card .icon { font-size: 3rem; margin-bottom: 1rem; }
-        .feature-card h3 { font-size: 1.3rem; color: #7dd3c0; margin-bottom: 1rem; }
-        .feature-card p { color: #666; font-size: 0.95rem; }
-
-        .global-section { padding: 6rem 2rem; background: white; }
-        .global-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
-        .global-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-        .global-card { background: #f8fdfb; padding: 2.5rem; border-radius: 20px; border-left: 4px solid #7dd3c0; }
-        .global-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .global-card p { color: #666; font-size: 0.95rem; }
+        .products-section { padding: 6rem 2rem; background: #f8f8f8; }
+        .products-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .product-card { background: white; border-radius: 20px; overflow: hidden; transition: all 0.3s; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .product-image { height: 250px; background: linear-gradient(135deg, #7dd3c0, #5ab8a5); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+        .product-content { padding: 2rem; text-align: center; }
+        .product-content h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 0.5rem; }
+        .product-content p { color: #666; font-size: 0.95rem; }
 
         .concept-section { padding: 6rem 2rem; background: #7dd3c0; color: #4a3c2a; }
         .concept-container { max-width: 900px; margin: 0 auto; text-align: center; }
@@ -73,8 +65,8 @@
         .footer-section a:hover { color: #4a3c2a; }
         .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
 
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } .global-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .features-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
+        @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .products-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -94,72 +86,54 @@
 
     <section class="hero">
         <span class="hero-label">SERVICE</span>
-        <h1>Visitnurse</h1>
-        <p>現場で命をつなぐ、動く医療チーム</p>
+        <h1>Cosmetics</h1>
+        <p>現場から生まれた、本当に役立つケア製品</p>
     </section>
 
     <section class="intro-section">
         <div class="intro-container animate-on-scroll">
-            <h2>Trauma Care &amp; Home Nursing</h2>
-            <p>GANIMEDESIGNは、病院の外で命を守る医療を提供します。<br><br>救急救命士・看護師・医師がチームを組み、災害現場、在宅医療、そして医療過疎地域へ。「医療が届かない」を「医療が届く」に変える、動く医療システムを構築しています。</p>
+            <h2>医療現場発のコスメブランド</h2>
+            <p>GANIMEDESIGNのコスメティック事業は、医療現場での経験から生まれました。<br><br>過酷な環境で働く医療スタッフ、ヘルメットを長時間着用する作業員、ストレスで肌荒れに悩む人々。そんな「本当に困っている人」のための製品を開発しています。売上の一部は医療支援活動に還元されます。</p>
         </div>
     </section>
 
-    <section class="features-section">
-        <h2 class="animate-on-scroll">サービスの特徴</h2>
-        <div class="features-grid">
-            <a href="service-trauma-model.html" class="feature-card animate-on-scroll delay-1">
-                <div class="icon">🚑</div>
-                <h3>外傷医療チーム</h3>
-                <p>救急救命士と看護師による専門チームが、外傷患者への初期対応を行います。</p>
-                <span style="display: inline-block; margin-top: 1rem; color: #7dd3c0; font-weight: 600; font-size: 0.9rem;">詳しく見る →</span>
-            </a>
-            <a href="service-hem.html" class="feature-card animate-on-scroll delay-2">
-                <div class="icon">🏥</div>
-                <h3>病院再生モデル</h3>
-                <p>病床を増やさず売上を拡張するHospital Extension Model（HEM）。</p>
-                <span style="display: inline-block; margin-top: 1rem; color: #7dd3c0; font-weight: 600; font-size: 0.9rem;">詳しく見る →</span>
-            </a>
-            <div class="feature-card animate-on-scroll delay-3" style="opacity: 0.6;">
-                <div class="icon">🔜</div>
-                <h3>coming soon</h3>
-                <p>新サービス準備中</p>
+    <section class="products-section">
+        <h2 class="animate-on-scroll">製品ラインナップ</h2>
+        <div class="products-grid">
+            <div class="product-card animate-on-scroll delay-1">
+                <div class="product-image">🧴</div>
+                <div class="product-content">
+                    <h3>スカルプケアシャンプー</h3>
+                    <p>ヘルメット着用者のための頭皮ケア。蒸れやかゆみを防ぎます。</p>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section class="global-section">
-        <h2 class="animate-on-scroll">グローバル展開</h2>
-        <div class="global-grid">
-            <div class="global-card animate-on-scroll delay-1">
-                <h3>🇺🇸 アメリカ</h3>
-                <p>モバイル外傷医療ユニットの展開。都市部から離れた地域での緊急医療対応を行っています。</p>
+            <div class="product-card animate-on-scroll delay-2">
+                <div class="product-image">✨</div>
+                <div class="product-content">
+                    <h3>メディカルスキンケア</h3>
+                    <p>敏感肌・ストレス肌のための低刺激スキンケアライン。</p>
+                </div>
             </div>
-            <div class="global-card animate-on-scroll delay-2">
-                <h3>🇮🇳 インド</h3>
-                <p>農村部への移動診療車による医療アクセス改善。年間5,000人以上の診察を実施。</p>
-            </div>
-            <div class="global-card animate-on-scroll delay-3">
-                <h3>🇯🇵 日本</h3>
-                <p>在宅医療・訪問看護サービスの提供。高齢者が住み慣れた地域で暮らし続けられるよう支援。</p>
-            </div>
-            <div class="global-card animate-on-scroll">
-                <h3>🇰🇷 韓国</h3>
-                <p>医療・美容・ケアを統合したサービスモデルの構築。ホリスティックなケアを提供。</p>
+            <div class="product-card animate-on-scroll delay-3">
+                <div class="product-image">💧</div>
+                <div class="product-content">
+                    <h3>ハンドケアクリーム</h3>
+                    <p>頻繁な消毒で荒れた手を守る、医療従事者のためのクリーム。</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="concept-section">
         <div class="concept-container animate-on-scroll">
-            <h2>"動く医療" で命をつなぐ</h2>
-            <p>従来の医療は「病院で待つ」スタイル。私たちは「現場に行く」医療を実現します。<br><br>災害時の緊急対応から、日常の在宅ケアまで。医療を必要とする人のもとへ、最短で駆けつける仕組みをつくり続けています。</p>
+            <h2>使うことが支援になる</h2>
+            <p>GANIMEDESIGNのコスメ製品を購入することは、医療支援活動への参加を意味します。<br><br>売上の10%は、インドや国内での医療支援プロジェクトに還元。あなたの日常のケアが、誰かの命をつなぐ活動を支えています。</p>
         </div>
     </section>
 
     <section class="cta-section">
-        <h2 class="animate-on-scroll">サービスについてのお問い合わせ</h2>
-        <p class="animate-on-scroll delay-1">訪問看護のご依頼、パートナーシップのご相談を承ります</p>
+        <h2 class="animate-on-scroll">製品について詳しく知る</h2>
+        <p class="animate-on-scroll delay-1">サンプルのご請求・卸売のご相談も承ります</p>
         <a href="contact.html" class="cta-btn animate-on-scroll delay-2">お問い合わせ</a>
     </section>
 
@@ -168,9 +142,6 @@
             <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
             <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">In-house planning CF</a></li><li><a href="service-visitnurse.html">Visitnurse</a></li><li><a href="service-cosmetics.html">Cosmetics</a></li><li><a href="service-construction.html">Architecture &amp; Care Design</a></li><li><a href="service-figurine.html">Entertainment</a></li></ul></div>
             <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
-            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#c2abaca4ad82a5a3acabafa7eca8b2"><span class="__cf_email__" data-cfemail="c8a1a6aea788afa9a6a1a5ade6a2b8">[email&#160;protected]</span></a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="/cdn-cgi/l/email-protection#1f767179705f787e7176727a31756f"><span class="__cf_email__" data-cfemail="dbb2b5bdb49bbcbab5b2b6bef5b1ab">[email&#160;protected]</span></a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2024 GANIMEDESIGN株式会社 All Rights Reserved.</p></div>
-    </footer>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decod
+        <div class="footer-bottom"><p>© 2024 GANIMEDESIGN株式会社 All Rights Reserved
