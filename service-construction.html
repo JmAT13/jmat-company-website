@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visitnurse - ツナグ医療 | GANIMEDESIGN株式会社</title>
+    <title>Architecture &amp; Care Design - 建築・まちづくり | GANIMEDESIGN株式会社</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
@@ -37,27 +37,29 @@
         .intro-section h2 .highlight { color: #4a3c2a; }
         .intro-section p { font-size: 1.1rem; color: #555; line-height: 2; }
 
-        .features-section { padding: 6rem 2rem; background: #f8f8f8; }
-        .features-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .feature-card { background: white; border-radius: 20px; padding: 3rem 2rem; text-align: center; transition: all 0.3s; }
-        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .feature-card .icon { font-size: 4rem; margin-bottom: 1.5rem; }
-        .feature-card h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 1rem; }
-        .feature-card p { color: #666; font-size: 0.95rem; line-height: 1.8; }
+        .services-section { padding: 6rem 2rem; background: #f8f8f8; }
+        .services-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .service-card { background: white; border-radius: 20px; padding: 3rem 2rem; transition: all 0.3s; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .service-card .icon { font-size: 3rem; margin-bottom: 1.5rem; }
+        .service-card h3 { font-size: 1.5rem; color: #4a3c2a; margin-bottom: 1rem; }
+        .service-card p { color: #666; font-size: 0.95rem; line-height: 1.8; }
 
         .concept-section { padding: 6rem 2rem; background: #7dd3c0; color: #4a3c2a; }
         .concept-container { max-width: 900px; margin: 0 auto; text-align: center; }
         .concept-section h2 { font-size: 2.5rem; margin-bottom: 2rem; }
         .concept-section p { font-size: 1.1rem; line-height: 2; color: #3d3225; }
 
-        .flow-section { padding: 6rem 2rem; background: white; }
-        .flow-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
-        .flow-container { max-width: 800px; margin: 0 auto; }
-        .flow-step { display: flex; align-items: flex-start; margin-bottom: 3rem; }
-        .flow-number { width: 60px; height: 60px; background: #7dd3c0; color: #4a3c2a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; flex-shrink: 0; margin-right: 2rem; }
-        .flow-content h3 { font-size: 1.3rem; color: #4a3c2a; margin-bottom: 0.5rem; }
-        .flow-content p { color: #666; }
+        .projects-section { padding: 6rem 2rem; background: white; }
+        .projects-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .project-card { background: #f8f8f8; border-radius: 20px; overflow: hidden; transition: all 0.3s; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .project-image { height: 200px; background: linear-gradient(135deg, #7dd3c0, #5ab8a5); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+        .project-content { padding: 2rem; }
+        .project-content h3 { font-size: 1.2rem; color: #4a3c2a; margin-bottom: 0.5rem; }
+        .project-content p { color: #666; font-size: 0.9rem; }
 
         .cta-section { padding: 6rem 2rem; background: #f8f8f8; text-align: center; }
         .cta-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 1rem; }
@@ -73,8 +75,8 @@
         .footer-section a:hover { color: #4a3c2a; }
         .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
 
-        @media (max-width: 1024px) { .features-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .footer-content { grid-template-columns: 1fr; } .flow-step { flex-direction: column; text-align: center; } .flow-number { margin: 0 auto 1rem; } }
+        @media (max-width: 1024px) { .services-grid, .projects-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { header { padding: 1rem 2rem; } nav { display: none; } .hero h1 { font-size: 2.5rem; } .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -94,67 +96,72 @@
 
     <section class="hero">
         <span class="hero-label">SERVICE</span>
-        <h1>Visitnurse</h1>
-        <p>病院に行かなくても、医療が届く新しいかたち</p>
+        <h1>Architecture &amp; Care Design</h1>
+        <p>命を守るインフラ、暮らしをつくる器</p>
     </section>
 
     <section class="intro-section">
         <div class="intro-container animate-on-scroll">
-            <h2>ツナグ<span class="highlight">医療</span></h2>
-            <p>病院に行かなくても外傷・急病に対応できる、ハイブリッド型現場医療サービスです。<br><br>遠隔医療と訪問看護を組み合わせ、地理的・時間的な制約を超えて、必要な医療を必要な場所に届けます。建設現場、工場、イベント会場など、医療アクセスが限られる環境での活用が広がっています。</p>
+            <h2>建築・<span class="highlight">まちづくり</span></h2>
+            <p>私たちの建築は、単なる箱ではありません。<br><br>「命を守るインフラ」であり「暮らしをつくる器」として、医療・介護の視点を取り入れた建築設計を行っています。高齢化社会に対応した介護施設、地域医療を支える診療所、人々が集う福祉のまちづくりまで、幅広く手がけています。</p>
         </div>
     </section>
 
-    <section class="features-section">
-        <h2 class="animate-on-scroll">サービスの特長</h2>
-        <div class="features-grid">
-            <div class="feature-card animate-on-scroll delay-1">
+    <section class="services-section">
+        <h2 class="animate-on-scroll">事業内容</h2>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll delay-1">
                 <div class="icon">🏥</div>
-                <h3>ハイブリッド医療</h3>
-                <p>オンライン診療と訪問看護を組み合わせた、新しい医療提供モデル。医師がリモートで診断し、看護師が現場で処置を行います。</p>
+                <h3>介護施設設計</h3>
+                <p>入居者の尊厳と生活の質を重視した、人にやさしい介護施設を設計します。スタッフの働きやすさも考慮した、持続可能な施設づくりを目指します。</p>
             </div>
-            <div class="feature-card animate-on-scroll delay-2">
-                <div class="icon">⚡</div>
-                <h3>迅速な対応</h3>
-                <p>現場への駆けつけ時間を最短化。外傷や急病に素早く対応し、重症化を防ぎます。</p>
+            <div class="service-card animate-on-scroll delay-2">
+                <div class="icon">🏠</div>
+                <h3>診療所・クリニック設計</h3>
+                <p>地域医療の拠点となる診療所やクリニックの設計。患者さんが安心して通える空間づくりをサポートします。</p>
             </div>
-            <div class="feature-card animate-on-scroll delay-3">
-                <div class="icon">📍</div>
-                <h3>現場特化</h3>
-                <p>建設現場、工場、イベント会場など、医療機関から離れた場所での医療提供に特化しています。</p>
+            <div class="service-card animate-on-scroll delay-3">
+                <div class="icon">🌳</div>
+                <h3>福祉のまちづくり</h3>
+                <p>高齢者も障がい者も、すべての人が暮らしやすいまちの実現に向けた、まちづくりコンサルティングを行います。</p>
+            </div>
+            <div class="service-card animate-on-scroll delay-1">
+                <div class="icon">📋</div>
+                <h3>什器備品調達</h3>
+                <p>介護施設に必要な什器備品の一括調達をサポート。コスト削減と品質確保を両立した調達支援を行います。</p>
             </div>
         </div>
     </section>
 
     <section class="concept-section">
         <div class="concept-container animate-on-scroll">
-            <h2>Connecting lives to POSSIBLE</h2>
-            <p>医療が届かない場所をなくしたい。<br><br>日本国内でも、都市部から離れた場所では医療アクセスに課題があります。<br>私たちは、テクノロジーと人の力を組み合わせ、「医療の届かない場所」を「医療が届く場所」に変えていきます。</p>
+            <h2>すべての人に居場所を</h2>
+            <p>建築は、人の暮らしと命を守る器です。<br><br>高齢化が進む日本において、医療・介護施設の重要性はますます高まっています。<br>私たちは「Connecting lives to ∞ POSSIBLE」の理念のもと、すべての人に居場所と安心を届ける建築を創造します。</p>
         </div>
     </section>
 
-    <section class="flow-section">
-        <h2 class="animate-on-scroll">ご利用の流れ</h2>
-        <div class="flow-container">
-            <div class="flow-step animate-on-scroll">
-                <div class="flow-number">1</div>
-                <div class="flow-content">
-                    <h3>お問い合わせ・ヒアリング</h3>
-                    <p>現場の状況、想定されるリスク、必要な医療体制についてお伺いします。</p>
+    <section class="projects-section">
+        <h2 class="animate-on-scroll">プロジェクト</h2>
+        <div class="projects-grid">
+            <div class="project-card animate-on-scroll delay-1">
+                <div class="project-image">🏗️</div>
+                <div class="project-content">
+                    <h3>介護村プロジェクト</h3>
+                    <p>日本発の新しい介護コミュニティ構想</p>
                 </div>
             </div>
-            <div class="flow-step animate-on-scroll">
-                <div class="flow-number">2</div>
-                <div class="flow-content">
-                    <h3>プラン策定</h3>
-                    <p>現場に最適な医療提供体制をご提案します。</p>
+            <div class="project-card animate-on-scroll delay-2">
+                <div class="project-image">♨️</div>
+                <div class="project-content">
+                    <h3>温泉エクイティ</h3>
+                    <p>温泉×介護の新しい事業モデル</p>
                 </div>
             </div>
-            <div class="flow-step animate-on-scroll">
-                <div class="flow-number">3</div>
-                <div class="flow-content">
-                    <h3>サービス開始</h3>
-                    <p>看護師の配置、オンライン診療体制の構築を行い、サービスを開始します。</p>
+            <div class="project-card animate-on-scroll delay-3">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3>介護施設見積システム</h3>
+                    <p>什器備品の最適調達をサポート</p>
                 </div>
             </div>
         </div>
@@ -162,8 +169,8 @@
 
     <section class="cta-section">
         <div class="animate-on-scroll">
-            <h2>導入のご相談</h2>
-            <p>現場の医療体制についてお気軽にご相談ください</p>
+            <h2>プロジェクトのご相談</h2>
+            <p>介護施設・医療施設の設計、まちづくりについてお気軽にご相談ください</p>
             <a href="contact.html" class="cta-btn">お問い合わせ</a>
         </div>
     </section>

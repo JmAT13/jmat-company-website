@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寄付型CF | GANIMEDESIGN株式会社</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes ripple { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(2.5); opacity: 0; } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(78, 205, 196, 0.6); } 50% { box-shadow: 0 0 35px rgba(78, 205, 196, 0.9); } }
+        
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        header { background: rgba(125, 211, 192, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 4rem; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo { color: #4a3c2a; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        nav { display: flex; gap: 3rem; }
+        .nav-item { position: relative; }
+        .nav-link { color: #4a3c2a; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-link:hover { color: #3d3225; }
+        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 220px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-radius: 12px; margin-top: 0.5rem; padding: 0.5rem 0; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown a { display: block; padding: 0.75rem 1.5rem; color: #333; text-decoration: none; }
+        .dropdown a:hover { background: #f0f0f0; }
+
+        .hero { background: linear-gradient(-45deg, #7dd3c0, #5ec4ad, #8fe0d0, #4db8a5); background-size: 400% 400%; animation: gradientShift 15s ease infinite; color: #4a3c2a; padding: 12rem 2rem 6rem; margin-top: 75px; text-align: center; }
+        .hero-label { display: inline-block; background: rgba(74, 60, 42, 0.2); color: #3d3225; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; color: #3d3225; }
+
+        .intro-section { padding: 6rem 2rem; background: white; }
+        .intro-container { max-width: 900px; margin: 0 auto; text-align: center; }
+        .intro-section h2 { font-size: 2.5rem; color: #7dd3c0; margin-bottom: 2rem; }
+        .intro-section p { font-size: 1.1rem; color: #555; line-height: 2; }
+
+        .features-section { padding: 6rem 2rem; background: #f8f8f8; }
+        .features-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .feature-card { background: white; padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .feature-card .icon { font-size: 3rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.3rem; color: #7dd3c0; margin-bottom: 1rem; }
+        .feature-card p { color: #666; font-size: 0.95rem; }
+
+        /* Future City Section */
+        .future-city-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #e8f8f6 50%, #ffffff 100%);
+        }
+        
+        .future-city-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .future-city-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+        }
+        
+        .future-city-header h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .future-city-header h2 .highlight {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .future-city-header p {
+            color: #6b7c93;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .instruction-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid #4ECDC4;
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.2);
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: #4ECDC4;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .image-map-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(78, 205, 196, 0.25);
+            border: 4px solid #4ECDC4;
+            background: white;
+        }
+        
+        .city-image {
+            width: 100%;
+            display: block;
+        }
+        
+        .hotspot {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            border: 4px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.5);
+            animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
+            z-index: 10;
+        }
+        
+        .hotspot::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(78, 205, 196, 0.4);
+            animation: ripple 2s ease-out infinite;
+            z-index: -1;
+        }
+        
+        .hotspot:hover {
+            transform: scale(1.25) translateY(-5px);
+            box-shadow: 0 8px 30px rgba(78, 205, 196, 0.7);
+        }
+        
+        .hotspot:hover::before {
+            animation: none;
+        }
+        
+        .hotspot-label {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .hotspot:hover .hotspot-label {
+            opacity: 1;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: scale(0.8) translateY(30px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            border-radius: 24px 24px 0 0;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(90deg);
+        }
+        
+        .modal-icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        
+        .modal-title {
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        
+        .modal-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .modal-description {
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-vision {
+            background: linear-gradient(135deg, #e8f8f6 0%, #d1f0eb 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #4ECDC4;
+        }
+        
+        .modal-vision h4 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .modal-vision p {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .close-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .projects-section { padding: 6rem 2rem; background: white; }
+        .projects-section h2 { text-align: center; font-size: 2.5rem; color: #7dd3c0; margin-bottom: 4rem; }
+        .project-card { max-width: 900px; margin: 0 auto 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .project-card:nth-child(odd) { direction: rtl; }
+        .project-card:nth-child(odd) > * { direction: ltr; }
+        .project-image { border-radius: 20px; overflow: hidden; }
+        .project-image img { width: 100%; height: 300px; object-fit: cover; }
+        .project-content h3 { font-size: 1.5rem; color: #4a3c2a; margin-bottom: 1rem; }
+        .project-content p { color: #666; margin-bottom: 1.5rem; }
+        .donate-btn { display: inline-block; background: #4a3c2a; color: white; padding: 0.8rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .donate-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(74, 60, 42, 0.3); }
+
+        .cta-section { padding: 6rem 2rem; background: #7dd3c0; text-align: center; color: #4a3c2a; }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .cta-section p { margin-bottom: 2rem; color: #3d3225; }
+        .cta-btn { display: inline-block; background: #4a3c2a; color: white; padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; }
+        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(74, 60, 42, 0.3); }
+
+        footer { background: #5ab8a5; color: white; padding: 4rem 2rem 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.1rem; color: #4a3c2a; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration: none; display: block; padding: 0.4rem 0; }
+        .footer-section a:hover { color: #4a3c2a; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+
+        @media (max-width: 1024px) { 
+            .features-grid { grid-template-columns: repeat(2, 1fr); } 
+            .project-card { grid-template-columns: 1fr; } 
+            .project-card:nth-child(odd) { direction: ltr; }
+            .hotspot { width: 45px; height: 45px; font-size: 1.2rem; }
+        }
+        @media (max-width: 768px) { 
+            header { padding: 1rem 2rem; } 
+            nav { display: none; } 
+            .hero h1 { font-size: 2.5rem; } 
+            .features-grid { grid-template-columns: 1fr; } 
+            .footer-content { grid-template-columns: 1fr; }
+            .hotspot { width: 40px; height: 40px; font-size: 1rem; }
+            .future-city-header h2 { font-size: 2rem; }
+            .modal { width: 95%; margin: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">GANIMEDESIGN</a>
+            <nav>
+                <div class="nav-item"><a href="index.html" class="nav-link">HOME</a></div>
+                <div class="nav-item"><a href="#" class="nav-link">ABOUT</a><div class="dropdown"><a href="about-company.html">会社概要</a><a href="about-message.html">代表挨拶</a><a href="about-philosophy.html">企業理念</a></div></div>
+                <div class="nav-item"><a href="#" class="nav-link">SERVICES</a><div class="dropdown"><a href="service-emergency.html">In-house planning CF</a><a href="service-visitnurse.html">Visitnurse</a><a href="service-cosmetics.html">Cosmetics</a><a href="service-construction.html">Architecture & Care Design</a><a href="service-figurine.html">Entertainment</a></div></div>
+                <div class="nav-item"><a href="news.html" class="nav-link">NEWS</a></div>
+                <div class="nav-item"><a href="recruit.html" class="nav-link">RECRUIT</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="hero-label">SERVICE</span>
+        <h1>寄付型クラウドファンディング</h1>
+        <p>あなたの想いが、誰かの命につながる</p>
+    </section>
+
+    <section class="intro-section">
+        <div class="intro-container animate-on-scroll">
+            <h2>自社プロジェクト専用CF</h2>
+            <p>GANIMEDESIGNの寄付型クラウドファンディングは、医療が届かない地域への支援を実現するためのプラットフォームです。<br><br>集まった資金は100%、現地の医療機器購入、移動診療車の運営、医療スタッフの派遣などに活用されます。支援者の皆様には、プロジェクトの進捗を定期的にレポートでお届けします。</p>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2 class="animate-on-scroll">プラットフォームの特徴</h2>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll delay-1">
+                <div class="icon">💯</div>
+                <h3>100%現場還元</h3>
+                <p>運営費は別途確保。寄付金は全額、現地の医療支援に使われます。</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-2">
+                <div class="icon">📊</div>
+                <h3>透明性の確保</h3>
+                <p>資金の使途を詳細にレポート。どこで何に使われたか全て公開します。</p>
+            </div>
+            <div class="feature-card animate-on-scroll delay-3">
+                <div class="icon">🌍</div>
+                <h3>現地との直接連携</h3>
+                <p>インド・アメリカの現地チームと直接連携。確実に届けます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future City Section -->
+    <section class="future-city-section">
+        <div class="future-city-header animate-on-scroll">
+            <div class="future-city-badge">Connecting lives to ∞</div>
+            <h2><span class="highlight">未来の街</span> - 私たちのビジョン</h2>
+            <p>私たちが描く持続可能な社会。医療、建築、エンタメの力で「届かない」を「届く」に変える。</p>
+            <div class="instruction-box">
+                <div class="pulse-dot"></div>
+                <span>アイコンをクリックして、それぞれの想いをご覧ください</span>
+            </div>
+        </div>
+        
+        <div class="image-map-container animate-on-scroll">
+            <img src="future-city-image.png" alt="未来の街" class="city-image" id="cityImage">
+            
+            <!-- 5 Hotspots positioned at X marks -->
+            <!-- X1: Top left - Large tree/greenhouse -->
+            <div class="hotspot" style="top: 8%; left: 5%;" data-id="forest">
+                🌲
+                <span class="hotspot-label">森林保全</span>
+            </div>
+            
+            <!-- X2: Center - Golden building in roundabout -->
+            <div class="hotspot" style="top: 38%; left: 32%;" data-id="community">
+                🏛️
+                <span class="hotspot-label">コミュニティ拠点</span>
+            </div>
+            
+            <!-- X3: Emergency sign area -->
+            <div class="hotspot" style="top: 22%; left: 48%;" data-id="medical">
+                🏥
+                <span class="hotspot-label">医療支援</span>
+            </div>
+            
+            <!-- X4: Right side building with screens -->
+            <div class="hotspot" style="top: 35%; left: 62%;" data-id="digital">
+                📱
+                <span class="hotspot-label">デジタル社会</span>
+            </div>
+            
+            <!-- X5: Bottom traditional Japanese buildings -->
+            <div class="hotspot" style="top: 72%; left: 55%;" data-id="culture">
+                🏯
+                <span class="hotspot-label">文化・伝統</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">×</button>
+                <span class="modal-icon" id="modalIcon"></span>
+                <div class="modal-title" id="modalTitle"></div>
+                <div class="modal-subtitle" id="modalSubtitle"></div>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description" id="modalDescription"></p>
+                <div class="modal-vision">
+                    <h4>💭 私たちの想い</h4>
+                    <p id="modalVision"></p>
+                </div>
+                <button class="close-btn" onclick="closeModal()">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="projects-section">
+        <h2 class="animate-on-scroll">進行中のプロジェクト</h2>
+        <div class="project-card animate-on-scroll">
+            <div class="project-image"><img src="Hot-Spring.png" alt="Hot Spring Equity Project"></div>
+            <div class="project-content">
+                <h3>Hot Spring Equity Project</h3>
+                <p style="font-weight: 600; color: #40916c; margin-bottom: 0.5rem;">温泉を掘る。未来を温める。</p>
+                <p>温泉発掘を起点に、医療・介護・ウェルネス・地域資産へと展開する、エクイティ思想に基づいた社会実装型プロジェクト。掘るところから、価値とリターンを分かち合う新しい温泉のつくり方を提案します。</p>
+                <a href="hot-spring-equity.html" class="donate-btn">詳細を見る</a>
+            </div>
+        </div>
+        <div class="project-card animate-on-scroll">
+            <div class="project-image"><img src="kaigomura.png" alt="介護村"></div>
+            <div class="project-content">
+                <h3>日本 介護村コミュニティ構想</h3>
+                <p>高齢者が安心して暮らせる新しい形のコミュニティを創ります。医療・介護・生活が一体となった持続可能な街づくり。</p>
+                <a href="contact.html" class="donate-btn">このプロジェクトを支援</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 class="animate-on-scroll">支援の輪に加わりませんか</h2>
+        <p class="animate-on-scroll delay-1">月々1,000円からの継続支援も受け付けています</p>
+        <a href="contact.html" class="cta-btn animate-on-scroll delay-2">支援する</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h3>企業情報</h3><ul><li><a href="about-company.html">会社概要</a></li><li><a href="about-message.html">代表挨拶</a></li><li><a href="about-philosophy.html">企業理念</a></li></ul></div>
+            <div class="footer-section"><h3>サービス</h3><ul><li><a href="service-emergency.html">In-house planning CF</a></li><li><a href="service-visitnurse.html">Visitnurse</a></li><li><a href="service-cosmetics.html">Cosmetics</a></li><li><a href="service-construction.html">Architecture & Care Design</a></li><li><a href="service-figurine.html">Entertainment</a></li></ul></div>
+            <div class="footer-section"><h3>情報</h3><ul><li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+            <div class="footer-section"><h3>Contact</h3><ul><li><a href="contact.html">お問い合わせ</a></li><li><a href="mailto:info@ganime.jp">info@ganime.jp</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2024 GANIMEDESIGN株式会社 All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        // Scroll Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Content Data for Modal
+        const contentData = {
+            forest: {
+                icon: "🌲",
+                title: "森林保全",
+                subtitle: "Forest Conservation",
+                description: "計画的な植林と間伐により、健全な森林を維持・育成します。木材の有効活用とCO2吸収により、循環型社会の構築に貢献。未来の街では、自然と共生する環境を大切にしています。",
+                vision: "森は地球の肺であり、多くの生命を育む場所。先人から受け継いだ豊かな森林を、次世代へ引き継ぐことが私たちの使命です。医療支援の輪を広げながら、地球環境も守っていきたい。"
+            },
+            community: {
+                icon: "🏛️",
+                title: "コミュニティ拠点",
+                subtitle: "Community Hub",
+                description: "地域の中心となるコミュニティ拠点を整備。多世代が交流し、支え合える場を創造します。医療・福祉・教育が連携した、誰もが安心して暮らせる街づくりを推進。",
+                vision: "人と人とのつながりこそが、地域の力。高齢者から子どもまで、すべての人が居場所を見つけられるコミュニティを目指しています。介護村構想の核となる想いです。"
+            },
+            medical: {
+                icon: "🏥",
+                title: "医療支援",
+                subtitle: "Healthcare Support",
+                description: "移動診療車や遠隔医療の導入により、医療が届かない地域への支援を実現。24時間対応の緊急医療体制と、予防医療の充実で、すべての人に健康を届けます。",
+                vision: "医療は人権。経済状況や居住地域に関わらず、誰もが適切な医療を受けられる社会を目指して。私たちのクラウドファンディングは、この想いを形にするための第一歩です。"
+            },
+            digital: {
+                icon: "📱",
+                title: "デジタル社会",
+                subtitle: "Digital Society",
+                description: "最新のテクノロジーを活用し、医療・教育・行政サービスをデジタル化。オンライン診療や電子カルテの普及で、効率的で質の高いサービスを提供します。",
+                vision: "デジタル技術は目的ではなく手段。すべての人が取り残されることなく、技術の恩恵を受けられる社会を目指しています。特に医療分野でのDXを推進し、命を救う力を最大化します。"
+            },
+            culture: {
+                icon: "🏯",
+                title: "文化・伝統の継承",
+                subtitle: "Cultural Heritage",
+                description: "日本の伝統的な建築様式や文化を大切にしながら、現代のニーズに合わせた新しい住まい方を提案。地域の歴史と文化を守りながら、持続可能なコミュニティを形成します。",
+                vision: "過去を大切にしながら、未来を創る。日本の美しい文化と、最新の医療・福祉サービスが融合した、世界に誇れる街づくり。それが私たちの描く介護村の姿です。"
+            }
+        };
+
+        // Modal Functions
+        function openModal(id) {
+            const data = contentData[id];
+            if (!data) return;
+            
+            document.getElementById('modalIcon').textContent = data.icon;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalSubtitle').textContent = data.subtitle;
+            document.getElementById('modalDescription').textContent = data.description;
+            document.getElementById('modalVision').textContent = data.vision;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.hotspot').forEach(hotspot => {
+            hotspot.addEventListener('click', () => openModal(hotspot.dataset.id));
+        });
+
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('mod
+alOverlay')) {
+                closeModal();
+            }
+        });
+
+        document.querySelector('.modal-close').addEventListener('click', closeModal);
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => { 
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) entry.target.classList.add('animated'); 
+            }); 
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
