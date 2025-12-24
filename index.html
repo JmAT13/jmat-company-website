@@ -358,6 +358,41 @@
             transform: translateX(-50%);
         }
 
+        /* 十字マークボタン */
+        .cross-btn {
+            padding: 0;
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%) !important;
+            margin-top: 0;
+            border-radius: 0;
+            clip-path: polygon(
+                /* 上 */
+                31% 0%, 69% 0%,
+                69% 31%,
+                /* 右 */
+                100% 31%, 100% 69%,
+                69% 69%,
+                /* 下 */
+                69% 100%, 31% 100%,
+                31% 69%,
+                /* 左 */
+                0% 69%, 0% 31%,
+                31% 31%
+            );
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .hero-half.left .cross-btn {
+            left: 22.5%;
+        }
+
         .hero-half.left .hero-btn:hover {
             background: var(--white);
             color: var(--primary-red);
@@ -368,7 +403,7 @@
         .hero-half.right .hero-btn:hover {
             background: var(--primary-red);
             color: var(--white);
-            transform: translateX(-50%) translateY(-3px);
+            transform: translateY(-3px) !important;
             box-shadow: 0 10px 30px rgba(230,0,18,0.3);
         }
 
@@ -507,7 +542,7 @@
                 <span class="char-t">T</span><span class="char-a">A</span><span class="char-m">m</span><span class="char-j">J</span>
             </h1>
             <p class="hero-subtitle left-subtitle">会社概要</p>
-            <a href="#" class="hero-btn">TOUCH</a>
+            <a href="#" class="hero-btn cross-btn">TOUCH</a>
         </div>
 
         <div class="center-logo">
@@ -522,7 +557,7 @@
                 <span class="line-jump"><span class="char-jump-j">J</span><span class="char-jump-u">U</span><span class="char-jump-m">m</span><span class="char-jump-p">P</span></span>
             </h1>
             <p class="hero-subtitle right-subtitle">歴史に触れ、次の一歩へ跳ぼう！</p>
-            <a href="#" class="hero-btn">JU<span class="btn-m">m</span>P</a>
+            <a href="#" class="hero-btn cross-btn">JU<span class="btn-m">m</span>P</a>
         </div>
     </section>
 </body>
