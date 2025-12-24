@@ -281,67 +281,140 @@
             color: rgba(255, 255, 255, 0.85);
         }
 
-        /* ========== Values Section ========== */
+        /* ========== Values Section - ADK PRIDE Style ========== */
         .values-section {
-            padding: 6rem 2rem;
+            padding: 0;
             background: var(--white);
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
         }
 
-        .values-section h2 {
+        .values-left {
+            flex: 0 0 40%;
+            background: var(--white);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            z-index: 2;
+        }
+
+        .values-left .section-label {
             font-family: "Bebas Neue", sans-serif;
-            text-align: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--primary-red);
             letter-spacing: 0.2em;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
-        .values-section h3 {
+        .values-left .main-copy {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--cta-gray);
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .values-left .sub-copy {
+            font-size: 1rem;
+            color: #666;
+            line-height: 2;
+        }
+
+        .values-right {
+            flex: 0 0 60%;
+            background: var(--white);
+            padding: 4rem 4rem 4rem 8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .value-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .value-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--primary-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Inter", sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--primary-red);
             text-align: center;
-            font-size: 0.9rem;
-            color: #999;
-            margin-bottom: 4rem;
+            line-height: 1.2;
         }
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .value-content {
+            flex: 1;
         }
 
-        .value-card {
-            background: #f8f8f8;
-            padding: 2.5rem;
-            border-radius: 20px;
-            transition: all 0.3s;
-            border-left: 4px solid var(--primary-red);
-        }
-
-        .value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .value-card h4 {
-            font-size: 1.3rem;
+        .value-content h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
             color: var(--cta-gray);
             margin-bottom: 0.5rem;
         }
 
-        .value-card .english {
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 0.95rem;
-            color: var(--primary-red);
-            margin-bottom: 1rem;
-            letter-spacing: 0.05em;
+        .value-content p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.8;
         }
 
-        .value-card p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.8;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .values-section {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .values-left {
+                flex: none;
+                padding: 4rem 2rem;
+            }
+
+            .values-right {
+                flex: none;
+                padding: 4rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .values-left .main-copy {
+                font-size: 2rem;
+            }
+
+            .value-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .value-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 0.6rem;
+            }
         }
 
         /* ========== About Navigation Section ========== */
@@ -524,7 +597,7 @@
         <div class="mission-container">
             <h2 class="animate-on-scroll">MISSION</h2>
             <h3 class="animate-on-scroll delay-1">今やるべきこと</h3>
-            <p class="main-text animate-on-scroll delay-2">必要な支援が、必要な人に届かない。<br>私たちは、その"届かない構造"を疑い、<br>国や制度の外側から、仕組みを組み替える。<br>イキる可能性が、環境で決まらない社会をつくる。</p>
+            <p class="main-text animate-on-scroll delay-2">動かないものを、動く構造に変える。<br>思考・想い・可能性を、環境から解放しよう！</p>
         </div>
     </section>
 
@@ -555,42 +628,59 @@
     </section>
 
     <section class="values-section">
-        <h2 class="animate-on-scroll">VALUE</h2>
-        <h3 class="animate-on-scroll delay-1">行動指針／判断基準</h3>
-        <div class="values-grid">
-            <div class="value-card animate-on-scroll delay-1">
-                <h4>先に動く</h4>
-                <p class="english">Move First</p>
-                <p>迷う前に現場へ出る。行動こそが生命を救い、未来を切り開く原動力になる。</p>
+        <div class="values-left animate-on-scroll">
+            <span class="section-label">VALUE</span>
+            <h2 class="main-copy">YOUも、変数。</h2>
+            <p class="sub-copy">
+                正解に合わせる人はいらない。<br>
+                状況に応じて動き、構造を変え、結果を出す。<br>
+                変化を恐れず、停滞を選ばない。
+            </p>
+        </div>
+        <div class="values-right">
+            <div class="value-item animate-on-scroll delay-1">
+                <div class="value-icon">先に<br>動く</div>
+                <div class="value-content">
+                    <h4>迷う前に現場へ出る。</h4>
+                    <p>行動こそが生命を救い、未来を切り開く原動力になる。</p>
+                </div>
             </div>
-            <div class="value-card animate-on-scroll delay-2">
-                <h4>現場から学び、現場で変える</h4>
-                <p class="english">Field Driven</p>
-                <p>机上ではなく、現場の声・人の痛み・地域の実情から答えをつくる。</p>
+            <div class="value-item animate-on-scroll delay-2">
+                <div class="value-icon">現場<br>主義</div>
+                <div class="value-content">
+                    <h4>現場から学び、現場で変える。</h4>
+                    <p>机上ではなく、現場の声・人の痛み・地域の実情から答えをつくる。</p>
+                </div>
             </div>
-            <div class="value-card animate-on-scroll delay-3">
-                <h4>国境も業界も超える</h4>
-                <p class="english">Beyond Borders</p>
-                <p>医療 × 介護 × 建築 × IP × 教育。領域の壁を越えることで、解決できなかった課題が解決できる。</p>
+            <div class="value-item animate-on-scroll delay-3">
+                <div class="value-icon">越境</div>
+                <div class="value-content">
+                    <h4>国境も業界も超える。</h4>
+                    <p>医療 × 介護 × 建築 × IP × 教育。領域の壁を越えることで、解決できなかった課題が解決できる。</p>
+                </div>
             </div>
-            <div class="value-card animate-on-scroll delay-4">
-                <h4>すべての人を尊重する</h4>
-                <p class="english">Human Dignity</p>
-                <p>国籍・年齢・背景に関わらず、一人ひとりの尊厳と選択肢を守る。</p>
+            <div class="value-item animate-on-scroll delay-4">
+                <div class="value-icon">尊重</div>
+                <div class="value-content">
+                    <h4>すべての人を尊重する。</h4>
+                    <p>国籍・年齢・背景に関わらず、一人ひとりの尊厳と選択肢を守る。</p>
+                </div>
             </div>
-            <div class="value-card animate-on-scroll delay-5">
-                <h4>持続できる仕組みをつくる</h4>
-                <p class="english">Sustainable Impact</p>
-                <p>一時的な支援ではなく、地域が自走できる医療・介護・コミュニティの"仕組み"を提供する。</p>
+            <div class="value-item animate-on-scroll delay-5">
+                <div class="value-icon">持続</div>
+                <div class="value-content">
+                    <h4>持続できる仕組みをつくる。</h4>
+                    <p>一時的な支援ではなく、地域が自走できる医療・介護・コミュニティの"仕組み"を提供する。</p>
+                </div>
             </div>
-            <div class="value-card animate-on-scroll">
-                <h4>子どもたちに、誇れる世界を残す</h4>
-                <p class="english">For the Next Generation</p>
-                <p>次の世代が世界を自由に生きられるように、今できる最大の行動を選ぶ。</p>
+            <div class="value-item animate-on-scroll">
+                <div class="value-icon">次世代</div>
+                <div class="value-content">
+                    <h4>子どもたちに、誇れる世界を残す。</h4>
+                    <p>次の世代が世界を自由に生きられるように、今できる最大の行動を選ぶ。</p>
+                </div>
             </div>
         </div>
-    </section>
-
     </section>
 
     <!-- Contact Section -->
