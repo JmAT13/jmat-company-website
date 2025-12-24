@@ -50,41 +50,56 @@
 
         .hero-half.left {
             background: var(--primary-red);
-            align-items: flex-start;
-            padding-left: 10%;
+            align-items: center;
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
             clip-path: polygon(
                 0 0,
-                90% 0,
-                92% 5%,
-                88% 10%,
-                91% 15%,
-                87% 20%,
-                90% 25%,
-                86% 30%,
-                89% 35%,
-                85% 40%,
-                88% 45%,
-                84% 50%,
-                88% 55%,
-                85% 60%,
-                89% 65%,
-                86% 70%,
-                90% 75%,
-                87% 80%,
-                91% 85%,
-                88% 90%,
-                92% 95%,
-                90% 100%,
+                50% 0,
+                50% 6%,
+                56% 6%,
+                56% 12%,
+                48% 12%,
+                48% 18%,
+                54% 18%,
+                54% 24%,
+                46% 24%,
+                46% 30%,
+                52% 30%,
+                52% 36%,
+                48% 36%,
+                48% 42%,
+                55% 42%,
+                55% 48%,
+                47% 48%,
+                47% 54%,
+                53% 54%,
+                53% 60%,
+                49% 60%,
+                49% 66%,
+                51% 66%,
+                51% 72%,
+                47% 72%,
+                47% 78%,
+                54% 78%,
+                54% 84%,
+                50% 84%,
+                50% 90%,
+                52% 90%,
+                52% 100%,
                 0 100%
             );
-            padding-right: 15%;
         }
 
         .hero-half.right {
             background: var(--white);
             align-items: flex-start;
-            padding-left: 15%;
-            margin-left: -10%;
+            justify-content: center;
+            padding-left: 10%;
+            padding-right: 0;
+            position: relative;
+            margin-left: -3%;
         }
 
         /* Subtle pattern overlay */
@@ -98,20 +113,6 @@
             background-image: 
                 radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .hero-half.right::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(230,0,18,0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(230,0,18,0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: 1;
         }
@@ -160,6 +161,26 @@
             display: block;
         }
 
+        /* Subtitles */
+        .hero-subtitle {
+            font-family: "Inter", sans-serif;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-top: 1rem;
+        }
+
+        .left-subtitle {
+            color: var(--white);
+            margin-right: 55%;
+            text-align: center;
+        }
+
+        .right-subtitle {
+            color: var(--primary-red);
+            text-align: left;
+        }
+
         /* 太さバリエーション */
         .weight-black {
             -webkit-text-stroke: 2px currentColor;
@@ -176,11 +197,13 @@
 
         /* ========== Left side - TAmJ (文字ごとに人格) ========== */
         .hero-half.left .hero-title {
-            text-align: left;
-            font-size: clamp(5rem, 12vw, 10rem);
+            text-align: center;
+            font-size: clamp(3rem, 8vw, 6rem);
             color: var(--white);
             display: flex;
             align-items: baseline;
+            justify-content: center;
+            margin-right: 55%;
         }
 
         /* T: 極太・横幅狭め・支配 */
@@ -197,14 +220,15 @@
             margin-right: 0.12em; /* mの前に間を空ける */
         }
 
-        /* m: 極細・小文字・異物 */
+        /* m: 小文字・異物（Interフォントで小文字表示） */
         .hero-half.left .hero-title .char-m {
-            font-size: 0.75em;
-            opacity: 0.6;
+            font-family: "Inter", sans-serif;
+            font-weight: 300;
+            font-size: 0.6em;
             position: relative;
-            top: 0.12em;
-            margin-right: 0.1em; /* mの後にも間 */
-            letter-spacing: 0;
+            top: 0.15em;
+            margin-right: 0.1em;
+            margin-left: 0.05em;
         }
 
         /* J: 極太・縦長・動こうとしている */
@@ -217,7 +241,7 @@
             top: 3px;
         }
 
-        /* ========== Right side - TOUCH ALL mINDS, JUmP ========== */
+        /* ========== Right side - TOUCH ALL mINDS JUmP ========== */
         .hero-half.right .hero-title {
             text-align: left;
             color: var(--primary-red);
@@ -228,23 +252,23 @@
 
         /* TOUCH行 */
         .hero-half.right .hero-title .line-touch {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(3.5rem, 7vw, 5.5rem);
             display: flex;
             align-items: baseline;
         }
 
         .hero-half.right .char-touch-t { -webkit-text-stroke: 2px currentColor; }
-        .hero-half.right .char-touch-o { opacity: 0.6; }
+        .hero-half.right .char-touch-o { }
         .hero-half.right .char-touch-u { -webkit-text-stroke: 1px currentColor; }
         .hero-half.right .char-touch-c { -webkit-text-stroke: 2px currentColor; }
-        .hero-half.right .char-touch-h { opacity: 0.6; }
+        .hero-half.right .char-touch-h { }
 
         /* ALL行 */
         .hero-half.right .hero-title .line-all {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(3.5rem, 7vw, 5.5rem);
             display: flex;
             align-items: baseline;
-            margin-left: 0.3em;
+            margin-left: 0;
         }
 
         .hero-half.right .char-all-a { -webkit-text-stroke: 1px currentColor; }
@@ -253,21 +277,22 @@
 
         /* mINDS,行 */
         .hero-half.right .hero-title .line-minds {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(3.5rem, 7vw, 5.5rem);
             display: flex;
             align-items: baseline;
         }
 
         .hero-half.right .char-minds-m { 
-            font-size: 0.8em;
-            opacity: 0.6;
+            font-family: "Inter", sans-serif;
+            font-weight: 300;
+            font-size: 0.55em;
             position: relative;
-            top: 0.08em;
+            top: 0.12em;
         }
-        .hero-half.right .char-minds-i { opacity: 0.6; }
+        .hero-half.right .char-minds-i { }
         .hero-half.right .char-minds-n { -webkit-text-stroke: 1px currentColor; }
         .hero-half.right .char-minds-d { -webkit-text-stroke: 2px currentColor; }
-        .hero-half.right .char-minds-s { opacity: 0.6; }
+        .hero-half.right .char-minds-s { }
         .hero-half.right .char-minds-comma { 
             -webkit-text-stroke: 2px currentColor;
             font-size: 1.3em;
@@ -278,10 +303,10 @@
 
         /* JUmP行（最重要） */
         .hero-half.right .hero-title .line-jump {
-            font-size: clamp(3.2rem, 6.5vw, 5.2rem);
+            font-size: clamp(4.5rem, 9vw, 7rem);
             display: flex;
             align-items: baseline;
-            margin-left: 0.5em;
+            margin-left: 0;
             margin-top: 0.05em;
             transform: scale(1.1);
             transform-origin: left center;
@@ -294,12 +319,13 @@
             position: relative;
             top: 2px;
         }
-        .hero-half.right .char-jump-u { opacity: 0.55; }
+        .hero-half.right .char-jump-u { }
         .hero-half.right .char-jump-m { 
-            font-size: 0.75em;
-            opacity: 0.6;
+            font-family: "Inter", sans-serif;
+            font-weight: 300;
+            font-size: 0.5em;
             position: relative;
-            top: 0.1em;
+            top: 0.15em;
         }
         .hero-half.right .char-jump-p { -webkit-text-stroke: 2px currentColor; }
 
@@ -310,10 +336,10 @@
             border: none;
             color: var(--white);
             font-family: "Inter", sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: all 0.15s ease;
             background: var(--cta-gray);
             border-radius: 50px;
             position: absolute;
@@ -323,18 +349,35 @@
         }
 
         .hero-half.left .hero-btn {
-            left: 40%;
+            left: 25%;
+            transform: translateX(-50%);
         }
 
         .hero-half.right .hero-btn {
-            left: 55%;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .hero-btn:hover {
-            background: var(--cta-gray-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 10;
+        .hero-half.left .hero-btn:hover {
+            background: var(--white);
+            color: var(--primary-red);
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .hero-half.right .hero-btn:hover {
+            background: var(--primary-red);
+            color: var(--white);
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 10px 30px rgba(230,0,18,0.3);
+        }
+
+        .hero-btn .btn-m {
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            font-size: 0.85em;
+            position: relative;
+            top: 0.05em;
         }
 
         /* ========== Responsive ========== */
@@ -353,40 +396,47 @@
             .hero-half.left {
                 padding-left: 2rem !important;
                 padding-right: 2rem !important;
+                padding-bottom: 4rem !important;
                 clip-path: polygon(
                     0 0,
                     100% 0,
-                    100% 85%,
-                    95% 87%,
-                    90% 85%,
-                    85% 88%,
-                    80% 86%,
-                    75% 89%,
-                    70% 87%,
-                    65% 90%,
-                    60% 88%,
-                    55% 91%,
-                    50% 89%,
-                    45% 92%,
-                    40% 90%,
-                    35% 93%,
-                    30% 91%,
+                    100% 84%,
+                    92% 84%,
+                    92% 88%,
+                    100% 88%,
+                    100% 80%,
+                    85% 80%,
+                    85% 92%,
+                    78% 92%,
+                    78% 86%,
+                    70% 86%,
+                    70% 94%,
+                    62% 94%,
+                    62% 82%,
+                    55% 82%,
+                    55% 90%,
+                    48% 90%,
+                    48% 84%,
+                    40% 84%,
+                    40% 96%,
+                    32% 96%,
+                    32% 88%,
+                    25% 88%,
                     25% 94%,
-                    20% 92%,
-                    15% 95%,
-                    10% 93%,
-                    5% 96%,
-                    0 94%
+                    18% 94%,
+                    18% 86%,
+                    10% 86%,
+                    10% 92%,
+                    0 92%
                 );
-                padding-bottom: 4rem !important;
             }
             
             .hero-half.right {
                 padding-left: 2rem !important;
                 padding-right: 2rem !important;
+                padding-top: 4rem !important;
                 margin-left: 0;
                 margin-top: -3rem;
-                padding-top: 4rem !important;
             }
             
             .hero-title {
@@ -400,6 +450,11 @@
             
             .hero-half.right .hero-title {
                 align-items: center;
+            }
+            
+            .hero-subtitle {
+                margin-right: 0 !important;
+                text-align: center !important;
             }
             
             .hero-half.right .hero-title .line-touch {
@@ -424,7 +479,12 @@
                 position: relative;
                 bottom: auto;
                 left: auto !important;
+                transform: none !important;
                 margin-top: 2rem;
+            }
+            
+            .hero-btn:hover {
+                transform: translateY(-3px) !important;
             }
             
             .center-logo {
@@ -446,21 +506,23 @@
             <h1 class="hero-title">
                 <span class="char-t">T</span><span class="char-a">A</span><span class="char-m">m</span><span class="char-j">J</span>
             </h1>
-            <a href="#" class="hero-btn">EXPLORE</a>
+            <p class="hero-subtitle left-subtitle">会社概要</p>
+            <a href="#" class="hero-btn">TOUCH</a>
         </div>
 
         <div class="center-logo">
-            <img src="monkey-logo.png" alt="TAmJ Logo">
+            <img src="jump-logo.png" alt="TAmJ Logo">
         </div>
 
         <div class="hero-half right">
             <h1 class="hero-title">
                 <span class="line-touch"><span class="char-touch-t">T</span><span class="char-touch-o">O</span><span class="char-touch-u">U</span><span class="char-touch-c">C</span><span class="char-touch-h">H</span></span>
                 <span class="line-all"><span class="char-all-a">A</span><span class="char-all-l1">L</span><span class="char-all-l2">L</span></span>
-                <span class="line-minds"><span class="char-minds-m">m</span><span class="char-minds-i">I</span><span class="char-minds-n">N</span><span class="char-minds-d">D</span><span class="char-minds-s">S</span><span class="char-minds-comma">,</span></span>
+                <span class="line-minds"><span class="char-minds-m">m</span><span class="char-minds-i">I</span><span class="char-minds-n">N</span><span class="char-minds-d">D</span><span class="char-minds-s">S</span></span>
                 <span class="line-jump"><span class="char-jump-j">J</span><span class="char-jump-u">U</span><span class="char-jump-m">m</span><span class="char-jump-p">P</span></span>
             </h1>
-            <a href="#" class="hero-btn">EXPLORE</a>
+            <p class="hero-subtitle right-subtitle">歴史に触れ、次の一歩へ跳ぼう！</p>
+            <a href="#" class="hero-btn">JU<span class="btn-m">m</span>P</a>
         </div>
     </section>
 </body>
