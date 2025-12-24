@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MESSAGE | TAmJ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #E60012;
+            --white: #ffffff;
+            --cta-gray: #4a4a4a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            line-height: 1.8; 
+            color: #333; 
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* ========== Animations ========== */
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(60px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes gradientShift { 
+            0% { background-position: 0% 50%; } 
+            50% { background-position: 100% 50%; } 
+            100% { background-position: 0% 50%; } 
+        }
+        .animate-on-scroll { 
+            opacity: 0; 
+            transform: translateY(60px); 
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+        }
+        .animate-on-scroll.animated { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        .animate-left { 
+            opacity: 0; 
+            transform: translateX(-60px); 
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+        }
+        .animate-left.animated { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
+        .animate-right { 
+            opacity: 0; 
+            transform: translateX(60px); 
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+        }
+        .animate-right.animated { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
+
+        /* ========== Header ========== */
+        header {
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 4rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: "Bebas Neue", sans-serif;
+            color: var(--primary-red);
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .logo .char-m {
+            font-family: "Inter", sans-serif;
+            font-weight: 300;
+            font-size: 0.6em;
+            position: relative;
+            top: 0.1em;
+        }
+
+        /* ========== Hero ========== */
+        .hero {
+            background: linear-gradient(-45deg, #E60012, #cc0010, #ff1a2e, #b8000e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--white);
+            padding: 12rem 2rem 6rem;
+            margin-top: 75px;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero h1 {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* ========== Message Section ========== */
+        .message-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .message-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .ceo-photo {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            background: #f0f0f0;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .ceo-info {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .ceo-info .position {
+            font-family: "Bebas Neue", sans-serif;
+            color: var(--primary-red);
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+        }
+
+        .ceo-info .name {
+            font-family: "Bebas Neue", sans-serif;
+            color: var(--cta-gray);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .message-content h2 {
+            font-family: "Inter", sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-red);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .message-content h2 .highlight {
+            color: var(--cta-gray);
+        }
+
+        .message-content p {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 2.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .message-content .emphasis {
+            font-size: 1.1rem;
+            color: var(--cta-gray);
+            font-weight: 500;
+            background: linear-gradient(transparent 60%, rgba(230, 0, 18, 0.15) 60%);
+            display: inline;
+        }
+
+        .message-content .signature {
+            margin-top: 3rem;
+            text-align: right;
+        }
+
+        .message-content .signature .position {
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        .message-content .signature .name {
+            font-family: "Bebas Neue", sans-serif;
+            color: var(--cta-gray);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========== Quote Section ========== */
+        .quote-section {
+            padding: 6rem 2rem;
+            background: var(--primary-red);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-family: "Inter", sans-serif;
+            font-size: 2rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .quote-section blockquote span {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* ========== About Navigation Section ========== */
+        .about-nav-section {
+            padding: 4rem 2rem;
+            background: var(--cta-gray);
+        }
+
+        .about-nav-container {
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-nav-title {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        .about-nav-list {
+            list-style: none;
+        }
+
+        .about-nav-list li {
+            margin-bottom: 1rem;
+        }
+
+        .about-nav-list a {
+            display: block;
+            color: var(--white);
+            font-family: "Inter", sans-serif;
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .about-nav-list a:hover,
+        .about-nav-list a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 1024px) {
+            .message-container {
+                grid-template-columns: 1fr;
+            }
+            .ceo-photo {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 2rem;
+            }
+            .hero {
+                padding: 10rem 2rem 4rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .message-content h2 {
+                font-size: 1.5rem;
+            }
+            .quote-section blockquote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">TA<span class="char-m">m</span>J</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="hero-label">ABOUT US</span>
+        <h1>MESSAGE</h1>
+    </section>
+
+    <section class="message-section">
+        <div class="message-container">
+            <div class="animate-left">
+                <img src="ceo-avatar.png" alt="CEO JIN.T.O" class="ceo-photo">
+                <div class="ceo-info">
+                    <p class="position">CEO</p>
+                    <p class="name">JIN.T.O</p>
+                </div>
+            </div>
+            <div class="message-content animate-right">
+                <h2>必要な場所に、必要な医療と支援を、<br><span class="highlight">最短で届ける</span></h2>
+                
+                <p>私たちの社会には、医療が届かず命がこぼれ落ちてしまう場所、助けを求めても声が届かない人々が、まだ数えきれないほど存在しています。</p>
+                
+                <p>私はその現実を前に、<span class="emphasis">「必要な場所に、必要な医療と支援を、最短で届ける仕組みをつくりたい」</span>その一心で、この会社を立ち上げました。</p>
+                
+                <p>私たちが目指すのは、病院という"箱"に人を待たせる医療ではなく、人のもとへ自ら赴き、現場で命をつなぐ<span class="emphasis">"動く医療・動く支援"</span>の実現です。</p>
+                
+                <p>日本での在宅医療・訪問看護、アメリカ・インドでの外傷医療・救急支援、韓国での医療福祉連携、そして高齢者が安心して暮らせる「介護村」や、地域がつながり合うコミュニティづくりまで——私たちの活動は国境も領域も越えて広がっています。</p>
+                
+                <p>それは単なる医療活動ではありません。弱い立場にある人々を一人でも支え、<span class="emphasis">"生きる機会そのもの"</span>を増やす社会づくりです。</p>
+                
+                <p>この活動を通じて、私自身の子どもたち、そして日本や世界の子どもたちに、「誰かのために動くことが世界を本当に変える」という姿を残したい。その想いを胸に、これからも愚直に行動し続けてまいります。</p>
+                
+                <div class="signature">
+                    <p class="position">タムジ株式会社 CEO</p>
+                    <p class="name">JIN.T.O</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <blockquote class="animate-on-scroll">"すべての人に、<span>"生きる機会"</span> を届ける。"</blockquote>
+    </section>
+
+    <!-- About Navigation -->
+    <section class="about-nav-section">
+        <div class="about-nav-container">
+            <h3 class="about-nav-title">ABOUT</h3>
+            <ul class="about-nav-list">
+                <li><a href="about-company.html">COMPANY</a></li>
+                <li><a href="about-message.html" class="active">MESSAGE</a></li>
+                <li><a href="about-philosophy.html">PHILOSOPHY</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

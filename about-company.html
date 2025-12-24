@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPANY | TAmJ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #E60012;
+            --white: #ffffff;
+            --cta-gray: #4a4a4a;
+            --cta-gray-hover: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            line-height: 1.8; 
+            color: #333; 
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* ========== Animations ========== */
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(60px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes gradientShift { 
+            0% { background-position: 0% 50%; } 
+            50% { background-position: 100% 50%; } 
+            100% { background-position: 0% 50%; } 
+        }
+        .animate-on-scroll { 
+            opacity: 0; 
+            transform: translateY(60px); 
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+        }
+        .animate-on-scroll.animated { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+
+        /* ========== Header ========== */
+        header {
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 4rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: "Bebas Neue", sans-serif;
+            color: var(--primary-red);
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .logo .char-m {
+            font-family: "Inter", sans-serif;
+            font-weight: 300;
+            font-size: 0.6em;
+            position: relative;
+            top: 0.1em;
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+
+        /* ========== Hero ========== */
+        .hero {
+            background: linear-gradient(-45deg, #E60012, #cc0010, #ff1a2e, #b8000e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--white);
+            padding: 12rem 2rem 6rem;
+            margin-top: 75px;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero h1 {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* ========== Company Section ========== */
+        .company-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .company-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title .highlight {
+            color: var(--cta-gray);
+        }
+
+        .char-m-inline {
+            font-family: "Inter", sans-serif;
+            font-weight: 300;
+            font-size: 0.7em;
+            position: relative;
+            top: 0.05em;
+        }
+
+        .company-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .company-table tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .company-table tr:hover {
+            background: #fff5f5;
+        }
+
+        .company-table th {
+            font-family: "Bebas Neue", sans-serif;
+            text-align: left;
+            padding: 1.5rem 1rem;
+            color: var(--primary-red);
+            font-weight: 400;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            width: 200px;
+            vertical-align: top;
+        }
+
+        .company-table td {
+            padding: 1.5rem 1rem;
+            color: #555;
+        }
+
+        /* ========== Numbers Section ========== */
+        .numbers-section {
+            padding: 6rem 2rem;
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        .numbers-section .section-title {
+            color: var(--white);
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .number-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .number-card .number {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        .number-card .label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ========== Access Section ========== */
+        .access-section {
+            padding: 6rem 2rem;
+            background: #f8f8f8;
+        }
+
+        .access-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .access-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .access-info h3 {
+            font-family: "Bebas Neue", sans-serif;
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .access-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .access-info a {
+            color: var(--cta-gray);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .access-info a:hover {
+            color: var(--primary-red);
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, var(--primary-red), #c4000f);
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .map-logo {
+            width: 120px;
+            height: auto;
+            filter: invert(1);
+            opacity: 0.9;
+        }
+
+        /* ========== About Navigation Section ========== */
+        .about-nav-section {
+            padding: 4rem 2rem;
+            background: var(--cta-gray);
+        }
+
+        .about-nav-container {
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-nav-title {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        .about-nav-list {
+            list-style: none;
+        }
+
+        .about-nav-list li {
+            margin-bottom: 1rem;
+        }
+
+        .about-nav-list a {
+            display: block;
+            color: var(--white);
+            font-family: "Inter", sans-serif;
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .about-nav-list a:hover,
+        .about-nav-list a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        /* ========== Footer ========== */
+        footer {
+            background: var(--cta-gray);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: "Bebas Neue", sans-serif;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--primary-red);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 1024px) {
+            .numbers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .access-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 2rem;
+            }
+            nav {
+                display: none;
+            }
+            .hero {
+                padding: 10rem 2rem 4rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .company-table th,
+            .company-table td {
+                display: block;
+                width: 100%;
+            }
+            .company-table th {
+                padding-bottom: 0.5rem;
+            }
+            .company-table td {
+                padding-top: 0.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .number-card .number {
+                font-size: 3rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">TA<span class="char-m">m</span>J</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="hero-label">ABOUT US</span>
+        <h1>COMPANY</h1>
+    </section>
+
+    <section class="company-section">
+        <div class="company-container">
+            <h2 class="section-title animate-on-scroll">PROFILE</h2>
+            <table class="company-table animate-on-scroll delay-1">
+                <tr><th>COMPANY</th><td>タムジ株式会社</td></tr>
+                <tr><th>FOUNDED</th><td>2020年3月</td></tr>
+                <tr><th>CEO</th><td>JIN.T.O</td></tr>
+                <tr><th>CAPITAL</th><td>1,000万円</td></tr>
+                <tr><th>ADDRESS</th><td>〒103-0004 東京都中央区東日本橋3-3-17</td></tr>
+                <tr><th>EMAIL</th><td>info@tamjump.com</td></tr>
+                <tr><th>BUSINESS</th><td>救急医療 ・外傷看護 ・開発 ・コスメティック ・エンタメ</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="numbers-section">
+        <h2 class="section-title animate-on-scroll">数字で見るTA<span class="char-m-inline">m</span>J</h2>
+        <div class="numbers-grid">
+            <div class="number-card animate-on-scroll">
+                <div class="number">5</div>
+                <div class="label">事業領域</div>
+            </div>
+            <div class="number-card animate-on-scroll delay-1">
+                <div class="number">4</div>
+                <div class="label">展開国</div>
+            </div>
+            <div class="number-card animate-on-scroll delay-2">
+                <div class="number">25</div>
+                <div class="label">チームメンバー</div>
+            </div>
+            <div class="number-card animate-on-scroll">
+                <div class="number">∞</div>
+                <div class="label">可能性</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="access-section">
+        <div class="access-container">
+            <h2 class="section-title animate-on-scroll">ACCESS</h2>
+            <div class="access-grid">
+                <div class="access-info animate-on-scroll delay-1">
+                    <h3>本社オフィス</h3>
+                    <p>〒103-0004</p>
+                    <p>東京都中央区東日本橋3-3-17</p>
+                    <p><a href="mailto:info@tamjump.com">info@tamjump.com</a></p>
+                    <br>
+                    <p><strong>アクセス：</strong></p>
+                    <p>都営浅草線「東日本橋駅」徒歩3分</p>
+                    <p>JR総武線「馬喰町駅」徒歩5分</p>
+                </div>
+                <div class="map-placeholder animate-on-scroll delay-2">
+                    <img src="jump-logo.png" alt="TAmJ Logo" class="map-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Navigation -->
+    <section class="about-nav-section">
+        <div class="about-nav-container">
+            <h3 class="about-nav-title">ABOUT</h3>
+            <ul class="about-nav-list">
+                <li><a href="about-company.html" class="active">COMPANY</a></li>
+                <li><a href="about-message.html">MESSAGE</a></li>
+                <li><a href="about-philosophy.html">PHILOSOPHY</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
