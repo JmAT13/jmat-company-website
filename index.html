@@ -129,11 +129,11 @@
             flex: 1.1;
         }
 
-        /* Center Logo */
+        /* Center Logo - 境界線の白側に配置 */
         .center-logo {
             position: absolute;
             top: 50%;
-            left: 50%;
+            left: 55%;
             transform: translate(-50%, -50%);
             z-index: 100;
             width: 150px;
@@ -374,14 +374,14 @@
             right: 0;
             bottom: 0;
             pointer-events: none;
-            z-index: 100;
+            z-index: 9999;
         }
 
         .ui-layer .cross-btn {
-            position: absolute;
-            bottom: clamp(60px, 12vh, 120px);
+            position: absolute !important;
             pointer-events: auto;
-            border-radius: 0;
+            border-radius: 0 !important;
+            padding: 0 !important;
             clip-path: polygon(
                 31% 0%, 69% 0%,
                 69% 31%,
@@ -392,17 +392,20 @@
                 0% 69%, 0% 31%,
                 31% 31%
             );
-            width: 120px;
-            height: 120px;
+            width: 120px !important;
+            height: 120px !important;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
             transition: all 0.3s ease;
+            transform: none !important;
         }
 
         .ui-layer .left-btn {
-            left: 11.25%;
+            top: 8% !important;
+            left: 5% !important;
+            bottom: auto !important;
             background: var(--cta-gray);
             color: var(--white);
         }
@@ -410,13 +413,15 @@
         .ui-layer .left-btn:hover {
             background: var(--white);
             color: var(--primary-red);
-            transform: translateY(-3px);
+            transform: translateY(-3px) !important;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .ui-layer .right-btn {
-            left: 55%;
-            margin-left: 3.5rem;
+            top: 8% !important;
+            right: 5% !important;
+            left: auto !important;
+            bottom: auto !important;
             background: var(--cta-gray);
             color: var(--white);
         }
@@ -424,7 +429,7 @@
         .ui-layer .right-btn:hover {
             background: var(--primary-red);
             color: var(--white);
-            transform: translateY(-3px);
+            transform: translateY(-3px) !important;
             box-shadow: 0 10px 30px rgba(230,0,18,0.3);
         }
 
@@ -526,6 +531,7 @@
             .center-logo {
                 width: 100px;
                 height: 100px;
+                left: 50%;
             }
             
             .split-hero:hover .hero-half:not(:hover),
